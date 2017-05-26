@@ -88,11 +88,21 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
 
             // 课程 直播新
-            .state('progressNew', {
+            /*.state('progressNew', {
                 url: "/progressNew",
                 cache: 'true',
                 templateUrl: "templates/progress_new.html",
                 controller:"ProgressNewCtrl"
+            })*/
+            .state('tabs.progressNew', {
+                url: "/progressNew",
+                cache: 'true',
+                views: {
+                    'tab-progressNew': {
+                        templateUrl: "templates/progress_new.html",
+                        controller:"ProgressNewCtrl"
+                    }
+                }
             })
 
 
