@@ -1,0 +1,155 @@
+.banner{
+	width: 100%;
+	height: 640px;
+	background: url(../images/login-bg.jpg) no-repeat;
+	background-size: 100% 100%;
+}
+.banner .box{
+	position: relative;
+	height: 100%;
+}
+.banner .box .content-l{
+	width: 100%;
+	height: 100%;
+	padding-top: 50px; 
+}
+.banner .box .content-l .mask{
+	width: 650px;
+	height: 478px;
+	margin: 0 auto;
+	padding-top: 22px;
+	border-radius: 5px;
+	background-color: rgba(0,0,0,.4);
+}
+.banner .box .content-l .mask .title{
+	width: 234px;
+	height: 50px;
+	line-height: 50px;
+	background-image: url(../images/title-bg.png);
+	font-size: 20px;
+	color: #9ac762;
+	text-indent: 120px;
+}
+
+/* 角色选择-董事长 */
+.banner .box .content-l .mask .list-chairman{
+	width: 532px;
+	height: 352px;
+	margin: 20px 0 0 60px;
+	padding: 20px 70px 0 0;
+	background-color: #515455;
+	border-radius: 5px;
+}
+.banner .box .content-l .mask .list-chairman li{
+	margin-bottom: 20px;
+}
+.banner .box .content-l .mask .list-chairman .name{
+	display: inline-block;
+	width: 262px;
+	height: 40px;
+	text-align: right;
+	color: #fff;
+	font-size: 20px;
+	vertical-align: 5px;
+}
+.banner .box .content-l .mask .list-chairman input{
+	width: 194px;
+	height: 40px;
+	padding: 10px;
+	border-radius: 3px;
+}
+.banner .box .content-l .mask .list-chairman select{
+	width: 194px;
+	height: 40px;
+	padding: 10px;
+	border-radius: 5px;
+	appearance:none;
+    -moz-appearance:none;
+    -webkit-appearance:none;
+	background-image: url(../images/selectDown.png);
+	background-color: transparent;
+	background-repeat: no-repeat;
+	background-position: right center;
+	background-position: 174px center;
+	color: #fff;
+	border:1px solid #a2cb61;
+	outline: none;
+}
+.banner .box .content-l .mask .list-chairman select option{
+	background-color: #6f7871;
+	padding: 0 10px;
+}
+.banner .box .content-l .mask .list-chairman button.btn-create{
+	width: 182px;
+	height: 40px;
+	margin-left: 170px;
+	color: #fff;
+	font-size: 20px;
+	border-radius: 5px;
+	background-color: #9ac762;
+	text-shadow: 2px 2px #4f6b31;
+}
+/* 角色选择-员工 */
+.banner .box .content-l .mask .list-staff{
+	width: 532px;
+	height: 352px;
+	margin: 20px 0 0 60px;
+	padding-top: 70px;
+	background-color: #515455;
+	border-radius: 5px;
+}
+.banner .box .content-l .mask .list-staff li{
+	margin-bottom: 40px;
+}
+.banner .box .content-l .mask .list-staff .name{
+	display: inline-block;
+	height: 40px;
+	margin-left: 128px;
+	text-align: right;
+	color: #fff;
+	font-size: 20px;
+	vertical-align: 5px;
+}
+.banner .box .content-l .mask .list-staff input{
+	width: 200px;
+	height: 40px;
+	padding: 10px;
+	border-radius: 3px;
+	border:none;
+	outline: none;
+}
+.banner .box .content-l .mask .list-staff button.btn-create{
+	width: 182px;
+	height: 40px;
+	margin-top: 40px;
+	margin-left: 170px;
+	background: url(../images/btn-shape2.png) no-repeat;
+	border-radius: 5px;
+	color: #fff;
+	font-size: 20px;
+	border:none;
+	outline: none;
+}
+
+.banner .box .sewing-down-l{
+	position: absolute;
+	bottom: -26px;
+	left: 0;
+	width: 120px;
+	height: 52px;
+	background-image: url(../images/sewing.png);
+}
+.banner .box .sewing-down-r{
+	position: absolute;
+	bottom: -26px;
+	right: 0;
+	width: 120px;
+	height: 52px;
+	background-image: url(../images/sewing.png);
+}
+
+.footer-bg{
+	width: 100%;
+	height: 100px;
+	background: #000;
+}

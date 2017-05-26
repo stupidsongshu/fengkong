@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="fkgame">
+<head>
+	<meta charset="UTF-8">
+	<title>合同结果</title>
+	<link rel="stylesheet" href="style/lib/normalize.css">
+	<link rel="stylesheet" href="style/public/common.css">
+	<link rel="stylesheet" href="style/public/header.css">
+	<link rel="stylesheet" href="style/contractResult.css">
+	<link rel="stylesheet" href="style/lib/idangerous.swiper.css">
+	<script src="js/lib/angular/angular.min.js"></script>
+	<script src="js/app.js"></script>
+	<script src="js/service.js"></script>
+	<script src="js/controller.js"></script>
+</head>
+<body ng-controller="ContractResultCtrl">
+	<div ng-include="'templates/header.html'"></div>
+
+	<div class="content">
+		<div class="mask">
+			<div class="title">合同结果</div>
+			
+			<div class="swiper-container">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide">
+						<ul class="list-t clearfix">
+							<li class="pull-left item-t">合同编号</li>
+							<li class="pull-left item-t">审核结果</li>
+							<li class="pull-left item-t">审批结果</li>
+							<li class="pull-left item-t">是否有补充协议</li>
+							<li class="pull-left item-t border-none">是否尽调</li>
+						</ul>
+
+						<ul class="list-c clearfix">
+							<li class="item-c">
+								<div class="multiline-wrapper pull-left">
+									<div class="multiline">
+										<span class="company-name">12345667889</span>
+										<span class="btn-view-detail"><a href="contractDetail.html">查看详情</a></span>
+									</div>
+								</div>
+								<div class="multiline-wrapper pull-left">
+									<div class="multiline">
+										<span class="name">xxx通过xxx未通过</span>
+									</div>
+								</div>
+								<div class="multiline-wrapper pull-left">
+									<div class="multiline">
+										<span class="name">已通过</span>
+									</div>
+								</div>
+								<div class="multiline-wrapper pull-left">
+									<div class="multiline">
+										<span class="name">有</span>
+									</div>
+								</div>
+								<div class="multiline-wrapper pull-left">
+									<div class="multiline">
+										<span class="name">是</span>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			<div class="btn-group">
+				<button ng-if="UrlSearchId == 1"><a href="signContract-special.html">下一步进入特销</a></button>
+				<button ng-if="UrlSearchId == 2"><a href="signContract-purchase.html">去采购</a></button>
+				<button ng-if="UrlSearchId == 3">去签合同</button>
+			</div>
+			
+		</div>
+	</div>
+
+	<div class="footer-bg">
+		<div class="box">
+			<div class="sewing-up-l"></div>
+			<div class="sewing-up-r"></div>
+		</div>
+	</div>
+</body>
+</html>

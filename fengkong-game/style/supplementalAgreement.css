@@ -1,0 +1,276 @@
+.header{
+	position: relative;
+	width: 100%;
+	height: 70px;
+	color:#fff;
+	background-image: url(../images/topnav.png);
+	background-size: 100% 100%;
+	font-size: 18px;
+}
+.header .box{
+	position: relative;
+}
+.header .logo{
+	width: 160px;
+	height: 70px;
+	margin: 0 auto;
+}
+.header .logo-l{
+	position: absolute;
+	top: 20px;
+	left: 0;
+	height: 30px;
+	padding: 0 16px;
+	line-height: 30px;
+	text-align: center;
+	background-color: #3f4143;
+	border-radius: 5px;
+	box-shadow: inset 0 1px 0 rgba(0,0,0,.2),
+				inset 0 -1px 0 rgba(255,255,255,.2);
+}
+.header .logo-r{
+	position: absolute;
+	top: 0;
+	right: 0;
+	line-height: 70px;
+}
+.header .arrow{
+	vertical-align: -20px;
+}
+
+.banner{
+	width: 100%;
+	height: 750px;
+	background: url(../images/login-bg.jpg) no-repeat;
+	background-size: 100% 100%;
+}
+.banner .box{
+	position: relative;
+	height: 100%;
+}
+.banner .box .content-l{
+	position: relative;
+	width: 700px;
+	height: 100%;
+	padding: 46px 50px 0 0; 
+	border-right: 1px solid #fff;
+}
+.banner .box .content-l .mask{
+	width: 650px;
+	height: 650px;
+	padding-top: 40px;
+	border-radius: 5px;
+	background-color: rgba(0,0,0,.4);
+}
+.banner .box .content-l .mask .nav-title{
+	width: 270px;
+	height: 40px;
+	line-height: 40px;
+	margin: 0 auto;
+	background: url(../images/title-bg2.png) no-repeat;
+	background-size: cover;
+	text-align: center;
+	font-size: 18px;
+}
+.banner .box .content-l .mask .contract-number{
+	height: 60px;
+	line-height: 46px;
+	text-align: center;
+	color: #fff;
+	font-size: 14px;
+}
+.banner .box .content-l .mask .content-main{
+	width: 530px;
+	height: 420px;
+	margin: 0 auto;
+	background-color: #5c6162;
+}
+.banner .box .content-l .mask .content-main .content-main-info{
+	padding: 30px 44px 0 60px;
+	line-height: 16px;
+	font-size: 12px;
+	color: #fff;
+}
+.banner .box .content-l .mask .content-main .notes{
+	height: 22px;
+	line-height: 20px;
+	margin-top: 26px;
+	text-align: center;
+	font-size: 14px;
+	color: #fff;
+	box-shadow: inset 0 -2px 0 #5d6061;
+	background-color: #414344;
+}
+.banner .box .content-l .mask .content-main .num{
+	display: block;
+	width: 200px;
+	height: 30px;
+	padding: 10px;
+	margin: 0 auto;
+	border:1px solid #fff;
+	border-radius: 3px;
+	background-color: transparent;
+	outline: none;
+	color: #fff;
+}
+.banner .box .content-l .mask .content-main .num1{
+	margin-top: 12px;
+	margin-bottom: 18px;
+}
+.banner .box .content-l .mask .btn-submit{
+	display: block;
+	width: 160px;
+	height: 40px;
+	margin: 0 auto;
+	margin-top: 18px;
+	border-radius: 3px;
+	background: url(../images/riskIdentify-btn.png) no-repeat;
+	background-size: cover;
+	color: #fff;
+}
+
+.banner .box .content-l .sewing-valign{
+	position: absolute;
+	width: 120px;
+	height: 52px;
+	top: 232px;
+	right: -60px;
+	background-image: url(../images/sewing.png);
+	transform:rotate(90deg);
+}
+
+.banner .box .content-r{
+	width: 250px;
+	height: 650px;
+	margin-top: 46px;
+	border-radius: 5px;
+	background-color: rgba(0,0,0,.4);
+}
+.banner .box .content-r .btn-step{
+	width: 204px;
+	height: 44px;
+	margin-left: 46px;
+	font-size: 18px;
+	text-indent: 100px;
+	border:1px solid red;
+}
+.banner .box .content-r .btn-step1{
+	margin-top: 256px;
+	margin-bottom: 40px;
+	background: url(../images/btn-step1.png);
+	background-size: cover;
+}
+.banner .box .content-r .btn-step2{
+	background: url(../images/btn-step2.png);
+	background-size: cover;
+}
+
+
+body{
+	position: relative;
+	height: 1080px;
+}
+.footer-bg{
+	position: absolute;
+	bottom: -22px;
+	width: 100%;
+	height: 316px;
+	background: url(../images/black-bg.png) no-repeat;
+	background-size: 100% 100%;
+}
+.footer-bg .box{
+	position: relative;
+	height: 100%;
+}
+.footer-bg .box .sewing-up-l{
+	position: absolute;
+	top: -26px;
+	left: -120px;
+	width: 120px;
+	height: 52px;
+	background-image: url(../images/sewing.png);
+}
+.footer-bg .box .sewing-up-r{
+	position: absolute;
+	top: -26px;
+	right: -120px;
+	width: 120px;
+	height: 52px;
+	background-image: url(../images/sewing.png);
+}
+.footer-bg .box .info{
+	width: 820px;
+	height: 100%;
+	margin: 0 auto;
+	padding-top: 90px;
+}
+.footer-bg .box .info .data{
+	background-color: #2a2a2a;
+	border-radius: 0 0 3px 3px;
+	border-bottom: 1px solid #474747;
+}
+.footer-bg .box .info .data .data-title{
+	position: relative;
+	width: 446px;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	color: #fff;
+	font-size: 14px;
+	background-color: #9ac762;
+}
+.footer-bg .box .info .data .data-title:after{
+	content: '';
+	position: absolute;
+	bottom: -7px ;
+	right: 20px;
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: 7px 12px 0 12px;
+	border-color: #9ac762 transparent transparent transparent;
+}
+.footer-bg .box .info .data .data-content{
+	width: 446px;
+	height: 156px;
+	padding: 20px 0 0 24px;
+	font-size: 12px;
+}
+.footer-bg .box .info .data .data-content .icon{
+	display: block;
+	width:84px;
+	height: 84px;
+}
+.footer-bg .box .info .data .data-content .name{
+	display: block;
+	line-height: 30px;
+	text-align: center; 
+	color: #fff;
+}
+.footer-bg .box .info .data .data-content .item-list{
+	padding-left:32px;
+	color: #fff;
+}
+.footer-bg .box .info .data .data-content .item-list .item-li .item{
+	display: inline-block;
+	width: 150px;
+	height: 42px;
+	line-height: 50px;
+}
+.footer-bg .box .info .note{
+	width: 308px;
+	height: 186px;
+	padding: 32px 24px;
+	border-radius: 3px;
+	background-color: #9ac762;
+}
+.footer-bg .box .info .note .inner{
+	width: 260px;
+	height: 120px;
+	padding: 18px 16px;
+	line-height: 20px;
+	border-radius: 3px;
+	color: #fff;
+	font-size: 12px;
+	background-color: #85ac55;
+}

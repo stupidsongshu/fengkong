@@ -1,0 +1,108 @@
+.content{
+	padding: 46px 0 50px 0;
+	background: url(../images/login-bg.jpg) no-repeat;
+	background-size: cover;
+}
+.content .mask{
+	width: 800px;
+	height: 650px;
+	margin: 0 auto;
+	padding: 20px 40px 48px 40px;
+	border-radius: 5px;
+	background-color: rgba(0,0,0,.4);
+}
+.content .mask .title{
+	width: 140px;
+	height: 40px;
+	margin: 0 auto;
+	line-height: 40px;
+	text-align: center;
+	background-color: #404445;
+	color: #fff;
+	border-radius: 5px;
+}
+.content .mask .swiper-container{
+	width: 720px;
+	height: 526px;
+	margin-top: 20px;
+	padding: 10px;
+	border:1px solid #a3ce65;
+	font-size: 14px;
+}
+.content .mask .swiper-container .swiper-wrapper{
+	width: 700px;
+	height: 506px;
+}
+.content .mask .swiper-container .swiper-wrapper .swiper-slide{
+	width: 100%;
+	height: 100%;
+	background-color: #fff;
+}
+.content .mask .swiper-container .swiper-wrapper .swiper-slide .list-t .item-t{
+	width: 140px;
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+	color: #fff;
+	border-right: 1px solid #e5e5e5;
+	background-color: #a4cd65;
+	font-weight: normal;
+}
+.content .mask .swiper-container .swiper-wrapper .swiper-slide .list-c td{
+	width: 140px;
+	height: 38px;
+	text-align: center;
+	border-right: 1px solid #e5e5e5;
+	border-bottom: 1px solid #e5e5e5;
+} 
+
+.content .mask .swiper-container .swiper-wrapper .swiper-slide .list-c .company-name{
+	display: inline-block;
+	margin-bottom: 8px;
+	font-size: 12px;
+	color: #000;
+	vertical-align: middle;
+}
+.content .mask .swiper-container .swiper-wrapper .swiper-slide .list-c .btn-view-detail{
+	display: inline-block;
+	width: 82px;
+	height: 24px;
+	line-height: 24px;
+	border-radius: 5px;
+	color: #fff;
+	background-color: #9bc766;
+	vertical-align: middle;
+}
+
+
+body{
+	position: relative;
+}
+.footer-bg{
+	position: absolute;
+	bottom: -38px;
+	width: 100%;
+	height: 92px;
+	background: url(../images/black-bg.png) no-repeat;
+	background-size: 100% 100%;
+}
+.footer-bg .box{
+	position: relative;
+	height: 100%;
+}
+.footer-bg .box .sewing-up-l{
+	position: absolute;
+	top: -26px;
+	left: -120px;
+	width: 120px;
+	height: 52px;
+	background-image: url(../images/sewing.png);
+}
+.footer-bg .box .sewing-up-r{
+	position: absolute;
+	top: -26px;
+	right: -120px;
+	width: 120px;
+	height: 52px;
+	background-image: url(../images/sewing.png);
+}

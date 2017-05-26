@@ -1,0 +1,218 @@
+.header{
+	position: relative;
+	width: 100%;
+	height: 70px;
+	color:#fff;
+	background-image: url(../images/topnav.png);
+	background-size: 100% 100%;
+	font-size: 18px;
+}
+.header .box{
+	position: relative;
+}
+.header .logo{
+	width: 160px;
+	height: 70px;
+	margin: 0 auto;
+}
+.header .logo-l{
+	position: absolute;
+	top: 20px;
+	left: 0;
+	height: 30px;
+	padding: 0 16px;
+	line-height: 30px;
+	text-align: center;
+	background-color: #3f4143;
+	border-radius: 5px;
+	box-shadow: inset 0 -1px 0 rgba(0,0,0,.2),
+				inset 0 1px 0 rgba(255,255,255,.2);
+}
+.header .logo-r{
+	position: absolute;
+	top: 0;
+	right: 0;
+	line-height: 70px;
+}
+.header .arrow{
+	vertical-align: -20px;
+}
+
+.banner{
+	width: 100%;
+	height: 750px;
+	background: url(../images/login-bg.jpg) no-repeat;
+	background-size: 100% 100%;
+}
+.banner .box{
+	position: relative;
+	height: 100%;
+}
+.banner .box .content-l{
+	position: relative;
+	width: 700px;
+	height: 100%;
+	padding: 46px 50px 0 0; 
+	border-right: 1px solid #fff;
+}
+.banner .box .content-l .mask{
+	width: 650px;
+	height: 650px;
+	padding-top: 20px;
+	border-radius: 5px;
+	background-color: rgba(0,0,0,.4);
+}
+.banner .box .content-l .mask .nav-title{
+	width: 140px;
+	height: 40px;
+	line-height: 40px;
+	margin: 0 auto;
+	margin-bottom: 20px;
+	text-align: center;
+	color: #fff;
+	border-radius: 5px;
+	background-color: #3d3f41;
+}
+.banner .box .content-l .mask .wrapper{
+	width: 600px;
+	padding: 10px;
+	margin: 0 auto;
+	border:1px solid #a3cd64;
+}
+.banner .box .content-l .mask .wrapper .inner .title{
+	width: 580px;
+	height: 50px;
+	padding-left: 64px;
+	line-height: 50px;
+	color: #fff;
+	font-size: 18px;
+	background-color: #a3cd64;
+}
+.banner .box .content-l .mask .wrapper .inner .item{
+	width: 580px;
+	height: 56px;
+	line-height: 56px;
+	padding-left: 60px;
+	font-size: 12px;
+	border-bottom: 1px solid #e8e8e8;
+	background-color: #fff;
+}
+
+.banner .box .content-l .sewing-valign{
+	position: absolute;
+	width: 120px;
+	height: 52px;
+	top: 232px;
+	right: -60px;
+	background-image: url(../images/sewing.png);
+	transform:rotate(90deg);
+}
+
+
+.banner .box .content-r{
+	width: 250px;
+	height: 650px;
+	margin-top: 46px;
+	padding-top: 80px;
+	border-radius: 5px;
+	background-color: rgba(0,0,0,.4);
+}
+.banner .box .content-r .audit-group .audit-nav-icon{
+	width: 250px;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	font-size: 18px;
+	background:url(../images/title-bg1.png) no-repeat;
+	background-size: cover;
+}
+.banner .box .content-r .audit-group .audit-waiting,
+.banner .box .content-r .audit-group .audit-over,
+.banner .box .content-r .approval-group .approval-waiting,
+.banner .box .content-r .approval-group .approval-over{
+	margin-top: 18px;
+	text-align: center;
+}
+.banner .box .content-r .audit-group .audit-waiting .icon-l{
+	display: inline-block;
+	width: 12px;
+	height: 12px;
+	background:url(../images/radius-orange.png) no-repeat;
+}
+.banner .box .content-r .audit-group .audit-over .icon-l{
+	display: inline-block;
+	width: 16px;
+	height: 11px;
+	background:url(../images/tick-orange.png) no-repeat;
+}
+.banner .box .content-r .icon-m{
+	display: inline-block;
+	width: 32px;
+	height:38px;
+	margin: 0 10px;
+	vertical-align: -12px;
+	background: url(../images/document-cancel-cross-delete-file.png) no-repeat;
+}
+.banner .box .content-r .icon-r{
+	color: #fff;
+	font-size: 18px;
+}
+
+.banner .box .content-r .approval-group{
+	margin: 38px 0;
+}
+.banner .box .content-r .approval-group .approval-nav-icon{
+	width: 250px;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	font-size: 18px;
+	background:url(../images/title-bg2.png) no-repeat;
+	background-size: cover;
+}
+.banner .box .content-r .approval-group .approval-waiting .icon-l{
+	display: inline-block;
+	width: 12px;
+	height: 12px;
+	background:url(../images/radius-green.png) no-repeat;
+}
+.banner .box .content-r .approval-group .approval-over .icon-l{
+	display: inline-block;
+	width: 16px;
+	height: 11px;
+	background:url(../images/tick-green.png) no-repeat;
+}
+
+
+body{
+	position: relative;
+	height: 856px;
+}
+.footer-bg{
+	position: absolute;
+	bottom: -48px;
+	width: 100%;
+	height: 92px;
+	background: url(../images/black-bg.png) no-repeat;
+	background-size: 100% 100%;
+}
+.footer-bg .box{
+	position: relative;
+	height: 100%;
+}
+.footer-bg .box .sewing-up-l{
+	position: absolute;
+	top: -26px;
+	left: -120px;
+	width: 120px;
+	height: 52px;
+	background-image: url(../images/sewing.png);
+}
+.footer-bg .box .sewing-up-r{
+	position: absolute;
+	top: -26px;
+	right: -120px;
+	width: 120px;
+	height: 52px;
+	background-image: url(../images/sewing.png);
+}

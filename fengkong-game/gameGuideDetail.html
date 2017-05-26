@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>游戏指南详情</title>
+	<link rel="stylesheet" href="style/lib/normalize.css">
+	<link rel="stylesheet" href="style/common.css">
+	<link rel="stylesheet" href="style/gameGuideDetail.css">
+	<link rel="stylesheet" href="style/lib/idangerous.swiper.css">
+	<script src="js/lib/jquery-1.12.3.js"></script>
+	<script src="js/lib/idangerous.swiper.min.js"></script>
+</head>
+<body>
+	<div class="header">
+		<ul class="box clearfix">
+			<li class="logo-l"><img class="arrow" src="images/icon-l.png"> <span>首页</span></li>
+			<li class="logo"><img src="images/logo.png"></li>
+			<li class="logo-r"><span>游戏指南</span> <img class="arrow" src="images/icon-r.png"></li>
+		</ul>
+	</div>
+
+	<div class="banner">
+		<img src="images/game-guide-banner.png">
+		<div class="box">
+			<div class="sewing-down-l"></div>
+			<div class="sewing-down-r"></div>
+		</div>
+	</div>
+
+	<div class="guide-group">
+			<div class="wrapper">
+				<div class="swiper-container">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide">
+							<div class="slide-item">
+								<h3 class="nav-title">创建角色</h3>
+								<p>ipsum dolor sit amet, consectetur adipiscing elit. euismod bibendum laoreet.Proin gravida dolor lacus accumsan et viverra justo commodo. Proin pulvinar tempor. Cum sociis natoque penatibus dis parturient montes, nascetur ridiculus mus.Nam fermentum, nulla pharetra vulputate, felis tellus mollis orci, sed rhoncus nunc eget.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- 分页器 -->
+				<div class="swiper-pagination swiper-pagination-h"></div>
+
+				<!-- 前进后退按钮 -->
+				<button class="arrow-left"></button>
+				<button class="arrow-right"></button>
+				
+			</div>
+	</div>
+
+	<script>
+		var swiper = new Swiper('.swiper-container',{
+		    mode: 'horizontal',
+	    	pagination: '.swiper-pagination-h',
+	        paginationClickable: true,
+		    grabCursor: true,
+		    loop:true,
+	 	});
+	 	$('.arrow-left').on('click', function(e){
+	 		console.log(e);
+	    	swiper.swipePrev();
+	  	});
+	  	$('.arrow-right').on('click', function(e){
+	    	swiper.swipeNext();
+	  	});
+	</script>
+</body>
+</html>

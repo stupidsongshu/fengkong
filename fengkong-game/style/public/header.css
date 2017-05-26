@@ -1,0 +1,39 @@
+.header{
+	position: relative;
+	width: 100%;
+	height: 70px;
+	color:#fff;
+	font-size: 18px;
+	background-image: url(../../images/topnav.png);
+	background-size: 100% 100%;
+}
+.header .box{
+	position: relative;
+}
+.header .logo{
+	width: 160px;
+	height: 70px;
+	margin: 0 auto;
+}
+.header .logo-l{
+	position: absolute;
+	top: 20px;
+	left: 0;
+	height: 30px;
+	padding: 0 16px;
+	line-height: 30px;
+	text-align: center;
+	background-color: #3f4143;
+	border-radius: 5px;
+	box-shadow: inset 0 1px 0 rgba(0,0,0,.2),
+				inset 0 -1px 0 rgba(255,255,255,.2);
+}
+.header .logo-r{
+	position: absolute;
+	top: 0;
+	right: 0;
+	line-height: 70px;
+}
+.header .arrow{
+	vertical-align: -20px;
+}

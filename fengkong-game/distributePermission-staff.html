@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="fkgame">
+<head>
+	<meta charset="UTF-8">
+	<title>权限分配（员工）</title>
+	<link rel="stylesheet" href="style/lib/normalize.css">
+	<link rel="stylesheet" href="style/public/common.css">
+	<link rel="stylesheet" href="style/public/header.css">
+	<link rel="stylesheet" href="style/distributePermission-staff.css">
+	<link rel="stylesheet" href="style/lib/idangerous.swiper.css">
+	<script src="js/lib/jquery-1.12.3.js"></script>
+	<script src="js/lib/idangerous.swiper.min.js"></script>
+	<script src="js/lib/angular/angular.min.js"></script>
+	<script src="js/app.js"></script>
+	<script src="js/service.js"></script>
+	<script src="js/controller.js"></script>
+</head>
+<body ng-controller="DistributePermissionStaffCtrl">
+	<div ng-include="'templates/header.html'"></div>
+	
+	<div class="banner">
+		<div class="box">
+			<div class="pull-left content-l">
+				<div class="mask">
+					<div class="wrapper-line">
+						<div class="swiper-container">
+							<div class="swiper-wrapper">
+								<div class="swiper-slide">
+									<ul class="list-t clearfix">
+										<li class="pull-left item-t col1">昵称</li>
+										<li class="pull-left item-t col2">职位</li>
+										<li class="pull-left item-t col3">匹配权限</li>
+										<li class="pull-left item-t border-none col4">权限分配</li>
+									</ul>
+
+									<ul class="list-c">
+										<li class="item-c">
+											<div class="col1">小路飞</div>
+											<div class="col2">董事长</div>
+											<div class="col3">
+												<span class="col3-c">人事任免、签订补充协议</span>
+											</div>
+											<div class="col4">
+												<ul class="permission-list">
+													<li class="permission-item">销售合同审批</li>
+													<li class="permission-item">采购合同审批</li>
+													<li class="permission-item">融资审批</li>
+												</ul>
+											</div>
+										</li>
+										<li class="item-c">
+											<div class="col1">小路飞</div>
+											<div class="col2">总经理</div>
+											<div class="col3">
+												<span class="col3-c"></span>
+											</div>
+											<div class="col4">
+												<ul class="permission-list">
+													<li class="permission-item">销售合同审批</li>
+													<li class="permission-item">采购合同审批</li>
+													<li class="permission-item">融资审批</li>
+												</ul>
+											</div>
+										</li>
+										<li class="item-c">
+											<div class="col1">小路飞</div>
+											<div class="col2">采购总监</div>
+											<div class="col3">
+												<span class="col3-c">采购合同发起、额外采购发起、材料入库</span>
+											</div>
+											<div class="col4">
+												<ul class="permission-list">
+													<li class="permission-item">销售合同审批</li>
+													<li class="permission-item">采购合同审批</li>
+													<li class="permission-item">融资审批</li>
+												</ul>
+											</div>
+										</li>
+										<li class="item-c">
+											<div class="col1">小路飞</div>
+											<div class="col2">销售总监</div>
+											<div class="col3">
+												<span class="col3-c">销售合同发起、销售发货</span>
+											</div>
+											<div class="col4">
+												<ul class="permission-list">
+													<li class="permission-item">销售合同审批</li>
+													<li class="permission-item">采购合同审批</li>
+													<li class="permission-item">融资审批</li>
+												</ul>
+											</div>
+										</li>
+									</ul>
+								</div>
+
+								<div class="swiper-slide">
+									<ul class="list-t clearfix">
+										<li class="pull-left item-t col1">昵称</li>
+										<li class="pull-left item-t col2">职位</li>
+										<li class="pull-left item-t col3">匹配权限</li>
+										<li class="pull-left item-t border-none col4">权限分配</li>
+									</ul>
+								
+									<ul class="list-c">
+										<li class="item-c">
+											<div class="col1">小路飞</div>
+											<div class="col2">财务总监</div>
+											<div class="col3">
+												<span class="col3-c">付款、收款、融资</span>
+											</div>
+											<div class="col4">
+												<ul class="permission-list">
+													<li class="permission-item">销售合同审批</li>
+													<li class="permission-item">采购合同审批</li>
+													<li class="permission-item">融资审批</li>
+												</ul>
+											</div>
+										</li>
+										<li class="item-c">
+											<div class="col1">小路飞</div>
+											<div class="col2">风控总监</div>
+											<div class="col3">
+												<span class="col3-c">尽职调查发起</span>
+											</div>
+											<div class="col4">
+												<ul class="permission-list">
+													<li class="permission-item">销售合同审批</li>
+													<li class="permission-item">采购合同审批</li>
+													<li class="permission-item">融资审批</li>
+												</ul>
+											</div>
+										</li>
+										<li class="item-c">
+											<div class="col1">小路飞</div>
+											<div class="col2">产品总监</div>
+											<div class="col3">
+												<span class="col3-c">生产加工、存货处置</span>
+											</div>
+											<div class="col4">
+												<ul class="permission-list">
+													<li class="permission-item">销售合同审批</li>
+													<li class="permission-item">采购合同审批</li>
+													<li class="permission-item">融资审批</li>
+												</ul>
+											</div>
+										</li>
+									</ul>
+								</div>
+
+							</div>
+						</div>
+					</div>
+					<!-- 分页器 -->
+					<div class="swiper-pagination swiper-pagination-h"></div>
+				</div>
+
+				<button class="btn-submit">提交</button>
+
+				<div class="sewing-valign"></div>
+			</div>
+
+			<div class="pull-right content-r">
+				<div class="announcement">
+					<h3 class="title">公告</h3>
+					<ul class="announcement-list">
+						<li>公告公告公告公告公告</li>
+						<li>公告公告公告公告公告</li>
+						<li>公告公告公告公告公告</li>
+						<li>公告公告公告公告公告</li>
+					</ul>
+					<div class="icons clearfix">
+						<i class="pull-left icon-l"></i>
+						<i class="pull-right icon-r"></i>
+					</div>
+				</div>
+
+				<div class="system-news">
+					<div class="title"><img src="images/icon-trumpet.png"> 系统消息</div>
+					<ul class="news-list">
+						<li class="news-item">
+							<i class="icon-news"></i>
+							<span>~~~~~~~hello</span>
+						</li>
+						<li class="news-item">
+							<i class="icon-news"></i>
+							<span>~~~~~~~hello</span>
+						</li>
+						<li class="news-item">
+							<i class="icon-news"></i>
+							<span>~~~~~~~hello</span>
+						</li>
+						<li class="news-item">
+							<i class="icon-news"></i>
+							<span>~~~~~~~hello</span>
+						</li>
+					</ul>
+				</div>
+			</div>
+			
+			<div class="sewing-down-l"></div>
+			<div class="sewing-down-r"></div>
+
+			<button class="next-step"><a href="contractLedger-sell.html">下一步</a></button>
+		</div>
+	</div>
+
+	<div class="footer-bg"></div>
+
+	<script>
+		var swiper = new Swiper('.swiper-container',{
+		    mode: 'horizontal',
+	    	pagination: '.swiper-pagination-h',
+	        paginationClickable: true,
+		    grabCursor: true,
+	 	});
+	</script>
+</body>
+</html>

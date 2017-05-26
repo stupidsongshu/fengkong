@@ -1,0 +1,226 @@
+.banner{
+	width: 100%;
+	height: 640px;
+	background: url(../images/login-bg.jpg) no-repeat;
+	background-size: 100% 100%;
+}
+.banner .box{
+	position: relative;
+	height: 100%;
+}
+.banner .box .content-l{
+	position: relative;
+	width: 700px;
+	height: 100%;
+	padding: 50px 50px 0 0; 
+	border-right: 1px solid #fff;
+}
+.banner .box .content-l .mask{
+	width: 650px;
+	height: 478px;
+	padding-top: 42px;
+	border-radius: 5px;
+	background-color: rgba(0,0,0,.4);
+}
+
+.banner .box .content-l .mask .wrapper{
+	width: 600px;
+	height: 350px;
+	padding: 10px;
+	margin: 0 auto;
+	border:1px solid #a3cd64;
+}
+.banner .box .content-l .mask .wrapper .list-t,
+.banner .box .content-l .mask .wrapper .list-c{
+	width: 580px;
+}
+.banner .box .content-l .mask .wrapper .list-t .item-t{
+	width: 116px;
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+	border-right: 1px solid #e5e5e5;
+	background-color: #a3cd64;
+	color: #fff;
+	font-size: 14px;
+}
+.banner .box .content-l .mask .wrapper .list-c .item-c .item-c-single{
+	width: 116px;
+	height: 70px;
+	background-color: #fff;
+	border-right: 1px solid #e5e5e5;
+	border-bottom: 1px solid #e5e5e5;
+}
+.banner .box .content-l .mask .wrapper .list-c .item-c .item-c-single input{
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	border:none;
+	outline: none;
+	box-shadow: none;
+}
+.banner .box .content-l .mask .wrapper .list-c .item-c .item-c-single .icon{
+	width: 40px;
+	height: 40px;
+	margin: 8px auto 4px auto;
+	border-radius: 50%;
+	overflow: hidden;
+}
+.banner .box .content-l .mask .wrapper .list-c .item-c .item-c-single .icon img{
+	width: 100%;
+	height: 100%;
+}
+.banner .box .content-l .mask .wrapper .list-c .item-c .item-c-single .nick-name{
+	text-align: center;
+	font-size: 12px;
+}
+.banner .box .content-l .mask .btn-groups{
+	width: 340px;
+	height: 30px;
+	margin-top: 20px;
+	margin-left: 166px;
+}
+.banner .box .content-l .mask .btn-groups .btn-submit{
+	display: inline-block;
+	width: 100px;
+	height: 30px;
+	margin-right: 14px;
+	border-radius: 5px;
+	color: #fff;
+	background: url(../images/btn-submit.png) no-repeat;
+	background-position: center;
+	box-shadow: 0 1px 3px #424644;
+}
+.banner .box .content-l .mask .btn-groups .btn-submit-r{
+	margin-right: 0;
+}
+
+.banner .box .content-l .sewing-valign{
+	position: absolute;
+	width: 120px;
+	height: 52px;
+	top: 232px;
+	right: -60px;
+	background-image: url(../images/sewing.png);
+	transform:rotate(90deg);
+}
+
+.banner .box .content-r{
+	width: 250px;
+	padding-top: 50px;
+}
+.banner .box .content-r .announcement{
+	position: relative;
+	width: 250px;
+	height:200px;
+	padding-top: 20px;
+	border-radius: 5px;
+	background-color: rgba(0,0,0,.4);
+	color: #fff;
+}
+.banner .box .content-r .announcement .title{
+	text-align: center;
+	font-size: 24px;
+}
+.banner .box .content-r .announcement .announcement-list{
+	width: 168px;
+	padding-left: 20px;
+	margin: 0 auto;
+	margin-top: 24px;
+}
+.banner .box .content-r .announcement .announcement-list li{
+	margin-bottom: 10px;
+	font-size: 12px;
+}
+
+.banner .box .content-r .announcement .icons .icon-l{
+	position: absolute;
+	width: 28px;
+	height: 32px;
+	top: 104px;
+	left: 10px;
+	background: url(../images/arrow-green-l.png) no-repeat;
+}
+.banner .box .content-r .announcement .icons{
+	padding: 0 20px;
+}
+.banner .box .content-r .announcement .icons .icon-r{
+	position: absolute;
+	width: 28px;
+	height: 32px;
+	top: 104px;
+	right: 10px;
+	background: url(../images/game-guide-arrow-btn.png) no-repeat;
+}
+
+.banner .box .content-r .system-news .title{
+	height: 44px;
+	line-height: 44px;
+	text-align: center;
+	font-size: 24px;
+	color: #fff;
+}
+.banner .box .content-r .system-news .title img{
+	vertical-align: -8px;
+}
+.banner .box .content-r .system-news .news-list{
+	width: 250px;
+	height: 234px;
+	padding: 40px;
+	border-radius: 5px;
+	background-color: rgba(0,0,0,.4);
+}
+.banner .box .content-r .system-news .news-list .news-item{
+	height: 40px;
+	line-height: 40px;
+	color: #fff;
+}
+.banner .box .content-r .system-news .news-list .news-item .icon-news{
+	display: inline-block;
+	width: 26px;
+	height: 18px;
+	background: url(../images/icon-news.png) no-repeat;
+	vertical-align: -2px;
+}
+
+.banner .box .sewing-down-l{
+	position: absolute;
+	bottom: -26px;
+	left: 0;
+	width: 120px;
+	height: 52px;
+	background-image: url(../images/sewing.png);
+}
+.banner .box .sewing-down-r{
+	position: absolute;
+	bottom: -26px;
+	right: 0;
+	width: 120px;
+	height: 52px;
+	background-image: url(../images/sewing.png);
+}
+
+.banner .box .next-step{
+	position: absolute;
+	left: 50%;
+	bottom: -44px;
+	/* margin-left: -130px;
+	width: 260px;
+	height: 60px; */
+	width: 270px;
+	height: 70px;
+	margin-left: -135px;
+	background: url(../images/next-step-btn.png) no-repeat;
+	color: #fff;
+	font-size: 20px;
+	border:none;
+	outline: none;
+	border-radius: 5px;
+}
+
+
+.footer-bg{
+	width: 100%;
+	height: 100px;
+	background: #000;
+}

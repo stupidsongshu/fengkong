@@ -1,0 +1,1 @@
+var fkgame = angular.module('fkgame',['fkgame.controller']);

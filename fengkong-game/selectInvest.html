@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="fkgame">
+<head>
+	<meta charset="UTF-8">
+	<title>选择投资</title>
+	<link rel="stylesheet" href="style/lib/normalize.css">
+	<link rel="stylesheet" href="style/public/common.css">
+	<link rel="stylesheet" href="style/public/header.css">
+	<link rel="stylesheet" href="style/selectInvest.css">
+	<script src="js/lib/angular/angular.min.js"></script>
+	<script src="js/app.js"></script>
+	<script src="js/service.js"></script>
+	<script src="js/controller.js"></script>
+</head>
+<body ng-controller="SelectInvestCtrl">
+	<div ng-include="'templates/header.html'"></div>
+	
+	<div class="banner">
+		<div class="box">
+			<div class="pull-left content-l">
+				<div class="mask">
+					<div class="title">公司列表</div>
+					
+					<div class="wrapper">
+						<div class="pull-left wrapper-l">
+							<div class="content">
+								<ul class="announcement-list">
+									<li class="announcement-item clearfix">
+										<div class="pull-left announcement-img">
+											<img src="images/announcement-img.jpg">
+										</div>
+										<ul class="pull-right announcement-txt">
+											<li>公告公告公告公告</li>
+											<li>公告公告公告公告</li>
+											<li>公告公告公告公告</li>
+										</ul>
+									</li>
+
+									<li class="announcement-item clearfix">
+										<div class="pull-left announcement-img">
+											<img src="images/announcement-img.jpg">
+										</div>
+										<ul class="pull-right announcement-txt">
+											<li>公告公告公告公告</li>
+											<li>公告公告公告公告</li>
+											<li>公告公告公告公告</li>
+										</ul>
+									</li>
+								</ul>
+							</div>
+						</div>
+
+						<div class="pull-right wrapper-r">
+							<ul class="wrapper-r-list">
+								<li>
+									<span class="name">公司选择 :</span>
+									<input type="text">
+								</li>
+								<li>
+									<span class="name">资本投资 :</span>
+									<input type="text">
+								</li>
+							</ul>
+
+							<button class="btn-submit"><a href="distributeStock.html">确认投资</a></button>
+
+							<span class="remark">剩余投资：xxx万元</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="sewing-valign"></div>
+			</div>
+
+			<div class="pull-right content-r">
+				<div class="announcement">
+					<h3 class="title">公告</h3>
+					<ul class="announcement-list">
+						<li>公告公告公告公告公告</li>
+						<li>公告公告公告公告公告</li>
+						<li>公告公告公告公告公告</li>
+						<li>公告公告公告公告公告</li>
+					</ul>
+					<div class="icons clearfix">
+						<i class="pull-left icon-l"></i>
+						<i class="pull-right icon-r"></i>
+					</div>
+				</div>
+
+				<div class="system-news">
+					<div class="title"><img src="images/icon-trumpet.png"> 系统消息</div>
+					<ul class="news-list">
+						<li class="news-item">
+							<i class="icon-news"></i>
+							<span>~~~~~~~hello</span>
+						</li>
+						<li class="news-item">
+							<i class="icon-news"></i>
+							<span>~~~~~~~hello</span>
+						</li>
+						<li class="news-item">
+							<i class="icon-news"></i>
+							<span>~~~~~~~hello</span>
+						</li>
+						<li class="news-item">
+							<i class="icon-news"></i>
+							<span>~~~~~~~hello</span>
+						</li>
+					</ul>
+				</div>
+			</div>
+			
+			<div class="sewing-down-l"></div>
+			<div class="sewing-down-r"></div>
+		</div>
+	</div>
+
+	<div class="footer-bg"></div>
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="fkgame">
+<head>
+	<meta charset="UTF-8">
+	<title>员工招聘、分配职务（董事长）</title>
+	<link rel="stylesheet" href="style/lib/normalize.css">
+	<link rel="stylesheet" href="style/public/common.css">
+	<link rel="stylesheet" href="style/public/header.css">
+	<link rel="stylesheet" href="style/staffEmployee.css">
+	<script src="js/lib/angular/angular.min.js"></script>
+	<script src="js/app.js"></script>
+	<script src="js/service.js"></script>
+	<script src="js/controller.js"></script>
+</head>
+<body ng-controller="StaffEmployeeCtrl">
+	<div ng-include="'templates/header.html'"></div>
+	
+	<div class="banner">
+		<div class="box">
+			<div class="pull-left content-l">
+				<div class="mask">
+					<div class="content">
+						<div class="content-main">
+							<div class="pull-left content-main-l">
+								<div class="title">投职员工</div>
+
+								<ul class="list">
+									<li class="clearfix">
+										<div class="pull-left icon"><img src="images/announcement-img.jpg"></div>
+										<div class="pull-left name">小路飞</div>
+									</li>
+									<li class="clearfix">
+										<div class="pull-left icon"><img src="images/announcement-img.jpg"></div>
+										<div class="pull-left name">小路飞</div>
+									</li>
+									<li class="clearfix">
+										<div class="pull-left icon"><img src="images/announcement-img.jpg"></div>
+										<div class="pull-left name">小路飞</div>
+									</li>
+								</ul>
+							</div>
+
+							<div class="pull-left content-main-r clearfix">
+								<div class="title pull-right" style="transform:rotate(180deg);">
+									<span style="display:inline-block;transform:rotate(180deg);">分配职务</span>
+								</div>
+								<div class="role clearfix">
+									<div class="pull-left icon"><img src="images/announcement-img.jpg"></div>
+									<div class="pull-left name">小路飞</div>
+								</div>
+								
+								<ul>
+									<li class="info">
+										<span>期望职位：</span>
+										<span>采购员</span>
+									</li>
+									<li class="info distributeJob">
+										<span>分配职位：</span>
+										<span class="selectJob"></span>
+										<ul class="jobs">
+											<li class="job-item clearfix">
+												<div class="pull-left job-item-l">
+													<input type="checkbox" style="vertical-align: -2px;"> 董事长
+												</div>
+												<div class="pull-left">
+													<input type="checkbox" style="vertical-align: -2px;"> 会计
+												</div>
+											</li>
+											<li class="job-item clearfix">
+												<div class="pull-left job-item-l">
+													<input type="checkbox" style="vertical-align: -2px;"> 总经理
+												</div>
+												<div class="pull-left">
+													<input type="checkbox" style="vertical-align: -2px;"> 部门经理
+												</div>
+											</li>
+											<li class="job-item clearfix">
+												<div class="pull-left job-item-l">
+													<input type="checkbox" style="vertical-align: -2px;"> 销售经理
+												</div>
+												<div class="pull-left">
+													<input type="checkbox" style="vertical-align: -2px;"> 销售员工
+												</div>
+											</li>
+										</ul>
+									</li>
+									<li class="info">
+										<span>期望薪资：</span>
+										<input type="text" class="salary">
+									</li>
+									<li class="info">
+										<button class="btn-submit">确认聘用</button>
+									</li>
+								</ul>
+								
+							</div>
+						</div>
+					</div>
+
+					<div>
+						<button class="detail"><a href="distributePermission-status.html?type=1">录用详情</a></button>
+					</div>
+				</div>
+
+				<div class="sewing-valign"></div>
+			</div>
+
+			<div class="pull-right content-r">
+				<div class="announcement">
+					<h3 class="title">公告</h3>
+					<ul class="announcement-list">
+						<li>公告公告公告公告公告</li>
+						<li>公告公告公告公告公告</li>
+						<li>公告公告公告公告公告</li>
+						<li>公告公告公告公告公告</li>
+					</ul>
+					<div class="icons clearfix">
+						<i class="pull-left icon-l"></i>
+						<i class="pull-right icon-r"></i>
+					</div>
+				</div>
+
+				<div class="system-news">
+					<div class="title"><img src="images/icon-trumpet.png"> 系统消息</div>
+					<ul class="news-list">
+						<li class="news-item">
+							<i class="icon-news"></i>
+							<span>~~~~~~~hello</span>
+						</li>
+						<li class="news-item">
+							<i class="icon-news"></i>
+							<span>~~~~~~~hello</span>
+						</li>
+						<li class="news-item">
+							<i class="icon-news"></i>
+							<span>~~~~~~~hello</span>
+						</li>
+						<li class="news-item">
+							<i class="icon-news"></i>
+							<span>~~~~~~~hello</span>
+						</li>
+					</ul>
+				</div>
+			</div>
+			
+			<div class="sewing-down-l"></div>
+			<div class="sewing-down-r"></div>
+		</div>
+	</div>
+
+	<div class="footer-bg"></div>
+</body>
+</html>

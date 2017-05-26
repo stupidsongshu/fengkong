@@ -1,0 +1,442 @@
+<ion-header-bar align-title="center" class="home_head themebgcolor" >
+    <a ><img class="logoR" src="img/R-3.png" alt="" style="width: 70%" ></a>
+    <a href="#/tab/home_search" style="width: 90%;">
+        <label class="item-input-wrapper home_search " >
+            <i class="icon ion-ios-search placeholder-icon"></i>
+            <input type="search" placeholder="搜索内容提示 / 提示 / 提示" class="home_inputS" >
+        </label>
+    </a>
+    <a ><img src="img/comment.png" alt="" class="comment" ></a>
+</ion-header-bar>
+
+<ion-content >
+    <div class="home_banner">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide" ng-repeat="gil in bannerList" >
+                    <img ng-src="{{gil.imageUrl}}">
+                </div>
+                
+            </div>
+            <!-- Add Pagination -->
+            <div class="swiper-pagination swiper-pagination-white"></div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class=" row ">
+            <div class="col">
+                <div class="tab_circle  a1" ng-click="tabs=1">
+                    <span>内</span>
+                </div>
+            </div>
+            <div class="col">
+                <div class="tab_circle  " ng-click="tabs=2">
+                    <span>审</span>
+                </div>
+            </div>
+            <div class="col">
+                <div class="tab_circle  " ng-click="tabs=3">
+                    <span>财</span>
+                </div>
+            </div>
+            <div class="col">
+                <div class="tab_circle  " ng-click="tabs=4">
+                    <span>税</span>
+                </div>
+            </div>
+            <div class="col">
+                <div class="tab_circle  " ng-click="tabs=5">
+                    <span>风</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="background: #fbfafa;width: 200%;height: 10px;">
+
+    </div>
+
+    <div class="container" ng-if='tabs==1'>
+        <div>
+            <!--近期直播-->
+            <div class="row margin-top10">
+                <div class="col-33 margin-left10"><img src="img/2.png" class="direct-seeding">近期直播</div>
+                <div class="col-33 col-offset-33 "><span class="home_more" >更多<img src="img/right.png" style="width:20px;height: 20px;"></span></div>
+            </div>
+            <div class="row margin-top10 margin_left_-5" >
+                <div class="col-50" style="position: relative;">
+                    <a href="#/progress_detail">
+                        <img src="img/play(1).png" class="home_play">
+                        <img src="img/1.png" width="100%" height="20%;">
+                    </a>
+                    <div class="triangle-right triangle-right_red"></div>
+                    <div class="triangle-right-left-font">正在直播</div>
+                </div>
+                <div class="col-50" style="margin-left:5px;position: relative;">
+                    <a href="#/progress_detail">
+                        <img src="img/play(1).png" class="home_play">
+                        <img src="img/1.png" width="100%" height="20%;">
+                    </a>
+                    <div class="triangle-right triangle-right_yellow" ></div>
+                    <div class="triangle-right-left-font">即将开始</div>
+                </div>
+            </div>
+            <!--end-->
+            <!--线下培训-->
+            <div class="row margin-top10">
+                <div class="col-33 margin-left10"><img src="img/2.png" class="direct-seeding">线下培训</div>
+                <div class="col-33 col-offset-33 "><span class="home_more" >更多<img src="img/right.png" style="width:20px;height: 20px;"></span></div>
+            </div>
+            <div class="row margin-top10" style="margin-left: -5px;">
+                <div class="col-50" style="position: relative;">
+                    <a href="">
+                        <img src="img/play(1).png" class="home_play">
+                        <img src="img/1.png" width="100%" height="20%;">
+                    </a>
+                    <span class="myself_active_start progress_font10" style="background-color: #2f2f2f">已结束</span>
+                </div>
+                <div class="col-50" style="margin-left:5px;position: relative;">
+                    <a href="">
+                        <img src="img/play(1).png" class="home_play">
+                        <img src="img/1.png" width="100%" height="20%;">
+                    </a>
+                    <span class="myself_active_start progress_font10">报名中</span>
+                </div>
+            </div>
+            <!--end-->
+            <!--推荐课程-->
+            <div class="row margin-top10">
+                <div class="col-33 margin-left10"><img src="img/2.png" class="direct-seeding">推荐课程</div>
+                <div class="col-33 col-offset-33 "><span class="home_more">更多<img src="img/right.png" style="width:20px;height: 20px;"></span></div>
+            </div>
+            <div class="row margin-top10 margin_left_-5" >
+                <div class="col-50" style="position: relative;">
+                    <a href="">
+                        <img src="img/play(1).png" class="home_play">
+                        <img src="img/1.png" width="100%" height="20%;">
+                    </a>
+                    <!--<div class="triangle-right triangle-right_red"></div>-->
+                    <!--<div class="triangle-right-left-font">正在直播</div>-->
+                </div>
+                <div class="col-50" style="margin-left:5px;position: relative;">
+                    <a href="">
+                        <img src="img/play(1).png" class="home_play">
+                        <img src="img/1.png" width="100%" height="20%;">
+                    </a>
+                    <!--<div class="triangle-right triangle-right_yellow" ></div>-->
+                    <!--<div class="triangle-right-left-font">即将开始</div>-->
+                </div>
+            </div>
+            <!--end-->
+
+        </div>
+    </div>
+
+
+    <div class="container" ng-if='tabs==2'>
+        <div>
+            <!--近期直播-->
+            <div class="row margin-top10">
+                <div class="col-33 margin-left10"><img src="img/2.png" class="direct-seeding">近期直播</div>
+                <div class="col-33 col-offset-33 "><span class="home_more" >更多<img src="img/right.png" style="width:20px;height: 20px;"></span></div>
+            </div>
+            <div class="row margin-top10 margin_left_-5" >
+                <div class="col-50" style="position: relative;">
+                    <a href="">
+                        <img src="img/play(1).png" class="home_play">
+                        <img src="img/1.png" width="100%" height="20%;">
+                    </a>
+                    <div class="triangle-right triangle-right_red"></div>
+                    <div class="triangle-right-left-font">正在直播</div>
+                </div>
+                <div class="col-50" style="margin-left:5px;position: relative;">
+                    <a href="">
+                        <img src="img/play(1).png" class="home_play">
+                        <img src="img/1.png" width="100%" height="20%;">
+                    </a>
+                    <div class="triangle-right triangle-right_yellow" ></div>
+                    <div class="triangle-right-left-font">即将开始</div>
+                </div>
+            </div>
+            <!--end-->
+            <!--线下培训-->
+            <div class="row margin-top10">
+                <div class="col-33 margin-left10"><img src="img/2.png" class="direct-seeding">线下培训</div>
+                <div class="col-33 col-offset-33 "><span class="home_more" >更多<img src="img/right.png" style="width:20px;height: 20px;"></span></div>
+            </div>
+            <div class="row margin-top10" style="margin-left: -5px;">
+                <div class="col-50" style="position: relative;">
+                    <a href="">
+                        <img src="img/play(1).png" class="home_play">
+                        <img src="img/1.png" width="100%" height="20%;">
+                    </a>
+                    <span class="myself_active_start progress_font10" style="background-color: #2f2f2f">已结束</span>
+                </div>
+                <div class="col-50" style="margin-left:5px;position: relative;">
+                    <a href="">
+                        <img src="img/play(1).png" class="home_play">
+                        <img src="img/1.png" width="100%" height="20%;">
+                    </a>
+                    <span class="myself_active_start progress_font10">报名中</span>
+                </div>
+            </div>
+            <!--end-->
+            <!--推荐课程-->
+            <div class="row margin-top10">
+                <div class="col-33 margin-left10"><img src="img/2.png" class="direct-seeding">推荐课程</div>
+                <div class="col-33 col-offset-33 "><span class="home_more">更多<img src="img/right.png" style="width:20px;height: 20px;"></span></div>
+            </div>
+            <div class="row margin-top10 margin_left_-5" >
+                <div class="col-50" style="position: relative;">
+                    <a href="">
+                        <img src="img/play(1).png" class="home_play">
+                        <img src="img/1.png" width="100%" height="20%;">
+                    </a>
+                    <!--<div class="triangle-right triangle-right_red"></div>-->
+                    <!--<div class="triangle-right-left-font">正在直播</div>-->
+                </div>
+                <div class="col-50" style="margin-left:5px;position: relative;">
+                    <a href="">
+                        <img src="img/play(1).png" class="home_play">
+                        <img src="img/1.png" width="100%" height="20%;">
+                    </a>
+                    <!--<div class="triangle-right triangle-right_yellow" ></div>-->
+                    <!--<div class="triangle-right-left-font">即将开始</div>-->
+                </div>
+            </div>
+            <!--end-->
+
+        </div>
+    </div>
+
+
+    <div class="container" ng-if='tabs==3'>
+        <div>
+            <!--近期直播-->
+            <div class="row margin-top10">
+                <div class="col-33 margin-left10"><img src="img/2.png" class="direct-seeding">近期直播</div>
+                <div class="col-33 col-offset-33 "><span class="home_more" >更多<img src="img/right.png" style="width:20px;height: 20px;"></span></div>
+            </div>
+            <div class="row margin-top10 margin_left_-5" >
+                <div class="col-50" style="position: relative;">
+                    <a href="">
+                        <img src="img/play(1).png" class="home_play">
+                        <img src="img/1.png" width="100%" height="20%;">
+                    </a>
+                    <div class="triangle-right triangle-right_red"></div>
+                    <div class="triangle-right-left-font">正在直播</div>
+                </div>
+                <div class="col-50" style="margin-left:5px;position: relative;">
+                    <a href="">
+                        <img src="img/play(1).png" class="home_play">
+                        <img src="img/1.png" width="100%" height="20%;">
+                    </a>
+                    <div class="triangle-right triangle-right_yellow" ></div>
+                    <div class="triangle-right-left-font">即将开始</div>
+                </div>
+            </div>
+            <!--end-->
+            <!--线下培训-->
+            <div class="row margin-top10">
+                <div class="col-33 margin-left10"><img src="img/2.png" class="direct-seeding">线下培训</div>
+                <div class="col-33 col-offset-33 "><span class="home_more" >更多<img src="img/right.png" style="width:20px;height: 20px;"></span></div>
+            </div>
+            <div class="row margin-top10" style="margin-left: -5px;">
+                <div class="col-50" style="position: relative;">
+                    <a href="">
+                        <img src="img/play(1).png" class="home_play">
+                        <img src="img/1.png" width="100%" height="20%;">
+                    </a>
+                    <span class="myself_active_start progress_font10" style="background-color: #2f2f2f">已结束</span>
+                </div>
+                <div class="col-50" style="margin-left:5px;position: relative;">
+                    <a href="">
+                        <img src="img/play(1).png" class="home_play">
+                        <img src="img/1.png" width="100%" height="20%;">
+                    </a>
+                    <span class="myself_active_start progress_font10">报名中</span>
+                </div>
+            </div>
+            <!--end-->
+            <!--推荐课程-->
+            <div class="row margin-top10">
+                <div class="col-33 margin-left10"><img src="img/2.png" class="direct-seeding">推荐课程</div>
+                <div class="col-33 col-offset-33 "><span class="home_more">更多<img src="img/right.png" style="width:20px;height: 20px;"></span></div>
+            </div>
+            <div class="row margin-top10 margin_left_-5" >
+                <div class="col-50" style="position: relative;">
+                    <a href="">
+                        <img src="img/play(1).png" class="home_play">
+                        <img src="img/1.png" width="100%" height="20%;">
+                    </a>
+                    <!--<div class="triangle-right triangle-right_red"></div>-->
+                    <!--<div class="triangle-right-left-font">正在直播</div>-->
+                </div>
+                <div class="col-50" style="margin-left:5px;position: relative;">
+                    <a href="">
+                        <img src="img/play(1).png" class="home_play">
+                        <img src="img/1.png" width="100%" height="20%;">
+                    </a>
+                    <!--<div class="triangle-right triangle-right_yellow" ></div>-->
+                    <!--<div class="triangle-right-left-font">即将开始</div>-->
+                </div>
+            </div>
+            <!--end-->
+
+        </div>
+    </div>
+
+
+    <div class="container" ng-if='tabs==4'>
+        <div>
+            <!--近期直播-->
+            <div class="row margin-top10">
+                <div class="col-33 margin-left10"><img src="img/2.png" class="direct-seeding">近期直播</div>
+                <div class="col-33 col-offset-33 "><span class="home_more" >更多<img src="img/right.png" style="width:20px;height: 20px;"></span></div>
+            </div>
+            <div class="row margin-top10 margin_left_-5" >
+                <div class="col-50" style="position: relative;">
+                    <a href="">
+                        <img src="img/play(1).png" class="home_play">
+                        <img src="img/1.png" width="100%" height="20%;">
+                    </a>
+                    <div class="triangle-right triangle-right_red"></div>
+                    <div class="triangle-right-left-font">正在直播</div>
+                </div>
+                <div class="col-50" style="margin-left:5px;position: relative;">
+                    <a href="">
+                        <img src="img/play(1).png" class="home_play">
+                        <img src="img/1.png" width="100%" height="20%;">
+                    </a>
+                    <div class="triangle-right triangle-right_yellow" ></div>
+                    <div class="triangle-right-left-font">即将开始</div>
+                </div>
+            </div>
+            <!--end-->
+            <!--线下培训-->
+            <div class="row margin-top10">
+                <div class="col-33 margin-left10"><img src="img/2.png" class="direct-seeding">线下培训</div>
+                <div class="col-33 col-offset-33 "><span class="home_more" >更多<img src="img/right.png" style="width:20px;height: 20px;"></span></div>
+            </div>
+            <div class="row margin-top10" style="margin-left: -5px;">
+                <div class="col-50" style="position: relative;">
+                    <a href="">
+                        <img src="img/play(1).png" class="home_play">
+                        <img src="img/1.png" width="100%" height="20%;">
+                    </a>
+                    <span class="myself_active_start progress_font10" style="background-color: #2f2f2f">已结束</span>
+                </div>
+                <div class="col-50" style="margin-left:5px;position: relative;">
+                    <a href="">
+                        <img src="img/play(1).png" class="home_play">
+                        <img src="img/1.png" width="100%" height="20%;">
+                    </a>
+                    <span class="myself_active_start progress_font10">报名中</span>
+                </div>
+            </div>
+            <!--end-->
+            <!--推荐课程-->
+            <div class="row margin-top10">
+                <div class="col-33 margin-left10"><img src="img/2.png" class="direct-seeding">推荐课程</div>
+                <div class="col-33 col-offset-33 "><span class="home_more">更多<img src="img/right.png" style="width:20px;height: 20px;"></span></div>
+            </div>
+            <div class="row margin-top10 margin_left_-5" >
+                <div class="col-50" style="position: relative;">
+                    <a href="">
+                        <img src="img/play(1).png" class="home_play">
+                        <img src="img/1.png" width="100%" height="20%;">
+                    </a>
+                    <!--<div class="triangle-right triangle-right_red"></div>-->
+                    <!--<div class="triangle-right-left-font">正在直播</div>-->
+                </div>
+                <div class="col-50" style="margin-left:5px;position: relative;">
+                    <a href="">
+                        <img src="img/play(1).png" class="home_play">
+                        <img src="img/1.png" width="100%" height="20%;">
+                    </a>
+                    <!--<div class="triangle-right triangle-right_yellow" ></div>-->
+                    <!--<div class="triangle-right-left-font">即将开始</div>-->
+                </div>
+            </div>
+            <!--end-->
+
+        </div>
+    </div>
+    <div class="container" ng-if='tabs==5'>
+        <div>
+            <!--近期直播-->
+            <div class="row margin-top10">
+                <div class="col-33 margin-left10"><img src="img/2.png" class="direct-seeding">近期直播</div>
+                <div class="col-33 col-offset-33 "><span class="home_more" >更多<img src="img/right.png" style="width:20px;height: 20px;"></span></div>
+            </div>
+            <div class="row margin-top10 margin_left_-5" >
+                <div class="col-50" style="position: relative;">
+                    <a href="">
+                        <img src="img/play(1).png" class="home_play">
+                        <img src="img/1.png" width="100%" height="20%;">
+                    </a>
+                    <div class="triangle-right triangle-right_red"></div>
+                    <div class="triangle-right-left-font">正在直播</div>
+                </div>
+                <div class="col-50" style="margin-left:5px;position: relative;">
+                    <a href="">
+                        <img src="img/play(1).png" class="home_play">
+                        <img src="img/1.png" width="100%" height="20%;">
+                    </a>
+                    <div class="triangle-right triangle-right_yellow" ></div>
+                    <div class="triangle-right-left-font">即将开始</div>
+                </div>
+            </div>
+            <!--end-->
+            <!--线下培训-->
+            <div class="row margin-top10">
+                <div class="col-33 margin-left10"><img src="img/2.png" class="direct-seeding">线下培训</div>
+                <div class="col-33 col-offset-33 "><span class="home_more" >更多<img src="img/right.png" style="width:20px;height: 20px;"></span></div>
+            </div>
+            <div class="row margin-top10" style="margin-left: -5px;">
+                <div class="col-50" style="position: relative;">
+                    <a href="">
+                        <img src="img/play(1).png" class="home_play">
+                        <img src="img/1.png" width="100%" height="20%;">
+                    </a>
+                    <span class="myself_active_start progress_font10" style="background-color: #2f2f2f">已结束</span>
+                </div>
+                <div class="col-50" style="margin-left:5px;position: relative;">
+                    <a href="">
+                        <img src="img/play(1).png" class="home_play">
+                        <img src="img/1.png" width="100%" height="20%;">
+                    </a>
+                    <span class="myself_active_start progress_font10">报名中</span>
+                </div>
+            </div>
+            <!--end-->
+            <!--推荐课程-->
+            <div class="row margin-top10">
+                <div class="col-33 margin-left10"><img src="img/2.png" class="direct-seeding">推荐课程</div>
+                <div class="col-33 col-offset-33 "><span class="home_more">更多<img src="img/right.png" style="width:20px;height: 20px;"></span></div>
+            </div>
+            <div class="row margin-top10 margin_left_-5" >
+                <div class="col-50" style="position: relative;">
+                    <a href="">
+                        <img src="img/play(1).png" class="home_play">
+                        <img src="img/1.png" width="100%" height="20%;">
+                    </a>
+                    <!--<div class="triangle-right triangle-right_red"></div>-->
+                    <!--<div class="triangle-right-left-font">正在直播</div>-->
+                </div>
+                <div class="col-50" style="margin-left:5px;position: relative;">
+                    <a href="">
+                        <img src="img/play(1).png" class="home_play">
+                        <img src="img/1.png" width="100%" height="20%;">
+                    </a>
+                    <!--<div class="triangle-right triangle-right_yellow" ></div>-->
+                    <!--<div class="triangle-right-left-font">即将开始</div>-->
+                </div>
+            </div>
+            <!--end-->
+
+        </div>
+    </div>
+</ion-content>
+<!--  -->
+   

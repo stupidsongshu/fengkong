@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="fkgame">
+<head>
+	<meta charset="UTF-8">
+	<title>权限分配（入职状态）</title>
+	<link rel="stylesheet" href="style/lib/normalize.css">
+	<link rel="stylesheet" href="style/public/common.css">
+	<link rel="stylesheet" href="style/public/header.css">
+	<link rel="stylesheet" href="style/distributePermission-status.css">
+	<link rel="stylesheet" href="style/lib/idangerous.swiper.css">
+	<script src="js/lib/jquery-1.12.3.js"></script>
+	<script src="js/lib/idangerous.swiper.min.js"></script>
+	<script src="js/lib/angular/angular.min.js"></script>
+	<script src="js/app.js"></script>
+	<script src="js/service.js"></script>
+	<script src="js/controller.js"></script>
+</head>
+<body ng-controller="DistributePermissionStatusCtrl">
+	<div ng-include="'templates/header.html'"></div>
+	
+	<div class="banner">
+		<div class="box">
+			<div class="pull-left content-l">
+				<div class="mask">
+					<div class="wrapper-line">
+						<div class="swiper-container">
+							<div class="swiper-wrapper">
+								<div class="swiper-slide">
+									<ul class="list-t clearfix">
+										<li class="pull-left item-t col1">昵称</li>
+										<li class="pull-left item-t col2">职位</li>
+									</ul>
+
+									<ul class="list-c">
+										<li class="item-c">
+											<div class="col1">小路飞</div>
+											<div class="col2">董事长</div>
+										</li>
+										<li class="item-c">
+											<div class="col1">小路飞</div>
+											<div class="col2">总经理</div>
+										</li>
+										<li class="item-c">
+											<div class="col1">小路飞</div>
+											<div class="col2">采购总监</div>
+										</li>
+										<li class="item-c">
+											<div class="col1">小路飞</div>
+											<div class="col2">销售总监</div>
+										</li>
+									</ul>
+								</div>
+
+								<div class="swiper-slide">
+									<ul class="list-t clearfix">
+										<li class="pull-left item-t col1">昵称</li>
+										<li class="pull-left item-t col2">职位</li>
+									</ul>
+								
+									<ul class="list-c">
+										<li class="item-c">
+											<div class="col1">小路飞</div>
+											<div class="col2">财务总监</div>
+										</li>
+										<li class="item-c">
+											<div class="col1">小路飞</div>
+											<div class="col2">风控总监</div>
+										</li>
+										<li class="item-c">
+											<div class="col1">小路飞</div>
+											<div class="col2">产品总监</div>
+										</li>
+									</ul>
+								</div>
+
+							</div>
+						</div>
+					</div>
+					<!-- 分页器 -->
+					<div class="swiper-pagination swiper-pagination-h"></div>
+				</div>
+
+				<button class="btn-submit">
+					<a href="distributePermission-staff.html" ng-if="role.type == 1">查看权限分配</a>
+					<a href="distributePermission.html" ng-if="role.type == 2">分配员工权限</a>
+				</button>
+
+				<div class="sewing-valign"></div>
+			</div>
+
+			<div class="pull-right content-r">
+				<div class="announcement">
+					<h3 class="title">公告</h3>
+					<ul class="announcement-list">
+						<li>公告公告公告公告公告</li>
+						<li>公告公告公告公告公告</li>
+						<li>公告公告公告公告公告</li>
+						<li>公告公告公告公告公告</li>
+					</ul>
+					<div class="icons clearfix">
+						<i class="pull-left icon-l"></i>
+						<i class="pull-right icon-r"></i>
+					</div>
+				</div>
+
+				<div class="system-news">
+					<div class="title"><img src="images/icon-trumpet.png"> 系统消息</div>
+					<ul class="news-list">
+						<li class="news-item">
+							<i class="icon-news"></i>
+							<span>~~~~~~~hello</span>
+						</li>
+						<li class="news-item">
+							<i class="icon-news"></i>
+							<span>~~~~~~~hello</span>
+						</li>
+						<li class="news-item">
+							<i class="icon-news"></i>
+							<span>~~~~~~~hello</span>
+						</li>
+						<li class="news-item">
+							<i class="icon-news"></i>
+							<span>~~~~~~~hello</span>
+						</li>
+					</ul>
+				</div>
+			</div>
+			
+			<div class="sewing-down-l"></div>
+			<div class="sewing-down-r"></div>
+		</div>
+	</div>
+
+	<div class="footer-bg"></div>
+
+	<script>
+		var swiper = new Swiper('.swiper-container',{
+		    mode: 'horizontal',
+	    	pagination: '.swiper-pagination-h',
+	        paginationClickable: true,
+		    grabCursor: true,
+	 	});
+	</script>
+</body>
+</html>

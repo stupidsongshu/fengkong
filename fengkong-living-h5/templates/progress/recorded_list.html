@@ -1,0 +1,138 @@
+
+<ion-header-bar align-title="center" class='home_head themebgcolor' >
+    <a ng-click="goBack()" class="margin-top10 margin-left10"><img src="img/prepage.png" alt="" ></a>
+    <h3 >课程-12节</h3>
+
+</ion-header-bar>
+
+<ion-content>
+    <div class="container">
+        <div class="row margin_left_-5 margin-top10 margin-bottom10" >
+            <span>直播标题</span>
+        </div>
+        <!--首页大图-->
+        <div style="position: relative;">
+            <a href="#/progress_detail">
+                <img src="img/play(1).png" style="position:absolute;top:35%;left: 45%;width: 50px;height: 50px;" alt="">
+                <img src="img/1.png" style="width:100%;height: 140px;">
+            </a>
+        </div>
+        <!--end-->
+        <div class="row margin-top10 margin_left_-5">
+            <div class="col-33" >
+                <img src="img/collection.png" style="width:25px;height: 25px;" ng-click="progress_collection(1)" ng-if="!collection_flag">
+                <img src="img/collection_color.png" style="width:25px;height: 25px;" ng-click="progress_collection(0)" ng-if="collection_flag">
+                <span>收藏</span>
+            </div>
+            <div class="col-33" style="text-align: center;">
+                <img src="img/zan.png" style="width:25px;height: 25px;" ng-click="zan(1)" ng-if="!zan_flag">
+                <img src="img/zan_color.png" style="width:25px;height: 25px;" ng-click="zan(0)" ng-if="zan_flag">
+                <span>评论</span>
+            </div>
+            <div class="col-33" >
+                <img src="img/share.png" style="width:25px;height: 25px;margin-left:33%" >
+                <span style="float:right;">分享</span>
+            </div>
+
+
+        </div>
+        <div class="margin-top10 progress_all_search_line" style="height: 3px;"></div>
+
+    </div>
+
+    <div>
+        <ul class="nav nav-tabs" style="text-align: center;color:black">
+            <li class="progress_tab_change_selected active">
+                <a href="#">详情</a>
+            </li>
+            <li class="progress_tab_change_selected" >
+                <a href="#">课程安排</a>
+            </li>
+            <li class="progress_tab_change_selected" >
+                <a href="#">评论</a>
+            </li>
+        </ul>
+
+        <div  id="progress_recorded_detail_content">
+
+          <!--详情start-->
+            <div id="progress_recorded_detail" class="container">
+
+                <div class="margin_left_-5 margin-top10" style="text-align: left;">
+                    <span>录播介绍:<br></span>
+                    <span>录播介绍:录播介绍:录播介绍:录播介
+                        绍:录播介绍:录播介绍:录播介绍:录播介绍:录播介绍:录播介绍:录播介绍:录播介绍:录播介绍:
+                        录播介绍:录播介绍:录播介绍:录播介绍:录播介绍:录播介绍:录播介绍:录播介绍:</span>
+                </div>
+
+            </div>
+            <!--end-->
+
+            
+            <!--课程一节-->
+            <div  id="progress_recorded_related" class="container" style="display: none">
+                <div class="row margin-top10">
+
+                <div class="col-50" style="position: relative;">
+                    <a href="#/recorded_detail">
+                    <img src="img/play(1).png" style="position:absolute;top:35%;left: 45%;width: 50px;height: 50px;" alt="">
+                        <img src="img/1.png" width="100%"  height="120px;">
+                    </a>
+                </div>
+                <div class="col-50 margin-left10">
+                    <a href="#/recorded_detail">
+                    <span>名称名称名称名称名</span><br>
+                        <span>第一节</span><br>
+                        <span class="progress_font10 ">讲师：某某某</span><br>
+                        <span class="progres --><!-- s_font10 ">简介简介简介简介简介简介简介简介简介简介简介简介</span><br>
+                        <span class="progress_font10 progress_color_silver margin-top10" style="display: inline-block">共12节</span>
+                        <span class="progress_font10 progress_color_silver margin-top10" style="display: inline-block"><img src="img/eye.png" style="width:20px;height: 15px;">&nbsp;&nbsp;&nbsp;30</span>
+                        <span class="progress_font10 progress_color_silver progress_span_right margin-top10"></span>
+                    </a>
+                </div>
+
+            </div>
+            <div class="row  margin-top10 " style="border-top: 1px solid silver;width: 120%"></div>
+            </div>
+            <!--end-->
+            
+            <div id="progress_recorded_comment" class="container" style="display: none;">
+             <!--评论start-->
+                <div class="row margin-top10">
+                    <div class="col-90">
+                        <input type="text" placeholder="写下你的评价感受吧" style="background-color: #fbf9f9;width:80%;border-radius:5px;">
+                    </div>
+                    <div class="col-10" style="margin-top: 6px;">
+                        <a href=""><span>评论</span></a>
+                    </div>
+                </div>
+                <!--讨论区-->
+                <div class="row margin-top10 progress_detail_line" style="padding-bottom: 15px;">
+                    <div class="col-20">
+                        <img src="img/1.png" width="50px" height="50px" style="border-radius: 30px;">
+                    </div>
+                    <div class="col-70" >
+                        <span style="font-size: 16px;color:#c95f48;">用户莫莫莫</span>
+                        <input disabled="true" value="内控达人" style="color:#fff;border-radius: 30px;border: 1px solid #c95e47;width: 27%;height: 3%;font-size: 10px;text-align: center;background-color: #a14c39;"/>
+                        <span style="display: inline-block;margin-top: 10px;">评论评论评论评论评论评论评论评论评论</span>
+                    </div>
+                    <div class="col-10">
+                        <span class="progress_span_right progress_color_silver" > 21:00</span><br>
+                    </div>
+                </div>
+                <!--end-->
+                <div style="position:relative;">
+                    <span style="display: inline-block;position: absolute;right: -1px;top: 0px;color:silver;">
+                        展开&nbsp;&nbsp;&nbsp;<img src="img/bottom.png" style="width:15px;height: 15px;">
+                    </span>
+                </div>
+            </div>
+            <!--end-->
+
+
+        </div>
+        
+    </div>
+    
+  
+</ion-content>

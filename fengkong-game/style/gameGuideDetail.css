@@ -1,0 +1,126 @@
+.header{
+	width: 100%;
+	height: 70px;
+	color:#fff;
+	background-image: url(../images/topnav.png);
+}
+.header .box{
+	position: relative;
+}
+.header .logo{
+	width: 160px;
+	height: 70px;
+	margin: 0 auto;
+}
+.header .logo-l{
+	position: absolute;
+	top: 0;
+	left: 0;
+	line-height: 70px;
+}
+.header .logo-r{
+	position: absolute;
+	top: 0;
+	right: 0;
+	line-height: 70px;
+}
+.header .arrow{
+	vertical-align: -20px;
+}
+
+.banner{
+	position: relative;
+	width: 100%;
+	height: 548px;
+	/* background: url(../images/game-guide-banner.png) no-repeat;
+	background-size: cover; */
+}
+.banner img{
+	width: 100%;
+	height: 100%;
+}
+.banner .box{
+	position: absolute;
+	top: 0;
+	left: 50%;
+	margin-left: -500px;
+	height: 100%;
+	border:1px solid red;
+}
+.banner .box .sewing-down-l{
+	position: absolute;
+	bottom: 26px;
+	left: -120px;
+	width: 120px;
+	height: 52px;
+	background-image: url(../images/sewing.png);
+}
+.banner .box .sewing-down-r{
+	position: absolute;
+	bottom: 26px;
+	right: -120px;
+	width: 120px;
+	height: 52px;
+	background-image: url(../images/sewing.png);
+}
+
+.guide-group{
+	position: relative;
+	/* top: -74px; */
+	margin-top: -74px;
+	z-index: -1;
+	width: 100%;
+	height: 582px;
+	background-image: url(../images/black-bg.png);
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	border: 1px solid red;
+}
+.guide-group .wrapper{
+	position: absolute;
+	left: 50%;
+	bottom: 58px;  
+	width: 1000px;
+	height: 430px;
+	margin-left: -500px;
+	padding: 56px 100px 0 100px;
+	color: #fff;
+	border-radius: 30px;
+	background-color: #272727;
+}
+.guide-group .wrapper .swiper-container{
+	width: 100%;
+	height: 100%;
+}
+.guide-group .wrapper .swiper-container .swiper-slide{
+
+}
+.guide-group .wrapper .slide-item{
+	
+}
+.guide-group .wrapper .slide-item .nav-title{
+	text-align: center;
+	font-size: 24px;
+}
+
+/*前进后退按钮*/
+.arrow-left{
+	position: absolute;
+	top: 50%;
+	left: 22px;
+	width: 28px;
+	height: 32px;
+	margin-top: -16px;
+	background: url("../images/arrow-green-l.png") no-repeat;
+	z-index: 9;
+}
+.arrow-right{
+	position: absolute;
+	top: 50%;
+	right: 22px;
+	width: 28px;
+	height: 32px;
+	margin-top: -16px;
+	background: url("../images/game-guide-arrow-btn.png") no-repeat;
+	z-index: 9;
+}

@@ -1,0 +1,229 @@
+.header{
+	width: 100%;
+	height: 70px;
+	color:#fff;
+	background-image: url(../images/topnav.png);
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+.header .box{
+	position: relative;
+}
+.header .logo{
+	width: 160px;
+	height: 70px;
+	margin: 0 auto;
+}
+.header .logo-l{
+	position: absolute;
+	top: 0;
+	left: 0;
+	line-height: 70px;
+}
+.header .logo-r{
+	position: absolute;
+	top: 0;
+	right: 0;
+	line-height: 70px;
+}
+.header .arrow{
+	vertical-align: -20px;
+}
+
+.banner{
+	position: relative;
+	width: 100%;
+	height: 540px;
+	z-index: 1;
+}
+
+.banner .banner-img{
+	width: 100%;
+	height: 100%;
+}
+.banner .box{
+	position: absolute;
+	top: 0;
+	left: 50%;
+	height: 100%;
+	margin-left: -500px;
+}
+.banner .box .start-game{
+	position: absolute;
+	bottom: 86px;
+	left: 0;
+	width: 420px;
+	height: 180px;
+	padding: 30px 73px;
+	font-size: 12px;
+	color:#fff;
+	background-color: rgba(0,0,0,.4);
+	border-radius:10px;
+	box-shadow: inset 0 2px 5px rgba(0,0,0,.3);
+}
+.banner .box .start-game p{
+	width: 274px;
+	height: 74px;
+	line-height: 14px;
+}
+.banner .box .start-game button{
+	width: 274px;
+	height: 62px;
+	line-height: 62px;
+	color: #fff;
+	font-size: 24px;
+	border-radius: 6px;
+	border: none;
+	outline: none;
+	background-image: url(../images/btn-shape.png);
+}
+
+.introduction-game{
+	position: relative;
+	width: 100%;
+	height: 488px;
+	margin-top: -74px;
+	background-image: url(../images/black-bg.png);
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	z-index: 2;
+}
+.introduction-game .box{
+	position: relative;
+	height: 100%;
+	padding-top: 108px;
+}
+
+.introduction-game .box .sewing-up-l{
+	position: absolute;
+	top: -26px;
+	left: -120px;
+	width: 120px;
+	height: 52px;
+	background-image: url(../images/sewing.png);
+}
+.introduction-game .box .sewing-up-r{
+	position: absolute;
+	top: -26px;
+	right: -120px;
+	width: 120px;
+	height: 52px;
+	background-image: url(../images/sewing.png);
+}
+.introduction-game .box .sewing-down-l{
+	position: absolute;
+	bottom: -26px;
+	left: -120px;
+	width: 120px;
+	height: 52px;
+	background-image: url(../images/sewing.png);
+}
+.introduction-game .box .sewing-down-r{
+	position: absolute;
+	bottom: -26px;
+	right: -120px;
+	width: 120px;
+	height: 52px;
+	background-image: url(../images/sewing.png);
+}
+
+.introduction-game .box .introduction-game-img,
+.introduction-game .box .introduction-game-txt{
+	width: 50%;
+	height: 100%;
+}
+.introduction-game .box .introduction-game-txt{
+	padding-top: 66px;
+	padding-left: 40px;
+}
+.introduction-game .box .introduction-game-txt h2{
+	margin-bottom: 18px;
+	color: #fff;
+	font-size: 24px;
+}
+.introduction-game .box .introduction-game-txt p{
+	color: #fffefe;
+	font-size: 14px;
+	line-height: 20px;
+}
+.introduction-game .box .view-detail{
+	width: 200px;
+	height: 44px;
+	margin-top: 40px;
+	color: #fff;
+	border-radius: 5px;
+	background-image: url(../images/btn-shape2.png);
+	background-repeat: no-repeat;
+	border: none;
+	outline: none;
+}
+
+.guide-game{
+	width: 100%;
+	height: 500px;
+	background-color: #a5cda1;
+}
+.guide-game .box{
+	height: 100%;
+}
+.guide-game .box .guide-game-txt,
+.guide-game .box .guide-game-img{
+	width: 50%;
+	height: 100%;
+}
+.guide-game .box .guide-game-txt{
+	padding-top: 134px;
+}
+.guide-game .box .guide-game-img{
+	padding-top: 86px;
+	text-align: right;
+}
+.guide-game .box .guide-game-txt .guide-title{
+	margin-bottom: 20px;
+	font-size: 24px;
+}
+.guide-game .box .guide-game-txt .guide-list{
+	width: 492px;
+	height: 116px;
+	margin: 0 auto;
+	padding: 26px 14px;
+	background-color: #637961;
+	border-radius: 10px;
+	box-shadow: inset 0 5px 5px #536652;
+	color: #fff;
+}
+.guide-game .box .guide-game-txt .guide-list a{
+	color: #fff;
+	font-size: 14px;
+}
+.guide-game .box .guide-game-txt .guide-list .pull-left{
+	width: 33.33%;
+}
+.guide-game .box .guide-game-txt .guide-list .pull-left li{
+	margin-bottom: 2px;
+}
+.guide-game .box .guide-game-txt button{
+	width: 200px;
+	height: 46px;
+	margin-top: 20px;
+	margin-left: 4px;
+	border-radius: 5px;
+	color: #fff;
+	border: none;
+	outline: none;
+	background-image: url(../images/btn-shape3.png);
+	background-repeat: no-repeat;
+	border: 1px solid #637b61;
+	font-size: 18px;
+}
+
+.footer{
+	width: 100%;
+	height: 60px;
+	line-height: 60px;
+	text-align: center;
+	background: url(../images/bg-copy.png) no-repeat;
+	background-size: 100% 100%;
+	font-size: 18px;
+	color: #fff;
+}

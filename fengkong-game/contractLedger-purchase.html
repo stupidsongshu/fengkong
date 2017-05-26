@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="fkgame">
+<head>
+	<meta charset="UTF-8">
+	<title>合同台账(采购)</title>
+	<link rel="stylesheet" href="style/lib/normalize.css">
+	<link rel="stylesheet" href="style/public/common.css">
+	<link rel="stylesheet" href="style/public/header.css">
+	<link rel="stylesheet" href="style/contractLedger-purchase.css">
+	<link rel="stylesheet" href="style/lib/idangerous.swiper.css">
+	<script src="js/lib/angular/angular.min.js"></script>
+	<script src="js/app.js"></script>
+	<script src="js/service.js"></script>
+	<script src="js/controller.js"></script>
+</head>
+<body ng-controller="ContractLedgerPurchaseCtrl">
+	<div ng-include="'templates/header.html'"></div>
+
+	<div class="content">
+		<div class="mask">
+			<div class="title">采购合同</div>
+			
+			<div class="swiper-container">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide">
+						<table style="border-collapse: collapse;">
+							<thead>
+								<tr class="list-t">
+									<th class="item-t">甲方公司名称</th>
+									<th class="item-t">产品批次号</th>
+									<th class="item-t">单价（元）</th>
+									<th class="item-t">付款条件</th>
+									<th class="item-t">交货条件</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="list-c">
+									<td rowspan="3">
+										<span class="company-name">XXX有限公司</span>
+										<span class="btn-view-detail"><a href="contractDetailPurchase.html?type=3">查看详情</a></span>
+									</td>
+									<td></td>
+									<td>150</td>
+									<td rowspan="3">
+										合同生效<br>当月50%<br>交货后付50%
+									</td>
+									<td rowspan="3"></td>
+								</tr>
+								<tr class="list-c">
+									<td></td>
+									<td>150</td>
+								</tr>
+								<tr class="list-c">
+									<td></td>
+									<td>150</td>
+								</tr>
+
+								<tr class="list-c">
+									<td rowspan="3">
+										<span class="company-name">XXX有限公司</span>
+										<span class="btn-view-detail">查看详情</span>
+									</td>
+									<td></td>
+									<td>150</td>
+									<td rowspan="3">
+										合同生效<br>当月50%<br>交货后付50%
+									</td>
+									<td rowspan="3"></td>
+								</tr>
+								<tr class="list-c">
+									<td></td>
+									<td>150</td>
+								</tr>
+								<tr class="list-c">
+									<td></td>
+									<td>150</td>
+								</tr>
+
+								<tr class="list-c">
+									<td rowspan="3">
+										<span class="company-name">XXX有限公司</span>
+										<span class="btn-view-detail">查看详情</span>
+									</td>
+									<td></td>
+									<td>150</td>
+									<td rowspan="3">
+										合同生效<br>当月50%<br>交货后付50%
+									</td>
+									<td rowspan="3"></td>
+								</tr>
+								<tr class="list-c">
+									<td></td>
+									<td>150</td>
+								</tr>
+								<tr class="list-c">
+									<td></td>
+									<td>150</td>
+								</tr>
+
+								<tr class="list-c">
+									<td rowspan="3">
+										
+									</td>
+									<td></td>
+									<td></td>
+									<td rowspan="3">
+										
+									</td>
+									<td rowspan="3"></td>
+								</tr>
+								<tr class="list-c">
+									<td></td>
+									<td></td>
+								</tr>
+								<tr class="list-c">
+									<td></td>
+									<td></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+
+	<div class="footer-bg">
+		<div class="box">
+			<div class="sewing-up-l"></div>
+			<div class="sewing-up-r"></div>
+		</div>
+	</div>
+</body>
+</html>
