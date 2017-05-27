@@ -11,6 +11,7 @@
 	height: 510px;
 }
 #content .course_video .course_video_r{
+	position: relative;
 	width: 440px;
 	height: 510px;
 	padding: 20px 20px 0 30px;
@@ -36,6 +37,28 @@
 #content .course_video .course_video_r .comment .comment_content .user_comment{
 	width: 290px;
 }
+
+#content .course_video .course_video_r .course_price{
+	position: absolute;
+	bottom: 20px;
+	left: 0;
+	width: 100%;
+	padding: 0 20px 0 30px;
+}
+#content .course_video .course_video_r .course_price .btn_buy{
+	display: inline-block;
+	width: 200px;
+	height: 50px;
+	margin-left: 10px;
+	line-height: 44px;
+	text-align: center;
+	color: #fff;
+	font-size: 18px;
+	border-radius: 5px;
+	vertical-align: 16px;
+	cursor: pointer;
+}
+
 
 #content .nav_ul{
 	margin-top: 16px;
@@ -79,7 +102,7 @@
 	color: #E7402E;
 }
 #content .course_summary .course_summary_l .courseItem_wrapper{
-	// height: 240px;
+	/*height: 240px;*/
 	min-height: 240px;
 	border-top: 1px solid #e3e3e3;
 	border-bottom: 1px solid #e3e3e3;
@@ -105,6 +128,7 @@
 	font-size: 14px;
 }
 #content .course_summary .course_summary_l .courseItem_wrapper .arrangement .courseItem .courseItem_info .course_name{
+	margin-right: 30px;
 	font-size: 16px;
 }
 #content .course_summary .course_summary_l .courseItem_wrapper .arrangement .courseItem .courseItem_info .course_teacher{
@@ -134,7 +158,7 @@
 
 
 #content .course_summary .course_summary_l .edit_comment{
-	padding: 42px 20px;
+	margin-bottom: 36px;
 }
 #content .course_summary .course_summary_l .edit_comment textarea{
 	width: 580px;

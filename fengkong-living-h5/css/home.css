@@ -121,7 +121,7 @@ h4{color:#494949;}
 }
 
 .triangle-right-left-font{
-    color:white;position: absolute;top: 14px;left: 0px;transform: rotate(-46deg);font-size: 10px;
+    color:white;position: absolute;top: 14px;left: 0px;font-size: 12px;
 }
 .home_play{width:30px;height: 30px;position: absolute;top: 30%;left: 40%;}
 .home_more{float: right;margin-right: -10px;color:#919191}

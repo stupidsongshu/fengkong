@@ -28,7 +28,7 @@ angular.module('starter.controllers', [])
         $rootScope.$on('$ionicView.beforeEnter', function () {
             var statename = $state.current.name;
             //tabs中存在的主页面不需要隐藏，hidetabs=false
-            if (statename === 'tabs.myself' || statename === 'tabs.home' || statename === 'tabs.progress' || statename === 'tabs.progress1' || statename === 'tabs.record' || statename === 'tabs.active') {
+            if (statename === 'tabs.myself' || statename === 'tabs.home' || statename === 'tabs.progressNew' || statename === 'tabs.progress1' || statename === 'tabs.record' || statename === 'tabs.active') {
                 $rootScope.hideTabs = false;
             } else {
                 $rootScope.hideTabs = true;
@@ -78,6 +78,8 @@ angular.module('starter.controllers', [])
         };
 
     })
+
+
     .controller('HomeCtrl', function ($scope, $ionicLoading, $timeout, $ionicHistory, $state, $http, ApiEndpoint) {
 
         function getBanner() {
@@ -89,13 +91,14 @@ angular.module('starter.controllers', [])
                     pageSize: 10
                 }
             }).success(function (data) {
-                // console.log(data);
                 if (data.errorCode == 0) {
                     $scope.bannerList = data.result;
                     $timeout(function () {
                         var mySwiper = new Swiper('.swiper-container', {
                             direction: 'horizontal',
                             pagination: '.swiper-pagination',
+                            autoplay: 3000,
+                            loop: true
                         })
                     }, 0)
                 }
@@ -103,7 +106,7 @@ angular.module('starter.controllers', [])
         }
         getBanner();
 
-        $http.post(ApiEndpoint.url + "video/getVideoList.do", {}, {
+        /*$http.post(ApiEndpoint.url + "video/getVideoList.do", {}, {
             params: {
                 pageNum: 1,
                 pageSize: 10
@@ -112,14 +115,69 @@ angular.module('starter.controllers', [])
             if (data.errorCode == 0) {
                 $scope.videoList = data.result;
             }
-        })
-        $scope.tabs = 1;
+        })*/
+
+
+        /*
+         * 获取近期直播liveList、线下培训activityList、推荐课程courseList
+         */
+        $scope.type = 1;
+
+        $scope.setType = function (type) {
+            $scope.type = type;
+            getHomeList(type);
+        }
+
+        function getHomeList(type) {
+            $http.post(ApiEndpoint.url + "homePage/homePageH5.do", {}, {
+                params: {
+                    type: type
+                }
+            }).success(function (data) {
+                if (data.errorCode == 0) {
+                    $scope.liveList = [];
+                    $scope.activityList = [];
+                    $scope.courseList = [];
+
+                    angular.forEach(data.result, function (value, key) {
+                        if (key == 'liveList') {
+                            $scope.liveList = data.result[key];
+                            
+                            //个数多余2时去掉多余的
+                            if($scope.liveList.length > 2){
+                                $scope.liveList.length = 2;
+                            }
+                        } else if (key == 'activityList') {
+                            $scope.activityList = data.result[key];
+
+                            //个数多余2时去掉多余的
+                            if($scope.activityList.length > 2){
+                                $scope.activityList.length = 2;
+                            }
+                        } else if (key == 'courseList') {
+                            $scope.courseList = data.result[key];
+
+                            //个数多余2时去掉多余的
+                            if($scope.courseList.length > 2){
+                                $scope.courseList.length = 2;
+                            }
+                        }
+                    })
+                }
+            })
+        }
+        getHomeList(1);
+
 
         $('.tab_circle').click(function (event) {
             $(this).addClass('a1').parents().siblings().children('.tab_circle').removeClass('a1');
         });
 
     })
+
+
+
+
     .controller('ProgressCtrl', function ($scope, $ionicLoading, $timeout, $ionicHistory, $state, $http, ApiEndpoint) {
         $scope.l = [1, 2, 3, 4, 5, 6, 7];
         $scope.type_id = 1;
@@ -620,28 +678,52 @@ angular.module('starter.controllers', [])
         //         }
         // })
     })
+
+    //搜索页面
     .controller('HomeSearchCtrl', function ($scope, $ionicLoading, $timeout, $ionicHistory, $state, $http, ApiEndpoint) {
         $scope.l = [1, 2, 3, 4, 5, 6, 7];
         $scope.type = 1;
         $scope.getType = function (type_id) {
             $scope.type = type_id;
-            // console.log($scope.type);
         }
         $('.col-33').click(function (event) {
             $(this).addClass('b1').siblings().removeClass('b1');
         });
 
-        //     $http.post(ApiEndpoint.url+"video/getVideoList.do",{},{params:{
-        //     pageNum:1,
-        //     pageSize:10
-        // }}).success(function(data){
-        //     if(data.errorCode == 0){
-        //         $scope.videoList = data.result;
-        //     }
-        // })
 
         $scope.goBack = function () {
             $ionicHistory.goBack();
+        }
+
+
+        function search() {
+            console.log($scope.searchName);
+            $http.post(ApiEndpoint.url + "homePage/homePageSearch.do", {}, {
+                params: {
+                    serachName: $scope.searchName
+                }
+            }).success(function (data) {
+                if (data.errorCode == 0) {
+                    $scope.courseList = [];
+                    $scope.videoList = [];
+                    $scope.activityList = [];
+
+                    angular.forEach(data.result,function(value,key){
+                        if(key == 'courseList'){
+                            $scope.courseList = data.result[key];
+                        }else if(key == 'videoList'){
+                            $scope.videoList = data.result[key];
+                        }else if(key == 'activityList'){
+                            $scope.activityList = data.result[key];
+                        }
+                    })
+                }
+            })
+        }
+        search();
+
+        $scope.clickToSearch = function(){
+            search();
         }
 
     })

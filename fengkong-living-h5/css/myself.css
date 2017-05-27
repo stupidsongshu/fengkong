@@ -1,5 +1,5 @@
 .myself_over_btn{display:inline-block;margin-top:10px;border-radius: 5px;border:1px solid white;width: 54%;}
-.myself_active_start{background-color: #c8705b;position: absolute;top:-1px;left: 1px;width: 50%;text-align: center;color:white;}
+.myself_active_start{background-color: #c8705b;position: absolute;top:-1px;left: 1px;width: 50%;height: 20px;text-align: center;color:white;}
 .myself_active_end{background-color: #000;position: absolute;top:-1px;left: 1px;width: 50%;text-align: center;color:white;}
 .myself_active_progress_banner{top:6px;left:0;}
 /*我的优惠券*/
