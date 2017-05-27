@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>index</title>
+	<title>首页</title>
 	<link rel="stylesheet" href="style/lib/normalize.css">
 	<link rel="stylesheet" href="style/common.css">
 	<link rel="stylesheet" href="style/header_footer.css">
@@ -14,9 +14,17 @@
 	<script src="js/lib/idangerous.swiper.min.js"></script>
 	<script src="js/lib/jquery.easing.min.js"></script>
 	<script src="js/backTop.js"></script>
+
+	<script src="js/lib/angular/angular.min.js"></script>
+	<script src="js/app.js"></script>
+	<script src="js/controller.js"></script>
+	<script src="js/service.js"></script>
 </head>
-<body>
-	<div class="headerIndex">
+<body ng-app="fkliving" ng-controller="IndexCtrl">
+
+	<div ng-include="'templates/header.html'"></div>
+
+	<!-- <div class="headerIndex">
 		<div class="box clearfix">
 			<div class="logoImage pull-left">
 				<a href="personalCenter.html"><img src="images/logo.png" alt="logo"></a>
@@ -36,7 +44,7 @@
 				<li class="login pull-left"><img src="images/register.png" alt="登陆"><div>登陆</div></li>
 			</ul>
 		</div>
-	</div>
+	</div> -->
 
 	<div class="swiper-container">
 		<div class="swiper-wrapper">
