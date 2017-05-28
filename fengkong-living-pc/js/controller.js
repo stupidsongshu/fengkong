@@ -16,3 +16,8 @@ angular.module('fkliving.controller',['fkliving.services'])
 .controller('IndexCtrl',['$scope',function($scope){
 
 }])
+
+//搜索
+.controller('SearchCtrl',['$scope',function($scope){
+
+}])
