@@ -279,7 +279,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
                 templateUrl:'templates/progress/living_detail.html',
                 controller:'LivingDetailCtrl'
             })
-            //直播详情
+            //录播课程列表
             .state('recorded_list',{
                 url:'/recorded_list',
                 cache:'false',

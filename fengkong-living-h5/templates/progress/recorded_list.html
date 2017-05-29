@@ -1,37 +1,38 @@
 
 <ion-header-bar align-title="center" class='home_head themebgcolor' >
-    <a ng-click="goBack()" class="margin-top10 margin-left10"><img src="img/prepage.png" alt="" ></a>
-    <h3 >课程-12节</h3>
-
+    <a ng-click="goBack()" class="margin-top10 margin-left10"><img src="img/prepage.png"></a>
+    <h3 >课程标题</h3>
 </ion-header-bar>
 
 <ion-content>
     <div class="container">
-        <div class="row margin_left_-5 margin-top10 margin-bottom10" >
-            <span>直播标题</span>
+        <div class="row margin_left_-5 margin-top10 margin-bottom10">
+            <div class="col">课程标题</div>
+            <div class="col" style="text-align:right;color:#d8573f;">￥20</div>
         </div>
         <!--首页大图-->
         <div style="position: relative;">
-            <a href="#/progress_detail">
+            <!--<a href="#/progress_detail">
                 <img src="img/play(1).png" style="position:absolute;top:35%;left: 45%;width: 50px;height: 50px;" alt="">
                 <img src="img/1.png" style="width:100%;height: 140px;">
-            </a>
+            </a>-->
+            <img src="" style="width:100%;height: 140px;">
         </div>
         <!--end-->
         <div class="row margin-top10 margin_left_-5">
             <div class="col-33" >
                 <img src="img/collection.png" style="width:25px;height: 25px;" ng-click="progress_collection(1)" ng-if="!collection_flag">
                 <img src="img/collection_color.png" style="width:25px;height: 25px;" ng-click="progress_collection(0)" ng-if="collection_flag">
-                <span>收藏</span>
+                <span style="vertical-align: 5px;">收藏</span>
             </div>
             <div class="col-33" style="text-align: center;">
                 <img src="img/zan.png" style="width:25px;height: 25px;" ng-click="zan(1)" ng-if="!zan_flag">
                 <img src="img/zan_color.png" style="width:25px;height: 25px;" ng-click="zan(0)" ng-if="zan_flag">
-                <span>评论</span>
+                <span style="vertical-align: 5px;">评论</span>
             </div>
-            <div class="col-33" >
-                <img src="img/share.png" style="width:25px;height: 25px;margin-left:33%" >
-                <span style="float:right;">分享</span>
+            <div class="col-33" style="text-align:right;">
+                <img src="img/share.png" style="width:25px;height: 25px;">
+                <span style="vertical-align: 5px;">分享</span>
             </div>
 
 
@@ -41,60 +42,61 @@
     </div>
 
     <div>
-        <ul class="nav nav-tabs" style="text-align: center;color:black">
-            <li class="progress_tab_change_selected active">
-                <a href="#">详情</a>
-            </li>
-            <li class="progress_tab_change_selected" >
-                <a href="#">课程安排</a>
-            </li>
-            <li class="progress_tab_change_selected" >
-                <a href="#">评论</a>
-            </li>
+        <ul class="nav nav-tabs" style="text-align: center;">
+            <li class="progress_tab_change_selected active1">课程安排</li>
+            <li class="progress_tab_change_selected">详情</li>
+            <li class="progress_tab_change_selected">评论</li>
         </ul>
 
-        <div  id="progress_recorded_detail_content">
-
-          <!--详情start-->
-            <div id="progress_recorded_detail" class="container">
-
-                <div class="margin_left_-5 margin-top10" style="text-align: left;">
-                    <span>录播介绍:<br></span>
-                    <span>录播介绍:录播介绍:录播介绍:录播介
-                        绍:录播介绍:录播介绍:录播介绍:录播介绍:录播介绍:录播介绍:录播介绍:录播介绍:录播介绍:
-                        录播介绍:录播介绍:录播介绍:录播介绍:录播介绍:录播介绍:录播介绍:录播介绍:</span>
+        <div id="progress_recorded_detail_content">
+            <!--课程安排-->
+            <div id="progress_recorded_related" class="container">
+                <div class="row" style="padding-top:10px;">
+                    <div class="col-50">
+                        <a href="#/recorded_detail" style="position: relative;display:inline-block;">
+                            <img src="img/play-icon.png" class="play-icon">
+                            <img src="img/1.png" width="100%"  height="140px;">
+                        </a>
+                    </div>
+                    <div class="col-50" style="padding-left:10px;">
+                        <!--<a href="#/recorded_detail">-->
+                            <div>名称名称名称名称名</div>
+                            <div>第一节</div>
+                            <div class="progress_font10">讲师：某某某</div>
+                            <div class="progress_font10">简介简介简介简介简介简介简介简介简介简介简介简介</div>
+                            <div class="clearfix">
+                                <span class="progress_font10 margin-top10" style="float:left;">8元</span>
+                                <span class="progress_font10 margin-top10" style="float:right;"><img src="img/eye.png" style="width:20px;height: 15px;">&nbsp;&nbsp;&nbsp;30</span>
+                            </div>
+                            <span class="progress_font10 progress_span_right margin-top10"></span>
+                        <!--</a>-->
+                    </div>
                 </div>
-
+                <div class="row margin-top10" style="border-top: 1px solid silver;width: 100%"></div>
             </div>
-            <!--end-->
 
-            
-            <!--课程一节-->
-            <div  id="progress_recorded_related" class="container" style="display: none">
-                <div class="row margin-top10">
-
-                <div class="col-50" style="position: relative;">
-                    <a href="#/recorded_detail">
-                    <img src="img/play(1).png" style="position:absolute;top:35%;left: 45%;width: 50px;height: 50px;" alt="">
-                        <img src="img/1.png" width="100%"  height="120px;">
-                    </a>
+            <!--详情-->
+            <div id="progress_recorded_detail" class="container" style="display: none;padding-top:10px;">
+                <div class="margin_left_-5" style="text-align: left;">
+                    <div class="row">
+                        <div class="col-20">
+                            <img src="img/1.png" style="width:80px;height:100px;">
+                        </div>
+                        <div class="col-80" style="padding-left:10px;">
+                            <div>讲师姓名：</div>
+                            <div>
+                                讲师简介:简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介
+                            </div>
+                        </div>
+                    </div>
+                    <div style="padding-top:10px;">
+                        <div>课程介绍</div>
+                        <div  style="margin-top:20px;">
+                            课程介绍课程介绍课程介绍课程介绍课程介绍课程介绍课程介绍课程
+                        </div>
+                    </div>
                 </div>
-                <div class="col-50 margin-left10">
-                    <a href="#/recorded_detail">
-                    <span>名称名称名称名称名</span><br>
-                        <span>第一节</span><br>
-                        <span class="progress_font10 ">讲师：某某某</span><br>
-                        <span class="progres --><!-- s_font10 ">简介简介简介简介简介简介简介简介简介简介简介简介</span><br>
-                        <span class="progress_font10 progress_color_silver margin-top10" style="display: inline-block">共12节</span>
-                        <span class="progress_font10 progress_color_silver margin-top10" style="display: inline-block"><img src="img/eye.png" style="width:20px;height: 15px;">&nbsp;&nbsp;&nbsp;30</span>
-                        <span class="progress_font10 progress_color_silver progress_span_right margin-top10"></span>
-                    </a>
-                </div>
-
             </div>
-            <div class="row  margin-top10 " style="border-top: 1px solid silver;width: 120%"></div>
-            </div>
-            <!--end-->
             
             <div id="progress_recorded_comment" class="container" style="display: none;">
              <!--评论start-->
@@ -108,16 +110,16 @@
                 </div>
                 <!--讨论区-->
                 <div class="row margin-top10 progress_detail_line" style="padding-bottom: 15px;">
-                    <div class="col-20">
+                    <div class="col-25">
                         <img src="img/1.png" width="50px" height="50px" style="border-radius: 30px;">
                     </div>
-                    <div class="col-70" >
-                        <span style="font-size: 16px;color:#c95f48;">用户莫莫莫</span>
+                    <div class="col-50">
+                        <span style="font-size: 16px;color:#c95f48;">用户某某某</span>
                         <input disabled="true" value="内控达人" style="color:#fff;border-radius: 30px;border: 1px solid #c95e47;width: 27%;height: 3%;font-size: 10px;text-align: center;background-color: #a14c39;"/>
-                        <span style="display: inline-block;margin-top: 10px;">评论评论评论评论评论评论评论评论评论</span>
+                        <div style="margin-top: 10px;">评论评论评论评论评论评论评论评论评论评论评论评论</div>
                     </div>
-                    <div class="col-10">
-                        <span class="progress_span_right progress_color_silver" > 21:00</span><br>
+                    <div class="col-25">
+                        <span class="progress_span_right progress_color_silver"> 21:00</span>
                     </div>
                 </div>
                 <!--end-->
@@ -131,8 +133,10 @@
 
 
         </div>
-        
     </div>
-    
   
 </ion-content>
+
+<ion-footer-bar class="bar-assertive">
+  <h1 class="title">购买课程</h1>
+</ion-footer-bar>

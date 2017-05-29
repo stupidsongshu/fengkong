@@ -2088,7 +2088,7 @@ angular.module('starter.controllers', [])
 
     })
 
-    //课程列表
+    //录播课程列表
     .controller('RecordedListCtrl', function ($scope, $ionicHistory, $rootScope) {
 
         $scope.collection_flag = 0;
@@ -2100,16 +2100,19 @@ angular.module('starter.controllers', [])
             $scope.zan_flag = flag;
         }
         $('.progress_tab_change_selected').on('click', function () {
-            $('.progress_tab_change_selected').removeClass('active1');
-            $(this).addClass('active1');
+            // $('.progress_tab_change_selected').removeClass('active1');
+            // $(this).addClass('active1');
+            $(this).addClass('active1').siblings().removeClass('active1')
             $('#progress_recorded_detail_content > div').css('display', 'none');
             switch ($(this).index()) {
-                case 0: $('#progress_recorded_detail').css('display', 'block'); break;
-                case 1: $('#progress_recorded_related').css('display', 'block'); break;
+                case 0: $('#progress_recorded_related').css('display', 'block'); break;
+                case 1: $('#progress_recorded_detail').css('display', 'block'); break;
                 case 2: $('#progress_recorded_comment').css('display', 'block'); break;
 
             }
         })
+
+
         $scope.goBack = function () {
             //$ionicHistory.goBack();
             $rootScope.$ionicGoBack();
@@ -2117,10 +2120,6 @@ angular.module('starter.controllers', [])
 
         }
     })
-
-
-
-
 
 
     //录播详情
