@@ -72,3 +72,17 @@
 	height: 15px;
 	vertical-align: -3px;
 }
+
+/*我的活动*/
+.myself_active_navigation_all{
+	position: relative;
+}
+.myself_active_navigation_all .down-list{
+	position:absolute;
+	width:100%;
+	z-index:1;
+	background-color:#ccc;
+}
+.myself_active_navigation_all .down-list .down-item{
+	padding: 0 5px;
+}

@@ -75,26 +75,26 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
             })
 
             // 课程 直播1
+            // .state('tabs.progressOld', {
+            //     url: "/progressOld",
+            //     cache: 'true',
+            //     views: {
+            //         'tab-progressOld': {
+            //             templateUrl: "templates/progress-old.html",
+            //             controller:"ProgressOldCtrl"
+            //         }
+            //     }
+            // })
+
+
+            // 课程 直播
             .state('tabs.progress', {
-                url: "/progress",
+                url: "/progress/{homeCourseMore}",
                 cache: 'true',
                 views: {
                     'tab-progress': {
                         templateUrl: "templates/progress.html",
                         controller:"ProgressCtrl"
-                    }
-                }
-            })
-
-
-            // 课程 直播新
-            .state('tabs.progressNew', {
-                url: "/progressNew",
-                cache: 'true',
-                views: {
-                    'tab-progressNew': {
-                        templateUrl: "templates/progress_new.html",
-                        controller:"ProgressNewCtrl"
                     }
                 }
             })
@@ -246,7 +246,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
             })
             //活动详情
             .state('active_details',{
-                url:'/active_details',
+                url:'/active_details/{activityId}',
                 cache:'false',
                 templateUrl:'templates/active/active_details.html',
                 controller:'ActiveDetailsCtrl'

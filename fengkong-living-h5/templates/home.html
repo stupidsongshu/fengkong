@@ -16,7 +16,6 @@
                 <div class="swiper-slide" ng-repeat="gil in bannerList">
                     <img ng-src="{{gil.imageUrl}}">
                 </div>
-
             </div>
             <!-- Add Pagination -->
             <div class="swiper-pagination swiper-pagination-white"></div>
@@ -67,7 +66,7 @@
                 <span ng-if="liveList.length == 0">暂无直播</span>
 
                 <div class="col-50" style="position: relative;" ng-repeat="live in liveList">
-                    <a href="#/living_detail/{{live.liveId}}">
+                    <a ng-click="isPayStatusLive(2,0,live.liveId,0,0)">
                         <img src="img/play-icon.png" class="home_play" ng-if="live.liveStatus != 0">
                         <img src="{{live.videoImage}}" width="100%" height="20%;">
                     </a>
@@ -80,13 +79,13 @@
             <!--线下培训-->
             <div class="row margin-top10">
                 <div class="col-33 margin-left10"><img src="img/2.png" class="direct-seeding">线下培训</div>
-                <div class="col-33 col-offset-33 "><span class="home_more">更多<img src="img/right.png" style="width:20px;height: 20px;"></span></div>
+                <div class="col-33 col-offset-33 "><span class="home_more"><a ui-sref="tabs.active">更多</a><img src="img/right.png" style="width:20px;height: 20px;"></span></div>
             </div>
             <div class="row margin-top10" style="margin-left: -5px;">
                 <span ng-if="activityList.length == 0">暂无线下培训</span>
 
                 <div class="col-50" style="position: relative;" ng-repeat="activity in activityList">
-                    <a href="#/active_details">
+                    <a ng-click="isPayStatusActivity(4,0,0,0,activity.activityId)">
                         <img src="{{activity.activityIcon}}" width="100%" height="20%;">
                     </a>
 
@@ -98,13 +97,13 @@
             <!--推荐课程-->
             <div class="row margin-top10">
                 <div class="col-33 margin-left10"><img src="img/2.png" class="direct-seeding">推荐课程</div>
-                <div class="col-33 col-offset-33 "><span class="home_more">更多<img src="img/right.png" style="width:20px;height: 20px;"></span></div>
+                <div class="col-33 col-offset-33 "><span class="home_more" ng-click="homeCourseMore()">更多<img src="img/right.png" style="width:20px;height: 20px;"></span></div>
             </div>
             <div class="row margin-top10 margin_left_-5">
                 <span ng-if="courseList.length == 0">暂无推荐课程</span>
 
                 <div class="col-50" style="position: relative;" ng-repeat="course in courseList">
-                    <a href="">
+                    <a ng-click="isPayStatusCourse(3,0,0,course.courseId,0)">
                         <img src="{{course.imageUrl}}" width="100%" height="20%;">
                     </a>
                 </div>
@@ -124,7 +123,7 @@
                 <span ng-if="liveList.length == 0">暂无直播</span>
 
                 <div class="col-50" style="position: relative;" ng-repeat="live in liveList">
-                    <a href="#/living_detail/{{live.liveId}}">
+                    <a ng-click="isPayStatusLive(2,0,live.liveId,0,0)">
                         <img src="img/play-icon.png" class="home_play" ng-if="live.liveStatus != 0">
                         <img src="{{live.videoImage}}" width="100%" height="20%;">
                     </a>
@@ -137,13 +136,13 @@
             <!--线下培训-->
             <div class="row margin-top10">
                 <div class="col-33 margin-left10"><img src="img/2.png" class="direct-seeding">线下培训</div>
-                <div class="col-33 col-offset-33 "><span class="home_more">更多<img src="img/right.png" style="width:20px;height: 20px;"></span></div>
+                <div class="col-33 col-offset-33 "><span class="home_more"><a ui-sref="tabs.active">更多</a><img src="img/right.png" style="width:20px;height: 20px;"></span></div>
             </div>
             <div class="row margin-top10" style="margin-left: -5px;">
                 <span ng-if="activityList.length == 0">暂无线下培训</span>
 
                 <div class="col-50" style="position: relative;" ng-repeat="activity in activityList">
-                    <a href="#/active_details">
+                    <a ng-click="isPayStatusActivity(4,0,0,0,activity.activityId)">
                         <img src="{{activity.activityIcon}}" width="100%" height="20%;">
                     </a>
 
@@ -161,7 +160,7 @@
                 <span ng-if="courseList.length == 0">暂无推荐课程</span>
 
                 <div class="col-50" style="position: relative;" ng-repeat="course in courseList">
-                    <a href="">
+                    <a ng-click="isPayStatusCourse(3,0,0,course.courseId,0)">
                         <img src="{{course.imageUrl}}" width="100%" height="20%;">
                     </a>
                 </div>

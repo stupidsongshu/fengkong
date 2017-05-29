@@ -28,7 +28,7 @@ angular.module('starter.controllers', [])
         $rootScope.$on('$ionicView.beforeEnter', function () {
             var statename = $state.current.name;
             //tabs中存在的主页面不需要隐藏，hidetabs=false
-            if (statename === 'tabs.myself' || statename === 'tabs.home' || statename === 'tabs.progressNew' || statename === 'tabs.progress1' || statename === 'tabs.record' || statename === 'tabs.active') {
+            if (statename === 'tabs.myself' || statename === 'tabs.home' || statename === 'tabs.progress' || statename === 'tabs.progress1' || statename === 'tabs.record' || statename === 'tabs.active') {
                 $rootScope.hideTabs = false;
             } else {
                 $rootScope.hideTabs = true;
@@ -44,7 +44,7 @@ angular.module('starter.controllers', [])
         }
         $scope.goProgress = function () {
 
-            $state.go("tabs.progressNew");
+            $state.go("tabs.progress");
 
         }
         $scope.goActive = function () {
@@ -143,21 +143,19 @@ angular.module('starter.controllers', [])
                         if (key == 'liveList') {
                             $scope.liveList = data.result[key];
                             
-                            //个数多余2时去掉多余的
+                            //首页只展示2个
                             if($scope.liveList.length > 2){
                                 $scope.liveList.length = 2;
                             }
                         } else if (key == 'activityList') {
                             $scope.activityList = data.result[key];
 
-                            //个数多余2时去掉多余的
                             if($scope.activityList.length > 2){
                                 $scope.activityList.length = 2;
                             }
                         } else if (key == 'courseList') {
                             $scope.courseList = data.result[key];
 
-                            //个数多余2时去掉多余的
                             if($scope.courseList.length > 2){
                                 $scope.courseList.length = 2;
                             }
@@ -167,6 +165,93 @@ angular.module('starter.controllers', [])
             })
         }
         getHomeList(1);
+
+        /*
+         * 点击判断登录用户付费状态
+         *   selectType(查询类别):视频1 直播2 课程3 活动4
+        */
+        // 直播(2)
+        $scope.isPayStatusLive = function(selectType,videoId,liveId,courseId,activityId){
+            console.log(localStorage.userId,selectType,videoId,liveId,courseId,activityId);
+            $http.post(ApiEndpoint.url + "homePage/slectUserIsPayStatus.do", {}, {
+                params: {
+                    userId:localStorage.userId,
+                    selectType:selectType,
+                    videoId:videoId,
+                    liveId:liveId,
+                    courseId:courseId,
+                    activityId:activityId
+                }
+            }).success(function (data) {
+                if (data.errorCode == 0) {
+                    // data.result:(未付费 0) (已付费 >0)
+                   if(data.result == 0){
+                       $state.go('active_apply');
+                   }else{
+                       $state.go('living_detail',{
+                           liveId:liveId
+                       });
+                   }
+                }
+            })
+        }
+        // 线下培训(4)
+        $scope.isPayStatusActivity = function(selectType,videoId,liveId,courseId,activityId){
+            console.log(localStorage.userId,selectType,videoId,liveId,courseId,activityId);
+            $http.post(ApiEndpoint.url + "homePage/slectUserIsPayStatus.do", {}, {
+                params: {
+                    userId:localStorage.userId,
+                    selectType:selectType,
+                    videoId:videoId,
+                    liveId:liveId,
+                    courseId:courseId,
+                    activityId:activityId
+                }
+            }).success(function (data) {
+                if (data.errorCode == 0) {
+                    // data.result:(未付费 0) (已付费 >0)
+                    if(data.result == 0){
+                        console.log('未付费');
+                        $state.go('active_apply');
+                    }else{
+                       console.log('已付费');
+                       $state.go('active_details',{
+                           activityId:activityId
+                       });
+                    }
+                }
+            })
+        }
+        // 推荐课程(3)
+        $scope.isPayStatusCourse = function(selectType,videoId,liveId,courseId,activityId){
+            console.log(localStorage.userId,selectType,videoId,liveId,courseId,activityId);
+            $http.post(ApiEndpoint.url + "homePage/slectUserIsPayStatus.do", {}, {
+                params: {
+                    userId:localStorage.userId,
+                    selectType:selectType,
+                    videoId:videoId,
+                    liveId:liveId,
+                    courseId:courseId,
+                    activityId:activityId
+                }
+            }).success(function (data) {
+                if (data.errorCode == 0) {
+                    // data.result:(未付费 0) (已付费 >0)
+                    if(data.result == 0){
+                        console.log('未付费');
+                        $state.go('active_apply');
+                    }else{
+                       console.log('已付费');
+                    //    $state.go('');
+                    }
+                }
+            })
+        }
+        $scope.homeCourseMore = function(){
+            $state.go('tabs.progress',{
+                homeCourseMore:2
+            });
+        }
 
 
         $('.tab_circle').click(function (event) {
@@ -178,7 +263,7 @@ angular.module('starter.controllers', [])
 
 
 
-    .controller('ProgressCtrl', function ($scope, $ionicLoading, $timeout, $ionicHistory, $state, $http, ApiEndpoint) {
+    .controller('ProgressOldCtrl', function ($scope, $ionicLoading, $timeout, $ionicHistory, $state, $http, ApiEndpoint) {
         $scope.l = [1, 2, 3, 4, 5, 6, 7];
         $scope.type_id = 1;
         $scope.price_id = 1;
@@ -314,7 +399,8 @@ angular.module('starter.controllers', [])
     })
 
 
-    .controller('ProgressNewCtrl', function ($scope, $http, ApiEndpoint) {
+    .controller('ProgressCtrl', function ($scope, $http, ApiEndpoint,$stateParams) {
+
         var title = $('#recorded').find('.progress-record-title');
         title.on('click', function () {
             $(this).next('.down-list').toggle();
@@ -326,10 +412,20 @@ angular.module('starter.controllers', [])
 
 
         //直播和录播切换
-        $('.header_tab_change').on('click', function () {
-            $(this).addClass('header_select').siblings().removeClass('header_select');
-            $('#progress_all_content > div').eq($(this).index()).show().siblings().hide();
-        })
+        // $('.header_tab_change').on('click', function () {
+        //     $(this).addClass('header_select').siblings().removeClass('header_select');
+        //     $('#progress_all_content > div').eq($(this).index()).show().siblings().hide();
+        // })
+        $scope.selectLivingRecorded = function(status){
+            $scope.selectedLivingRecorded = status;
+        }
+        //默认显示直播
+        $scope.selectedLivingRecorded = 1;
+        // 如果有参数homeCourseMore为2,说明是从点击首页的推荐课程的更多过来的,需要显示录播
+        if($stateParams.homeCourseMore){
+            $scope.selectedLivingRecorded = 2;
+            getAllCourses();
+        }
 
         //直播
         $http.post(ApiEndpoint.url + "live/getAllLiveList.do", {}, {
@@ -340,7 +436,9 @@ angular.module('starter.controllers', [])
             }
         }).success(function (data) {
             if (data.errorCode == 0) {
+                // 正在直播
                 $scope.livingList = [];
+                // 即将直播、已结束
                 $scope.beforeAndAfterLivingList = [];
 
                 // 获取所有视频后分离正在直播和即将直播、已结束
@@ -351,10 +449,6 @@ angular.module('starter.controllers', [])
                         $scope.beforeAndAfterLivingList.push(value);
                     }
                 })
-
-                console.log($scope.livingList);
-                console.log($scope.beforeAndAfterLivingList);
-
 
                 var swiperContainerProgress = new Swiper('.swiper-container-progress', {
                     autoplay: 3000,
@@ -949,9 +1043,9 @@ angular.module('starter.controllers', [])
         $scope.type_id = 1;
         $scope.price_id = 1;
         $scope.goBack = function () {
-
             $ionicHistory.goBack();
         }
+
         $('#my_active_price').css('display', 'none');
         $('#my_active_type').css('display', 'none');
         $('.myself_active_navigation_all').on('click', function () {
@@ -1026,7 +1120,14 @@ angular.module('starter.controllers', [])
                 }
             })
         }
+
+
+
+
+        // #########################################
+
     })
+
     //我的历史
     .controller('MyHistoryCtrl', function ($scope, $ionicHistory) {
         $('.tab-item1').on('click', function () {
@@ -1782,7 +1883,7 @@ angular.module('starter.controllers', [])
     })
 
     //活动报名
-    .controller('ActiveApplyCtrl', function ($scope, $ionicHistory, $ionicHistory) {
+    .controller('ActiveApplyCtrl', function ($scope, $ionicHistory) {
 
         $scope.goBack = function () {
             $ionicHistory.goBack();
@@ -1925,14 +2026,18 @@ angular.module('starter.controllers', [])
 
         playNow();
 
-
-        $scope.zan_flag = 0;
-        $scope.zan = function (flag) {
-            $scope.zan_flag = flag;
+        // 点赞
+        $scope.zan_flag = false;
+        $scope.zan = function () {
+            if(!$scope.zan_flag){
+                console.log(1);
+            }
+            $scope.zan_flag = true;
         }
         // console.log(localStorage.courseId);
 
         var liveId = $stateParams.liveId;
+        console.log('liveId: '+liveId);
         // 查询某一个直播的评论信息
         function getCommentLiveList() {
             $http({
@@ -1980,9 +2085,6 @@ angular.module('starter.controllers', [])
                     })
             }
         }
-
-        // 直播点赞
-
 
     })
 
