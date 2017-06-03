@@ -258,6 +258,13 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
                 templateUrl:'templates/active/active_apply.html',
                 controller:'ActiveApplyCtrl'
             })
+            //即将直播报名
+            .state('upcomingLiving_apply',{
+                url:'/upcomingLiving_apply',
+                cache:'false',
+                templateUrl:'templates/active/upcomingLiving_apply.html',
+                controller:'UpcomingLivingApplyCtrl'
+            })
             //确认订单
             .state('confirm_order',{
                 url:'/confirm_order',
@@ -265,7 +272,35 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
                 templateUrl:'templates/active/confirm_order.html',
                 controller:'ConfirmOrderCtrl'
             })
-            //确认订单
+            //确认订单--课程
+            .state('confirm_order_course',{
+                url:'/confirm_order_course',
+                cache:'false',
+                templateUrl:'templates/active/confirm_order_course.html',
+                controller:'ConfirmOrderCourseCtrl'
+            })
+            //确认订单--课程课时视频
+            .state('confirm_order_video',{
+                url:'/confirm_order_video',
+                cache:'false',
+                templateUrl:'templates/active/confirm_order_video.html',
+                controller:'ConfirmOrderVideoCtrl'
+            })
+            //确认订单--正在直播
+            .state('confirm_order_living',{
+                url:'/confirm_order_living',
+                cache:'false',
+                templateUrl:'templates/active/confirm_order_living.html',
+                controller:'ConfirmOrderLivingCtrl'
+            })
+            //确认订单--即将直播
+            .state('confirm_order_upcomingLiving',{
+                url:'/confirm_order_upcomingLiving',
+                cache:'false',
+                templateUrl:'templates/active/confirm_order_upcomingLiving.html',
+                controller:'ConfirmOrderUpcomingLivingCtrl'
+            })
+            //选择优惠券
             .state('change_coupon',{
                 url:'/change_coupon',
                 cache:'false',
@@ -281,14 +316,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
             })
             //录播课程列表
             .state('recorded_list',{
-                url:'/recorded_list',
+                url:'/recorded_list/{courseId}',
                 cache:'false',
                 templateUrl:'templates/progress/recorded_list.html',
                 controller:'RecordedListCtrl'
             })
             //录播详情
             .state('recorded_detail',{
-                url:'/recorded_detail',
+                // url:'/recorded_detail/{videoId}/{payStatus}',
+                url:'/recorded_detail/{videoId}',
                 cache:'false',
                 templateUrl:'templates/progress/recorded_detail.html',
                 controller:'RecordedDetailCtrl'

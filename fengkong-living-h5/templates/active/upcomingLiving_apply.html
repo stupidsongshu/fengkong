@@ -1,0 +1,27 @@
+
+<ion-header-bar align-title="center" class='home_head themebgcolor'>
+    <a ng-click="goBack()" class="margin-top10 margin-left10"><img src="img/prepage.png"></a>
+    <h3>即将直播报名</h3>
+</ion-header-bar>
+
+<ion-content >
+    <div style="margin-top: 10px;padding-left:10px;height: 40px;line-height:40px;font-size: 16px;border-bottom: 1px solid #DEDEDE;">
+        <span style="display:inline-block;width:80px;">参与人</span>
+        <input type="text" placeholder="填写姓名" style="display:inline-block;width:240px;vertical-align:2px;" ng-model="applyInfo.userName">
+        
+    </div>
+    <div style="margin-top: 10px;padding-left:10px;height: 40px;line-height:40px;font-size: 16px;border-bottom: 1px solid #DEDEDE;">
+        <span style="display:inline-block;width:80px;">联系方式</span>
+        <input type="text" placeholder="填写手机号码" style="display:inline-block;width:240px;vertical-align:2px;" ng-model="applyInfo.contactWay">
+    </div>
+    <div style="margin-top: 10px;padding-left:10px;height: 40px;line-height:40px;font-size: 16px;border-bottom: 1px solid #DEDEDE;">
+        <span style="display:inline-block;width:80px;">公司名称</span>
+        <input type="text" placeholder="填写完整公司名称" style="display:inline-block;width:240px;vertical-align:2px;" ng-model="applyInfo.companyName">
+    </div>
+</ion-content>
+
+<!--<a href="#/confirm_order_upcomingLiving">-->
+    <ion-footer-bar class='home_head themebgcolor' style="color:#fff;text-align: center;">
+        <h3 ng-click="submitInfo()">提交</h3>
+    </ion-footer-bar>
+<!--</a>-->

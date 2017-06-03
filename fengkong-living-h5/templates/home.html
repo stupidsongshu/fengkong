@@ -3,7 +3,7 @@
     <a href="#/tab/home_search" style="width: 90%;">
         <label class="item-input-wrapper home_search " >
             <i class="icon ion-ios-search placeholder-icon"></i>
-            <input type="search" placeholder="搜索内容提示 / 提示 / 提示" class="home_inputS" >
+            <input type="search" placeholder="请输入搜索内容" class="home_inputS">
         </label>
     </a>
     <a><img src="img/comment.png" class="comment"></a>
@@ -51,16 +51,15 @@
             </div>
         </div>
     </div>
-    <div style="background: #fbfafa;width: 200%;height: 10px;">
-
-    </div>
+    
+    <div style="background: #fbfafa;width: 200%;height: 10px;"></div>
 
     <div class="container" ng-if='type==1'>
         <div>
             <!--近期直播-->
             <div class="row margin-top10">
                 <div class="col-33 margin-left10"><img src="img/2.png" class="direct-seeding">近期直播</div>
-                <div class="col-33 col-offset-33 "><a class="home_more" ui-sref="tabs.progressNew">更多<img src="img/right.png" style="width:20px;height: 20px;"></a></div>
+                <div class="col-33 col-offset-33 "><a class="home_more" ui-sref="tabs.progress">更多<img src="img/right.png" style="width:20px;height: 20px;"></a></div>
             </div>
             <div class="row margin-top10 margin_left_-5">
                 <span ng-if="liveList.length == 0">暂无直播</span>

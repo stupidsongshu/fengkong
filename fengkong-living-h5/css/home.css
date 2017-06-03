@@ -126,7 +126,11 @@ h4{color:#494949;}
 .home_play{width:30px;height: 30px;position: absolute;top: 30%;left: 40%;}
 .home_more{float: right;margin-right: -10px;color:#919191}
 .home_search_price_style{color:#c95f48;display: inline-block;float: right;}
-.home_row{float:left;width:46%;margin-left: 10px;}
+/*.home_row{float:left;width:46%;}*/
+.home_row{
+    float:left;
+    width: calc((100% - 10px)/2);
+}
 .dropdown-menu li {
     border-bottom: 1px solid #b4b4b4;
 }

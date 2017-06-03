@@ -31,7 +31,7 @@
 	position: absolute;
 	top: 100%;
     width: 100%;
-    background-color: #fff;
+    background-color: #ccc;
     z-index: 9;
 }
 .progress_record_navigation_all .down-list .down-item{

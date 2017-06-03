@@ -1,6 +1,5 @@
-
-<ion-header-bar align-title="center" class='home_head themebgcolor' >
-    <a ng-click="goBack()" class="margin-top10 margin-left10"><img src="img/prepage.png" alt="" ></a>
+<ion-header-bar align-title="center" class='home_head themebgcolor'>
+    <a ng-click="goBack()" class="margin-top10 margin-left10"><img src="img/prepage.png"></a>
     <h3>确认订单</h3>
 </ion-header-bar>
 
@@ -8,10 +7,11 @@
 <ion-content>
     <div>
         <div style="margin-top: 10px;padding-left:10px;height: 40px;line-height:40px;font-size: 16px;border-bottom: 1px solid #DEDEDE;">
-            <span style="display:inline-block;width:80px;">报名活动</span>
-            <input type="text" placeholder="填写姓名" style="display:inline-block;width:240px;vertical-align:2px;">
+            <span style="display:inline-block;width:80px;">正在直播</span>
+            <!--<input type="text" placeholder="填写姓名" style="display:inline-block;width:240px;vertical-align:2px;">-->
+            <span>{{livingName}}</span>
         </div>
-        <div style="margin-top: 10px;padding-left:10px;height: 40px;line-height:40px;font-size: 16px;border-bottom: 1px solid #DEDEDE;">
+        <!--<div style="margin-top: 10px;padding-left:10px;height: 40px;line-height:40px;font-size: 16px;border-bottom: 1px solid #DEDEDE;">
             <span style="display:inline-block;width:80px;">参与人</span>
             <input type="text" placeholder="填写姓名" style="display:inline-block;width:240px;vertical-align:2px;">
         </div>
@@ -22,16 +22,16 @@
         <div style="margin-top: 10px;padding-left:10px;height: 40px;line-height:40px;font-size: 16px;border-bottom: 1px solid #DEDEDE;">
             <span style="display:inline-block;width:80px;">公司名称</span>
             <input type="text" placeholder="填写完整公司名称" style="display:inline-block;width:240px;vertical-align:2px;">
-        </div>
+        </div>-->
         <div style="margin-top: 10px;height: 40px;font-size: 15px;">
-            <span style="display:inline-block;float: right;margin-right: 10px;">金额:  <b style="color:#bf5b44">12.00元</b></span>
+            <span style="display:inline-block;float: right;margin-right: 10px;">金额:  <b style="color:#bf5b44">{{livingPrice}}元</b></span>
         </div>
     </div>
-
-    <!--<div style="background-color: #fbf9f9;height:50px;">
+    <!-- <div style="background-color: #fbf9f9;height:50px;">
         <div style="margin-left:5px;padding-top: 10px;">
-            <img src="img/check.png" style="width:20px;height: 20px;">
-             <div style="width: 20px; display: inline-block;border: 1px solid #ccc;border-radius: 2px; height: 20px;margin-top: 5px;"><img src="img/checked.png" style="width:20px;height: 20px;display: none;"></div>
+ -->
+    <!--<img src="img/check.png" style="width:20px;height: 20px;">-->
+    <!-- <div style="width: 20px; display: inline-block;border: 1px solid #ccc;border-radius: 2px; height: 20px;margin-top: 5px;"><img src="img/checked.png" style="width:20px;height: 20px;display: none;"></div>
             <a href="#/change_coupon">
                 <div style="display: inline-block;width: 92%;vertical-align: top;padding-top: 4px;">
                     <span>优惠券抵扣<b>3.00</b>元</span>
@@ -66,7 +66,7 @@
                     <img style="display: inline-block;float:right;" src="img/right.png" width="25px" height="25px">
                     </a>
                 </div>
-                
+
                 <div id="payCoupon" style="padding-top:20px;padding-bottom: 20px;font-size: 16px;border-bottom: 1px solid silver;" ng-click="payCoupon()">
                     <a href=""><img style="display: inline-block;float:left;margin-left: 20px" src="img/wechat.png" width="25px" height="25px">
                     <span style="margin-left: -100px;color:black">使用入场券</span>
@@ -80,4 +80,3 @@
 <ion-footer-bar class='home_head themebgcolor' style="color:#fff;text-align: center" ng-click="pay1()">
     <h3>立即支付</h3>
 </ion-footer-bar>
-
