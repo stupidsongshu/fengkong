@@ -260,10 +260,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
             })
             //即将直播报名
             .state('upcomingLiving_apply',{
-                url:'/upcomingLiving_apply',
+                url:'/upcomingLiving_apply/{upcomingLivingId}',
                 cache:'false',
                 templateUrl:'templates/active/upcomingLiving_apply.html',
                 controller:'UpcomingLivingApplyCtrl'
+            })
+            //即将直播详情
+            .state('upcomingLiving_details',{
+                url:'/upcomingLiving_details/{upcomingLivingId}',
+                cache:'false',
+                templateUrl:'templates/active/upcomingLiving_details.html',
+                controller:'UpcomingLivingDetailsCtrl'
             })
             //确认订单
             .state('confirm_order',{

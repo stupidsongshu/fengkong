@@ -1,6 +1,6 @@
 <ion-header-bar align-title="center" class='home_head themebgcolor'>
     <a ng-click="goBack()" class="margin-top10 margin-left10"><img src="img/prepage.png"></a>
-    <h3>课程标题</h3>
+    <h3>{{courseInfo.courseName}}</h3>
 </ion-header-bar>
 
 <ion-content>
@@ -54,7 +54,7 @@
                     <div class="col-50">
                         <!--courseInfo.payStatus:属于该课时的课程付费状态-->
                         <!--<a href="#/recorded_detail/{{recordedCourseItem.videoId}}/{{courseInfo.payStatus}}" style="position: relative;display:inline-block;">-->
-                        <a href="#/recorded_detail/{{recordedCourseItem.videoId}}" style="position: relative;display:inline-block;">
+                        <a href="#/recorded_detail/{{recordedCourseItem.videoId}}" style="position: relative;display:inline-block;" ng-click="videoInfo(recordedCourseItem.videoName,recordedCourseItem.videoPrice,recordedCourseItem.videoIcon,courseInfo.courseName)">
                             <img src="img/play-icon.png" class="play-icon">
                             <img src="{{recordedCourseItem.videoIcon}}" width="100%" height="140px;">
                         </a>

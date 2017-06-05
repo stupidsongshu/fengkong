@@ -65,7 +65,7 @@
                 <span ng-if="liveList.length == 0">暂无直播</span>
 
                 <div class="col-50" style="position: relative;" ng-repeat="live in liveList">
-                    <a ng-click="isPayStatusLive(2,0,live.liveId,0,0)">
+                    <a ng-click="isPayStatusLive(2,0,live.liveId,0,0,live.liveStatus,live.livePrice)">
                         <img src="img/play-icon.png" class="home_play" ng-if="live.liveStatus != 0">
                         <img src="{{live.videoImage}}" width="100%" height="20%;">
                     </a>
