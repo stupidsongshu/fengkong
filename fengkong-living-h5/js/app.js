@@ -295,7 +295,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
             })
             //确认订单--正在直播
             .state('confirm_order_living',{
-                url:'/confirm_order_living',
+                url:'/confirm_order_living/{livingId}',
                 cache:'false',
                 templateUrl:'templates/active/confirm_order_living.html',
                 controller:'ConfirmOrderLivingCtrl'
@@ -316,7 +316,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
             })
             //直播详情
             .state('living_detail',{
-                url:'/living_detail/{liveId}',
+                url:'/living_detail/{livingId}',
                 cache:'false',
                 templateUrl:'templates/progress/living_detail.html',
                 controller:'LivingDetailCtrl'

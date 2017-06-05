@@ -213,22 +213,29 @@ angular.module('starter.controllers', [])
                         }
                     }
                     //正在直播
-                    else if(liveStatus ==1){
+                    else if(liveStatus == 1){
                         if(livePrice == 0){
                             console.log('正在直播免费');
                             $state.go('living_detail',{
-                                liveId:liveId
+                                livingId:liveId
                             });
-                        }else if(livePrice >0){
+                        }else if(livePrice > 0){
                             if(data.result.isPay == 0){
                                 console.log('正在直播不免费且未付费');
-                                $state.go('');
+                                $state.go('confirm_order_living',{
+                                    livingId:liveId
+                                });
+                            }else if(data.result.isPay > 0){
+                                console.log('正在直播不面得但已付费');
+                                $state.go('living_detail',{
+                                    livingId:liveId
+                                });
                             }
                         }
                     }
                     // 已结束
-                    else if(liveStatus ==2){
-
+                    else if(liveStatus == 2){
+                        
                     }
 
                 }
