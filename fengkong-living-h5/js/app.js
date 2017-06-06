@@ -265,6 +265,13 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
                 templateUrl:'templates/active/upcomingLiving_apply.html',
                 controller:'UpcomingLivingApplyCtrl'
             })
+            //直播已结束报名
+            .state('livingEnded_apply',{
+                url:'/livingEnded_apply/{livingEndedId}',
+                cache:'false',
+                templateUrl:'templates/active/livingEnded_apply.html',
+                controller:'LivingEndedApplyCtrl'
+            })
             //即将直播详情
             .state('upcomingLiving_details',{
                 url:'/upcomingLiving_details/{upcomingLivingId}',
@@ -281,7 +288,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
             })
             //确认订单--课程
             .state('confirm_order_course',{
-                url:'/confirm_order_course',
+                url:'/confirm_order_course/{courseId}',
                 cache:'false',
                 templateUrl:'templates/active/confirm_order_course.html',
                 controller:'ConfirmOrderCourseCtrl'
@@ -307,6 +314,13 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
                 templateUrl:'templates/active/confirm_order_upcomingLiving.html',
                 controller:'ConfirmOrderUpcomingLivingCtrl'
             })
+            //确认订单--直播已结束
+            .state('confirm_order_livingEnded',{
+                url:'/confirm_order_livingEnded/{videoId}',
+                cache:'false',
+                templateUrl:'templates/active/confirm_order_livingEnded.html',
+                controller:'ConfirmOrderLivingEndedCtrl'
+            })
             //选择优惠券
             .state('change_coupon',{
                 url:'/change_coupon',
@@ -330,11 +344,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
             })
             //录播详情
             .state('recorded_detail',{
-                // url:'/recorded_detail/{videoId}/{payStatus}',
-                url:'/recorded_detail/{videoId}',
+                url:'/recorded_detail/{courseId}/{videoId}',
                 cache:'false',
                 templateUrl:'templates/progress/recorded_detail.html',
                 controller:'RecordedDetailCtrl'
+            })
+            //直播已结束详情
+            .state('livingEnded_detail',{
+                url:'/livingEnded_detail/{livingEndedId}',
+                cache:'false',
+                templateUrl:'templates/progress/livingEnded_detail.html',
+                controller:'LivingEndedDetailCtrl'
             })
             //忘记密码
             .state('forget_password',{

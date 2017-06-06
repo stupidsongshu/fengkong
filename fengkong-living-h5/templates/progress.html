@@ -35,7 +35,7 @@
             <div class="row margin-top10" style="margin-right:0px;margin-left: 0;float: left;" ng-repeat="live in beforeAndAfterLivingList">
                 <div class="col-50">
                     <div style="position: relative;margin-top: 10px;">
-                        <a href="#/living_detail">
+                        <a ng-click="notLiving(live.liveStatus,live.liveId,live.livePrice,live.orderStatus)">
                             <div class="play-icon" ng-if="live.liveStatus != 0"></div>
                             <img src="{{live.videoImage}}" style="width:100%;height: 100px;">
                         </a>
@@ -54,24 +54,24 @@
                         <span class="progress_font10">开始时间</span><span class="progress_font10 progress_color_silver">{{live.liveStartTime | date:'yyyy-MM-dd'}}</span><br>
                         <span class="progress_font10 progress_color_silver">{{live.number}}人已报名</span>
 
-                        <span class="progress_font10 progeress_signup_button" ng-if="live.liveStatus == 0 && live.orderStatus == 0">
+                        <span class="progress_font10 progeress_signup_button" ng-if="live.liveStatus == 0 && live.orderStatus == 1">
                         	<!--<a class="progress_color_white" href="#/active_apply">立即报名</a>-->
                         	<a class="progress_color_white" ng-click="upcomingLivingApply(live.liveId,live.videoName,live.livePrice,live.orderStatus)">立即报名</a>
                         </span>
-                        <span class="progress_font10 progeress_signup_button" ng-if="live.liveStatus == 0 && live.orderStatus == 2">
+                        <span class="progress_font10 progeress_signup_button" ng-if="live.liveStatus == 0 && live.orderStatus == 3">
                         	<a class="progress_color_white" disabled="true">已报名</a>
                         </span>
 
-                        <span class="progress_font10 progeress_signup_button" ng-if="live.liveStatus == 1 && live.orderStatus == 0">
+                        <span class="progress_font10 progeress_signup_button" ng-if="live.liveStatus == 1 && live.orderStatus == 1">
                         	<a class="progress_color_white" href="">付费观看</a>
                         </span>
-                        <span class="progress_font10 progeress_signup_button" ng-if="live.liveStatus == 1 && live.orderStatus == 1">
+                        <span class="progress_font10 progeress_signup_button" ng-if="live.liveStatus == 1 && live.orderStatus == 2">
                         	<a class="progress_color_white" href="">点击观看</a>
                         </span>
 
-                        <span class="progress_font10 progeress_review_button" ng-if="live.liveStatus == 2">
-                        	<a class="progress_color_white" href="">回看</a>
-                        </span>
+                        <a class="progress_color_white" ng-click="lookback(live.liveId,live.livePrice,live.orderStatus)">
+                            <span class="progress_font10 progeress_review_button" ng-if="live.liveStatus == 2">回看</span>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -190,7 +190,7 @@
                                     <a href="#/recorded_detail/{{isRecommendVideo.videoId}}">
                                         <img src="{{isRecommendVideo.imageUrl}}" class="progress_recommend_image">
                                         <div>
-                                            <span>{{isRecommendVideo.courseName}}</span>
+                                            <span>视频名：{{isRecommendVideo.courseName}}</span>
                                         </div>
                                         <div class="clearfix">
                                             <span class="progress_font10" style="float: left;">讲师：{{isRecommendVideo.teacherName}}</span>
@@ -217,7 +217,7 @@
                                     <a href="#/recorded_detail/{{notRecommendVideo.videoId}}">
                                         <img src="{{notRecommendVideo.icon}}" class="progress_recommend_image">
                                         <div>
-                                            <span>{{notRecommendVideo.videoName}}</span>
+                                            <span>视频名：{{notRecommendVideo.videoName}}</span>
                                         </div>
 
                                         <div>
