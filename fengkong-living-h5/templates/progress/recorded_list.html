@@ -11,13 +11,9 @@
         </div>
         <!--首页大图-->
         <div style="position: relative;">
-            <!--<a href="#/progress_detail">
-                <img src="img/play(1).png" style="position:absolute;top:35%;left: 45%;width: 50px;height: 50px;" alt="">
-                <img src="img/1.png" style="width:100%;height: 140px;">
-            </a>-->
             <img src="{{courseInfo.imgUrl}}" style="width:100%;height: 140px;">
         </div>
-        <!--end-->
+
         <div class="row margin-top10 margin_left_-5">
             <div class="col-33">
                 <img src="img/collection.png" style="width:25px;height: 25px;" ng-click="progress_collection()" ng-if="!collection_flag">
@@ -33,12 +29,11 @@
                 <img src="img/share.png" style="width:25px;height: 25px;">
                 <span style="vertical-align: 5px;">分享</span>
             </div>
-
-
         </div>
-        <div class="margin-top10 progress_all_search_line" style="height: 3px;"></div>
 
+        <div class="margin-top10 progress_all_search_line" style="height: 3px;"></div>
     </div>
+
 
     <div>
         <ul class="nav nav-tabs" style="text-align: center;">
@@ -127,9 +122,8 @@
             </div>
         </div>
     </div>
-
 </ion-content>
 
-<ion-footer-bar class="bar-assertive" ng-if="courseInfo.payStatus == 0" ng-click="createCourseOrder()">
+<ion-footer-bar class="bar-assertive" ng-if="courseBuyStatus" ng-click="createCourseOrder()">
     <h1 class="title">购买课程</h1>
 </ion-footer-bar>

@@ -8,8 +8,17 @@
     width: 0;
     height: 0;
     border-bottom: 80px solid transparent;
-    border-left: 80px solid black;
-
+    border-left-style: solid;
+    border-left-width: 80px;
+}
+.triangle-left-top1{
+    border-left-color: #c8705b;
+}
+.triangle-left-top2{
+    border-left-color: #c8705b;
+}
+.triangle-left-top3{
+    border-left-color: #000;
 }
 .triangle-right-left-font{
   position: absolute;

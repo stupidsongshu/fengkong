@@ -1,7 +1,6 @@
-
 <ion-header-bar align-title="center" class='home_head themebgcolor'>
     <a ng-click="goBack()" class="margin-top10 margin-left10"><img src="img/prepage.png"></a>
-    <h3 >风控在线</h3>
+    <h3>课时视频</h3>
     <a class="margin-top10"><img src="img/share_white.png" style="width:20px;height: 20px;"></a>
 </ion-header-bar>
 
@@ -9,16 +8,11 @@
 <ion-content>
     <div class="container">
         <div class="row margin_left_-5 margin-top10 margin-bottom10">
-            <span>{{videoName}}</span>
+            <span>{{videoResult.videoName}}</span>
         </div>
-        <div style="position: relative;">
-            <img src="img/play-icon.png" style="position:absolute;top:35%;left: 45%;width: 50px;height: 50px;z-index: 100;">
-            <video id="my-video" class="video-js" x-webkit-airplay="allow" webkit-playsinline controls poster="//nos.netease.com/vod163/poster.png" preload="auto" data-setup="{}" style="width: 100%;">
-                <!--<source src="{{videoResult.videoUrl}}" type="video/mp4" style="width: 100%;">
-                <source src="{{videoResult.videoUrl}}" type="video/x-flv" style="width: 100%;">
-                <source src="{{videoResult.videoUrl}}" type="rtmp/flv" style="width: 100%;">
-                <source src="{{videoResult.videoUrl}}" type="application/x-mpegURL" style="width: 100%;">-->
-            </video>
+        <div style="position: relative;" id="recordedDetailVideoWraper">
+            <!--<img src="img/play-icon.png" style="position:absolute;top:35%;left: 45%;width: 50px;height: 50px;z-index: 100;">-->
+            <!--<video id="my-video" class="video-js vjs-big-play-centered" x-webkit-airplay="allow" webkit-playsinline style="width: 100%;"></video>-->
         </div>
         <!--end-->
         <div class="row margin-top10 margin_left_-5">
@@ -36,8 +30,6 @@
                 <img src="img/share.png" style="width:25px;height: 25px;margin-left:33%">
                 <span style="vertical-align: 5px;">分享</span>
             </div>
-
-
         </div>
         <div class="margin-top10 progress_all_search_line" style="height: 3px;"></div>
 
@@ -120,6 +112,6 @@
     </div>
 </ion-content>
 
-<ion-footer-bar class="bar-assertive" ng-if="videoPayStatus == 0" ng-click="createVideoOrder()">
+<ion-footer-bar class="bar-assertive" ng-if="btnBuyStatus" ng-click="createVideoOrder()">
   <h1 class="title">立即购买</h1>
 </ion-footer-bar>

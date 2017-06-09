@@ -164,3 +164,6 @@ h4{color:#494949;}
 .swiper-container-progress{
     height: 140px;
 }
+#swiper-container-activity .swiper-pagination-activity{
+    bottom:60px;
+}

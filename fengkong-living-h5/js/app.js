@@ -65,7 +65,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
             //  首页
             .state('tabs.home', {
                 url: "/home",
-                cache: 'true',
+                cache: 'false',
                 views: {
                     'tab-home': {
                         templateUrl: "templates/home.html",
@@ -98,12 +98,10 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
                     }
                 }
             })
-
-
             // 活动
             .state('tabs.active', {
                 url: "/active",
-                cache: 'true',
+                cache: 'false',
                 views: {
                     'tab-active': {
                         templateUrl: "templates/active.html",
@@ -253,7 +251,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
             })
             //活动报名
             .state('active_apply',{
-                url:'/active_apply',
+                url:'/active_apply/{activityId}',
                 cache:'false',
                 templateUrl:'templates/active/active_apply.html',
                 controller:'ActiveApplyCtrl'
@@ -328,7 +326,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
                 templateUrl:'templates/active/change_coupon.html',
                 controller:'ChangeCouponCtrl'
             })
-            //直播详情
+            //正在直播详情
             .state('living_detail',{
                 url:'/living_detail/{livingId}',
                 cache:'false',
@@ -342,12 +340,19 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
                 templateUrl:'templates/progress/recorded_list.html',
                 controller:'RecordedListCtrl'
             })
-            //录播详情
+            //录播课程的课时详情
             .state('recorded_detail',{
                 url:'/recorded_detail/{courseId}/{videoId}',
-                cache:'false',
+                cache:false,
                 templateUrl:'templates/progress/recorded_detail.html',
                 controller:'RecordedDetailCtrl'
+            })
+            //不属于课程的视频详情
+            .state('recordedVideo_detail',{
+                url:'/recordedVideo_detail/{videoId}',
+                cache:false,
+                templateUrl:'templates/progress/recordedVideo_detail.html',
+                controller:'RecordedVideoDetailCtrl'
             })
             //直播已结束详情
             .state('livingEnded_detail',{

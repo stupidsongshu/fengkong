@@ -58,9 +58,9 @@ angular.module('starter.services', [])
                 $ionicLoading.hide()
             },1000)
         },
-        showError:function(){
+        showError:function(text){
             $ionicLoading.show({
-                template:'系统繁忙，请稍候再试'
+                template:text
             });
             $timeout(function(){
                 $ionicLoading.hide()

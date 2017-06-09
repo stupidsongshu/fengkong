@@ -13,8 +13,10 @@
     <div class="home_banner">
         <div class="swiper-container">
             <div class="swiper-wrapper">
-                <div class="swiper-slide" ng-repeat="gil in bannerList">
-                    <img ng-src="{{gil.imageUrl}}">
+                <div class="swiper-slide" ng-repeat="banner in bannerList">
+                    <a href="{{banner.jumpUrl}}">
+                        <img ng-src="{{banner.imageUrl}}">
+                    </a>
                 </div>
             </div>
             <!-- Add Pagination -->

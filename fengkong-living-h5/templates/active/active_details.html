@@ -1,176 +1,115 @@
 
-<ion-header-bar align-title="center" class='home_head themebgcolor'>
-    <a ng-click="goActive()" class="margin-top10 margin-left10"><img src="img/prepage.png"></a>
+<ion-header-bar align-title="center" class='themebgcolor'>
+    <a ng-click="goBack()" style="position:absolute;top:50%;left:10px;margin-top:-13px;"><img src="img/prepage.png"></a>
     <h3>风控在线</h3>
-    <a class="margin-top10"><img src="img/search.png"></a>
+    <!--<a class="margin-top10"><img src="img/search.png"></a>-->
 </ion-header-bar>
 
 
 <ion-content>
-    <div class="home_banner" style="margin-top: 6px;">
-        <img src="img/banner1.png">
-    </div>
-    <div class="row" style="margin-top:5px;margin-left:3px;" ng-if="!1">
-        <div class="col-60">
-            <span>活动活动互动</span><br>
+    <div style="position:relative;">
+        <img src="img/banner1.png" style="width:100%;">
+
+        <div ng-if="activityInfo.newActivityStatus == 1">
+            <div class="triangle-right triangle-left-top triangle-left-top1"></div>
+            <div class="triangle-right-left-font" style="transform-origin: 40px;transform: rotate(-45deg);">即将开始</div>
         </div>
-        <div class="col-40" style="text-align: right;padding-right: 10px;">
-         <span>123报名</span>
-            <div class="triangle-right  triangle-left-top"></div>
-            <div class="triangle-right-left-font">已结束</div>
+
+        <div ng-if="activityInfo.newActivityStatus == 2">
+            <div class="triangle-right triangle-left-top triangle-left-top2"></div>
+            <div class="triangle-right-left-font" style="transform-origin: 40px;transform: rotate(-45deg);">正在直播</div>
         </div>
-    </div>
-    <div class="row" style="margin-top:5px;margin-left:3px;" ng-if="!0">
-        <div class="col-60">
-            <span>活动活动互动</span>
-        </div>
-        <div class="col-40" style="text-align: right;padding-right: 10px;">
-            <span>123报名</span>
+
+        <div ng-if="activityInfo.newActivityStatus == 3">
+            <div class="triangle-right triangle-left-top triangle-left-top3"></div>
+            <div class="triangle-right-left-font" style="transform-origin: 40px;transform: rotate(-45deg);">已结束</div>
         </div>
     </div>
+
+    <div class="row" style="margin-top:5px;margin-left:3px;">
+        <div class="col-60">{{activityInfo.activityName}}</div>
+        <div class="col-40" style="text-align: right;">
+         <span>{{activityInfo.activityJoinNumber}}人报名</span>
+            
+        </div>
+    </div>
+
     <div class="row" style="margin-left: 0px;margin-top:5px;color:silver">
         <div class="col-60" >
-            <img src="img/address.png" width="15px" height="15px">
-            <span>上海市浦东新区</span>
+            <img src="img/address.png">
+            <span style="vertical-align: 2px;">{{activityInfo.activityAddress}}</span>
         </div>
         <div class="col-40" style="text-align: right;">
-            <span>2017-03-05</span>
+            <span>{{activityInfo.activityStartTime | date:'yyyy-MM-dd'}}</span>
         </div>
-
-
     </div>
+
     <div style="background-color: #fbf9f9;margin-top: 10px">
         &nbsp;
     </div>
+
     <div>
-        <ul class="nav nav-tabs" style="text-align: center;color:black">
-            <li class="tab_change_selected active1" >
-                <a href="#">详情</a>
-            </li>
-            <li class="tab_change_selected" >
-                <a href="#">讲师</a>
-            </li>
-            <!-- <li class="tab_change_selected active" >
-                <a href="#">回顾</a>
-            </li>
-            <li class="tab_change_selected" >
-                <a href="#">评论</a>
-            </li> -->
-            <li class="tab_change_selected" >
-                <a href="#">相关</a>
-            </li>
+        <ul class="nav nav-tabs clearfix" style="text-align: center;color:#000;margin-bottom: 2px;">
+            <li class="tab_change_selected active1">详情</li>
+            <li class="tab_change_selected" ng-click="getActivityTeacher()">讲师</li>
+            <li class="tab_change_selected">相关</li>
         </ul>
-        <div id="content" >
+        <div id="content">
             <!--详情start-->
-            <div id="detail" style="text-align: center;">
-                随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着
-                随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着
-                随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着
-                随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随
-                随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着
-                随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着
-                随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着
-                随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着
-                随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随
-                随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着
+            <div id="detail">
+               <img src="img/ceshi.jpg" style="width:100%;">
             </div>
-            <!--end-->
+
             <!--讲师start-->
             <div id="lector" class="container" style="display: none">
                 <div class="row">
                     <div class="col-33"  style="margin-top: 10px;margin-left: 10px;">
-                        <img src="img/1.png" width="90px" height="90px">
+                        <img src="{{activityTeacherInfo.teacherIcon}}" width="90px" height="90px">
                     </div>
                     <div class="col-66" style="margin-top: 10px;">
-                        <span style="margin-bottom: 33px;display: inline-block;">讲师姓名<b>测试</b></span><br>
-                        讲师简介:<span>讲师简介讲师简介讲师简介讲师简介讲师简介</span>
+                        <div style="margin-bottom: 33px;display: inline-block;">讲师姓名 : {{activityTeacherInfo.teacherName}}</div>
+                        <div>讲师简介 : {{activityTeacherInfo.teacherDescription}}</div>
                     </div>
                 </div>
-
             </div>
-            <!--end-->
-            <!--回顾start-->
-           <!--  <div id="review" style="text-align: center;">
-                随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着
-                随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着
-                随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着
-                随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随
-                随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着
-                随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着
-                随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着
-                随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着
-                随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随
-                随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着随着
-            </div> -->
-            <!--end-->
-            <!--评论start-->
-            <!-- <div id="comment" class="container" style="display: none">
-                <div class="row">
-                    <div class="col-33"  style="margin-top: 10px;margin-left: 10px;">
-                        <img src="img/1.png" width="90px" height="90px">
-                    </div>
-                    <div class="col-66" style="margin-top: 10px;">
-                        <span style="margin-bottom: 33px;display: inline-block;">讲师姓名<b>测试</b></span><br>
-                        讲师简介:<span>讲师简介讲师简介讲师简介讲师简介讲师简介</span>
-                    </div>
-                </div>
 
-            </div> -->
-            <!--end-->
             <!--相关start-->
-            <div id="related" class="container">
-                <div class="row" style="border-bottom: 1px solid silver;width: 110%;padding-bottom: 15px;">
-                    <div class="col-33"  style="margin-top: 10px;margin-left: 10px;">
-                        <img src="img/1.png" width="90px" height="90px">
+            <div id="related" class="container" style="display: none">
+                <div ng-if="activityRelatedList.length == 0">暂无相关活动</div>
+
+                <div class="row" style="border-bottom: 1px solid silver;padding-bottom: 15px;" ng-if="activityRelatedList.length > 0" ng-repeat="activityRelatedItem in activityRelatedList">
+                    <div class="col-33" style="margin-top: 10px;margin-left: 10px;">
+                        <img src="{{activityRelatedItem.activityIcon}}" width="90px" height="90px">
                     </div>
                     <div class="col-66" style="margin-top: 10px;">
-                        <span style="margin-bottom: 33px;display: inline-block;font-size: 16px;">讲师姓名:<b>测试</b></span><br>
-                        讲师简介:<span>讲师简介讲师简介讲师简介讲师简介讲师简介</span>
-                    </div>
-                </div>
-                <div class="row" style="border-bottom: 1px solid silver;width: 110%;padding-bottom: 15px;">
-                    <div class="col-33"  style="margin-top: 10px;margin-left: 10px;">
-                        <img src="img/1.png" width="90px" height="90px">
-                    </div>
-                    <div class="col-66" style="margin-top: 10px;">
-                        <span style="margin-bottom: 33px;display: inline-block;font-size: 16px;">讲师姓名:<b>测试</b></span><br>
-                        讲师简介:<span>讲师简介讲师简介讲师简介讲师简介讲师简介</span>
+                        <div style="margin-bottom: 20px;display: inline-block;font-size: 16px;">活动名称 ：{{activityRelatedItem.activityName}}</div>
+                        <div>
+                            活动简介:<span>{{activityRelatedItem.activityDescription}}</span>
+                        </div>
                     </div>
                 </div>
             </div>
-            <!--end-->
-
         </div>
-
     </div>
-
-
-
-
 
 
 </ion-content>
 <!--报名 -->
-<a href="#/active_apply"  ng-if="!0">
-    <ion-footer-bar class='home_head themebgcolor' style="color:#fff;text-align: center">
-
-        <div class="col-50" style="border-right: 2px solid #fbf9f9;margin-top: 9px;">
-            <img src="img/price.png" style="width:20px;">
-            <span style="font-size:16px;vertical-align: middle;">12.00</span>
+<a href="#/active_apply/{{activityId}}" ng-if="btnBuyStatus">
+    <ion-footer-bar class='themebgcolor' style="color:#fff;text-align: center;line-height:34px;font-size:16px;">
+        <div class="col-50" style="border-right: 1px solid #fff;">
+            <img src="img/price.png" style="width:20px;vertical-align: -3px;">
+            <span>{{activityInfo.activityPrice/100}}</span>
         </div>
-        <div class="col-50" style="margin-top: 9px;">
-            <span style="font-size:16px;vertical-align: middle;">我要报名</span>
-
-        </div>
+        <div class="col-50">我要报名</div>
     </ion-footer-bar>
 </a>
-<!--已结束 -->
-<a href="#"  ng-if="!1">
-    <ion-footer-bar class='home_head themebgcolor' style="color:#fff;text-align: center">
 
+<!--已结束 -->
+<a href="#" ng-if="!1">
+    <ion-footer-bar class='themebgcolor' style="color:#fff;text-align: center">
         <div style="margin-top: 5px;text-align: center;width: 100%;font-size: 2rem">
             回看内容
-
         </div>
     </ion-footer-bar>
 </a>

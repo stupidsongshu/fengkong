@@ -1,380 +1,314 @@
-
-<ion-header-bar align-title="center" class='home_head themebgcolor' >
+<ion-header-bar align-title="center" class='home_head themebgcolor'>
    
     <h3 style="display: inline-block;padding-left: 35px;">风控在线</h3>
-    <a class="margin-top10"><img src="img/search.png" alt="" ></a>
+    <a class="margin-top10"><img src="img/search.png"></a>
 </ion-header-bar>
 
 
-
-
-
 <ion-content class="has-tabs">
-    <div class="tabs-striped tabs-top tabs-color-default " style="margin-top: -44px">
+    <div class="tabs-striped tabs-top tabs-color-default" style="margin-top: -44px">
         <div class="tabs" style="text-align: center">
-            <a class="tab-change tab-item active1" href="" >
-                全部
-            </a>
-            <a class="tab-change tab-item" href="" >
-                特训营
-            </a>
-            <a class="tab-change tab-item" href="" >
-                公开课
-            </a>
-            <a class="tab-change tab-item" href="" >
-                线上沙龙
-            </a>
+            <span class="tab-change tab-item" ng-click="setActivityWay(0)" ng-class="{active1:activityWay == 0}">全部</span>
+            <span class="tab-change tab-item" ng-click="setActivityWay(1)" ng-class="{active1:activityWay == 1}">特训营</span>
+            <span class="tab-change tab-item" ng-click="setActivityWay(2)" ng-class="{active1:activityWay == 2}">公开课</span>
+            <span class="tab-change tab-item" ng-click="setActivityWay(3)" ng-class="{active1:activityWay == 3}">线上沙龙</span>
         </div>
     </div>
 
-    <div id="active_content" style="position: absolute;top:100px;">
-        <!--全部start-->
-        <div id="all" class="container">
+    <div id="active_content" style="position: absolute;top:100px;width:100%;">
+        <!--全部-->
+        <div id="all" class="container" ng-if="activityWay == 0">
+            <!--<span ng-if="activityList.length == 0">暂无活动</span>-->
+
             <!--推荐活动-->
-            <div class="row" style="margin-left: 0px;font-size: 18px;">
-                推荐活动
+            <div class="row" style="font-size: 18px;">推荐活动</div>
+
+            <div class="row" ng-if="recommendedActivityList.length == 0">暂无推荐活动</div>
+
+            <div class="swiper-container" id="swiper-container-activity" style="height:200px;" ng-if="recommendedActivityList.length > 0">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide" style="padding:0 5px;" ng-repeat="recommendedActivityItem in recommendedActivityList">
+                        
+                        
+                        <div style="position: relative;">
+                            <div ng-click="toActivityDetail(recommendedActivityItem.activityId,recommendedActivityItem.activityPrice)">
+                                 <a href="#/active_details/{{recommendedActivityItem.activityId}}">
+                                    <!--<img src="img/1.png" style="display:block;width:100%;height:12rem;">-->
+                                    <img src="{{recommendedActivityItem.activityIcon}}" style="display:block;width:100%;height:12rem;">
+                                </a>
+                            </div>
+                            <div style="margin-top:2px;" class="row">
+                                <div class="col-60">
+                                    <span>{{recommendedActivityItem.activityName}}</span>
+                                </div>
+                                <div class="col-40" style="text-align: right;">
+                                    <span>{{recommendedActivityItem.activityJoinNumber}}人报名</span>
+                                </div>
+                            </div>
+                            <div style="margin-top:2px;" class="row" style="color:#8f8f8f;">
+                                <div class="col-60" >
+                                    <img src="img/address.png">
+                                    <span style="vertical-align: 2px;">{{recommendedActivityItem.activityAddress}}</span>
+                                </div>
+                                <div class="col-40" style="text-align: right;">
+                                    <span>{{recommendedActivityItem.activityStartTime | date:'yyyy-MM-dd'}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="swiper-pagination swiper-pagination-activity"></div>
             </div>
-            <div>
-                <div  style="margin-left: -1%;">
-                    <a href="#/active_details">
-                        <img src="img/1.png" width="100%" style="display:block;" height="27%">
-                    </a>
-                </div>
-                <div class="row" style="margin-left: -1%;">
-                    <div class="col-60">
-                        <span>活动活动互动</span>
-                    </div>
-                    <div class="col-40" style="text-align: right;">
-                        <span><b>123456</b>报名</span>
-                    </div>
-                </div>
-                <div class="row" style="margin-left: 0px;color:silver">
-                    <div class="col-60" >
-                        <img src="img/address.png" width="15px" height="15px">
-                        <span>上海市浦东新区</span>
-                    </div>
-                    <div class="col-40" style="text-align: right;">
-                        <span>2017-03-05</span>
-                    </div>
 
 
-                </div>
-            </div>
-            <!--end-->
             <!--近期活动-->
-            <div class="row" style="margin-left: 0px;font-size: 18px;">
-                近期活动
-            </div>
-            <div class="row" style="margin-left: 0px;">
-                <div class="col-50">
-                    <div style="position: relative;margin-left: 0px">
-                        <a href="#/active_details">
-                            <img src="img/1.png" style="width:90%;height: 15%;">
-                        </a>
-                        <span style="background-color: #c8705b;position: absolute;top:-1px;left: 1px;width: 50%;text-align: center;">即将开始</span>
+            <div class="row" style="margin-top: 10px;font-size: 18px;">近期活动</div>
+            <div>
+                <span ng-if="notRecommendedActivityList.length == 0">暂无近期活动</span>
 
-                    </div>
-                    <div >
-                        <span style="font-size: 16px;">名称名称名称名称名称名称</span><br>
-                        <span style="font-size: 11px;">地点:上海市浦东新浦东新区</span><br>
-                        <span style="font-size: 11px;">价格：<span style="color:red;">12元</span></span><br>
-                        <div style="display:inline-block;font-size: 12px;color:silver">
-                            <span>
-                                120人报名
-                            </span>
-                            <span style="margin-left: 10px">
-                                2017-12-12
-                            </span>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col-50" style="float: right;">
+                <div class="col-50" style="padding:5px;float:left;" ng-repeat="notRecommendedActivityItem in notRecommendedActivityList" ng-if="notRecommendedActivityList.length > 0">
                     <div style="position: relative;">
-                        <a href="#/active_details">
-                            <img src="img/1.png" style="width:90%;height: 15%;">
+                        <a href="#/active_details/{{notRecommendedActivityItem.activityId}}">
+                            <!--<img src="img/1.png" style="width:100%;height: 15%;">-->
+                            <img src="img/1.png" style="width:100%;height: 10rem;">
+                            <!--<img src="{{notRecommendedActivityItem.activityIcon}}" style="display:block;width:100%;height: 10rem;">-->
                         </a>
-                        <span style="background-color: #2f2f2f;position: absolute;color:white;top:-1px;left: 1px;width: 50%;text-align: center;">已结束</span>
+                        <span style="position: absolute;top:0;left:0;width: 50%;text-align: center;background-color: #c8705b;color:#fff;font-size:12px;" ng-if="notRecommendedActivityItem.newActivityStatus == 1">即将开始</span>
+                        <span style="position: absolute;top:0;left:0;width: 50%;text-align: center;background-color: #c8705b;color:#fff;font-size:12px;" ng-if="notRecommendedActivityItem.newActivityStatus == 2">正在直播</span>
+                        <span style="position: absolute;top:0;left:0;width: 50%;text-align: center;background-color: #000;color:#fff;font-size:12px;" ng-if="notRecommendedActivityItem.newActivityStatus == 3">已结束</span>
                     </div>
-                    <div >
-                        <span style="font-size: 16px;">名称名称名称名称名称名称</span><br>
-                        <span style="font-size: 11px;">地点:上海市浦东新浦东新区</span><br>
-                        <span style="font-size: 11px;">价格：<span style="color:red;">12元</span></span><br>
-                        <div style="display:inline-block;font-size: 12px;color:silver">
-                        <span>
-                            120人报名
-                        </span>
-                            <span style="margin-left: 10px">
-                            2017-12-12
-                        </span>
-                        </div>
+                    <div style="margin-top:2px;">{{notRecommendedActivityItem.activityName}}</div>
+                    <div style="margin-top:2px;">地点 : {{notRecommendedActivityItem.activityAddress}}</div>
+                    <div style="margin-top:2px;">价格 : <span style="color:red;">{{notRecommendedActivityItem.activityPrice}}元</span></div>
+                    <div class="clearfix" style="margin-top:2px;;font-size: 12px;color:#8f8f8f;">
+                        <span style="float:left;">{{notRecommendedActivityItem.activityJoinNumber}}人报名</span>
+                        <span style="float:right;">{{notRecommendedActivityItem.activityStartTime | date:'yyyy-MM-dd'}}</span>
                     </div>
                 </div>
             </div>
-            <!--end-->
         </div>
-        <!--end-->
+
+
         <!--特训营start-->
-        <div id="camp" class="container" style="display: none">
+        <div id="camp" class="container" ng-if="activityWay == 1">
+            <!--<span ng-if="activityList.length == 0">暂无活动</span>-->
+
             <!--推荐活动-->
-            <div class="row" style="margin-left: 0px;font-size: 18px;">
-                推荐活动2
+            <div class="row" style="font-size: 18px;">推荐活动</div>
+
+            <div class="row" ng-if="recommendedActivityList.length == 0">暂无推荐活动</div>
+
+            <div class="swiper-container" id="swiper-container-activity" style="height:200px;" ng-if="recommendedActivityList.length > 0">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide" style="padding:0 5px;" ng-repeat="recommendedActivityItem in recommendedActivityList">
+                        
+                        
+                        <div style="position: relative;">
+                            <div ng-click="toActivityDetail(recommendedActivityItem.activityId,recommendedActivityItem.activityPrice)">
+                                 <a href="#/active_details/{{recommendedActivityItem.activityId}}">
+                                    <!--<img src="img/1.png" style="display:block;width:100%;height:12rem;">-->
+                                    <img src="{{recommendedActivityItem.activityIcon}}" style="display:block;width:100%;height:12rem;">
+                                </a>
+                            </div>
+                            <div style="margin-top:2px;" class="row">
+                                <div class="col-60">
+                                    <span>{{recommendedActivityItem.activityName}}</span>
+                                </div>
+                                <div class="col-40" style="text-align: right;">
+                                    <span>{{recommendedActivityItem.activityJoinNumber}}人报名</span>
+                                </div>
+                            </div>
+                            <div style="margin-top:2px;" class="row" style="color:#8f8f8f;">
+                                <div class="col-60" >
+                                    <img src="img/address.png">
+                                    <span style="vertical-align: 2px;">{{recommendedActivityItem.activityAddress}}</span>
+                                </div>
+                                <div class="col-40" style="text-align: right;">
+                                    <span>{{recommendedActivityItem.activityStartTime | date:'yyyy-MM-dd'}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="swiper-pagination swiper-pagination-activity"></div>
             </div>
-            <div>
-                <div style="margin-left: -1%;">
-                    <a href="#/active_details">
-                        <img src="img/1.png" width="98%" height="27%">
-                    </a>
-                </div>
-                <div class="row" style="margin-left: -1%;">
-                    <div class="col-60">
-                        <span>活动活动互动</span>
-                    </div>
-                    <div class="col-40" style="text-align: right;">
-                        <span><b>123</b>报名</span>
-                    </div>
-                </div>
-                <div class="row" style="margin-left: 0px;color:silver">
-                    <div class="col-60" >
-                        <img src="img/address.png" width="15px" height="15px">
-                        <span>上海市浦东新区</span>
-                    </div>
-                    <div class="col-40" style="text-align: right;">
-                        <span>2017-03-05</span>
-                    </div>
 
 
-                </div>
-            </div>
-            <!--end-->
             <!--近期活动-->
-            <div class="row" style="margin-left: 0px;font-size: 18px;">
-                近期活动
-            </div>
-            <div class="row" style="margin-left: 0px;">
-                <div class="col-50">
-                    <div style="position: relative;margin-left: 0px">
-                        <a href="#/active_details">
-                            <img src="img/1.png" style="width:90%;height: 15%;">
-                        </a>
-                        <span style="background-color: #c8705b;position: absolute;top:-1px;left: 1px;width: 50%;text-align: center;">即将开始</span>
+            <div class="row" style="margin-top: 10px;font-size: 18px;">近期活动</div>
+            <div>
+                <span ng-if="notRecommendedActivityList.length == 0">暂无近期活动</span>
 
-                    </div>
-                    <div >
-                        <span style="font-size: 16px;">名称名称名称名称名称名称</span><br>
-                        <span style="font-size: 11px;">地点:上海市浦东新浦东新区</span><br>
-                        <span style="font-size: 11px;">价格：<span style="color:red;">12元</span></span><br>
-                        <div style="display:inline-block;font-size: 12px;color:silver">
-                            <span>
-                                120人报名
-                            </span>
-                            <span style="margin-left: 10px">
-                                2017-12-12
-                            </span>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col-50" style="float: right;">
+                <div class="col-50" style="padding:5px;float:left;" ng-repeat="notRecommendedActivityItem in notRecommendedActivityList" ng-if="notRecommendedActivityList.length > 0">
                     <div style="position: relative;">
-                        <a href="#/active_details">
-                            <img src="img/1.png" style="width:90%;height: 15%;">
+                        <a href="#/active_details/{{notRecommendedActivityItem.activityId}}">
+                            <!--<img src="img/1.png" style="width:100%;height: 15%;">-->
+                            <img src="img/1.png" style="width:100%;height: 10rem;">
+                            <!--<img src="{{notRecommendedActivityItem.activityIcon}}" style="display:block;width:100%;height: 10rem;">-->
                         </a>
-                        <span style="background-color: #2f2f2f;position: absolute;color:white;top:-1px;left: 1px;width: 50%;text-align: center;">已结束</span>
+                        <span style="position: absolute;top:0;left:0;width: 50%;text-align: center;background-color: #c8705b;color:#fff;font-size:12px;" ng-if="notRecommendedActivityItem.newActivityStatus == 1">即将开始</span>
+                        <span style="position: absolute;top:0;left:0;width: 50%;text-align: center;background-color: #c8705b;color:#fff;font-size:12px;" ng-if="notRecommendedActivityItem.newActivityStatus == 2">正在直播</span>
+                        <span style="position: absolute;top:0;left:0;width: 50%;text-align: center;background-color: #000;color:#fff;font-size:12px;" ng-if="notRecommendedActivityItem.newActivityStatus == 3">已结束</span>
                     </div>
-                    <div >
-                        <span style="font-size: 16px;">名称名称名称名称名称名称</span><br>
-                        <span style="font-size: 11px;">地点:上海市浦东新浦东新区</span><br>
-                        <span style="font-size: 11px;">价格：<span style="color:red;">12元</span></span><br>
-                        <div style="display:inline-block;font-size: 12px;color:silver">
-                        <span>
-                            120人报名
-                        </span>
-                            <span style="margin-left: 10px">
-                            2017-12-12
-                        </span>
-                        </div>
+                    <div style="margin-top:2px;">{{notRecommendedActivityItem.activityName}}</div>
+                    <div style="margin-top:2px;">地点 : {{notRecommendedActivityItem.activityAddress}}</div>
+                    <div style="margin-top:2px;">价格 : <span style="color:red;">{{notRecommendedActivityItem.activityPrice}}元</span></div>
+                    <div class="clearfix" style="margin-top:2px;;font-size: 12px;color:#8f8f8f;">
+                        <span style="float:left;">{{notRecommendedActivityItem.activityJoinNumber}}人报名</span>
+                        <span style="float:right;">{{notRecommendedActivityItem.activityStartTime | date:'yyyy-MM-dd'}}</span>
                     </div>
                 </div>
             </div>
-            <!--end-->
         </div>
-        <!--end-->
+
+
         <!--公开课start-->
-        <div id="public" class="container" style="display: none">
+        <div id="public" class="container" ng-if="activityWay == 2">
+            <!--<span ng-if="activityList.length == 0">暂无活动</span>-->
+
             <!--推荐活动-->
-            <div class="row" style="margin-left: 0px;font-size: 18px;">
-                推荐活动
+            <div class="row" style="font-size: 18px;">推荐活动</div>
+
+            <div class="row" ng-if="recommendedActivityList.length == 0">暂无推荐活动</div>
+
+            <div class="swiper-container" id="swiper-container-activity" style="height:200px;" ng-if="recommendedActivityList.length > 0">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide" style="padding:0 5px;" ng-repeat="recommendedActivityItem in recommendedActivityList">
+                        
+                        
+                        <div style="position: relative;">
+                            <div ng-click="toActivityDetail(recommendedActivityItem.activityId,recommendedActivityItem.activityPrice)">
+                                 <a href="#/active_details/{{recommendedActivityItem.activityId}}">
+                                    <!--<img src="img/1.png" style="display:block;width:100%;height:12rem;">-->
+                                    <img src="{{recommendedActivityItem.activityIcon}}" style="display:block;width:100%;height:12rem;">
+                                </a>
+                            </div>
+                            <div style="margin-top:2px;" class="row">
+                                <div class="col-60">
+                                    <span>{{recommendedActivityItem.activityName}}</span>
+                                </div>
+                                <div class="col-40" style="text-align: right;">
+                                    <span>{{recommendedActivityItem.activityJoinNumber}}人报名</span>
+                                </div>
+                            </div>
+                            <div style="margin-top:2px;" class="row" style="color:#8f8f8f;">
+                                <div class="col-60" >
+                                    <img src="img/address.png">
+                                    <span style="vertical-align: 2px;">{{recommendedActivityItem.activityAddress}}</span>
+                                </div>
+                                <div class="col-40" style="text-align: right;">
+                                    <span>{{recommendedActivityItem.activityStartTime | date:'yyyy-MM-dd'}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="swiper-pagination swiper-pagination-activity"></div>
             </div>
-            <div>
-                <div style="margin-left: -1%;">
-                    <a href="#/active_details">
-                        <img src="img/1.png" width="98%" height="27%">
-                    </a>
-                </div>
-                <div class="row" style="margin-left: -1%;">
-                    <div class="col-60">
-                        <span>活动活动互动</span>
-                    </div>
-                    <div class="col-40" style="text-align: right;">
-                        <span><b>123</b>报名</span>
-                    </div>
-                </div>
-                <div class="row" style="margin-left: 0px;color:silver">
-                    <div class="col-60" >
-                        <img src="img/address.png" width="15px" height="15px">
-                        <span>上海市浦东新区</span>
-                    </div>
-                    <div class="col-40" style="text-align: right;">
-                        <span>2017-03-05</span>
-                    </div>
 
 
-                </div>
-            </div>
-            <!--end-->
             <!--近期活动-->
-            <div class="row" style="margin-left: 0px;font-size: 18px;">
-                近期活动
-            </div>
-            <div class="row" style="margin-left: 0px;">
-                <div class="col-50">
-                    <div style="position: relative;margin-left: 0px">
-                        <a href="#/active_details">
-                            <img src="img/1.png" style="width:90%;height: 15%;">
-                        </a>
-                        <span style="background-color: #c8705b;position: absolute;top:-1px;left: 1px;width: 50%;text-align: center;">即将开始</span>
+            <div class="row" style="margin-top: 10px;font-size: 18px;">近期活动</div>
+            <div>
+                <span ng-if="notRecommendedActivityList.length == 0">暂无近期活动</span>
 
-                    </div>
-                    <div >
-                        <span style="font-size: 16px;">名称名称名称名称名称名称</span><br>
-                        <span style="font-size: 11px;">地点:上海市浦东新浦东新区</span><br>
-                        <span style="font-size: 11px;">价格：<span style="color:red;">12元</span></span><br>
-                        <div style="display:inline-block;font-size: 12px;color:silver">
-                            <span>
-                                120人报名
-                            </span>
-                            <span style="margin-left: 10px">
-                                2017-12-12
-                            </span>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col-50" style="float: right;">
+                <div class="col-50" style="padding:5px;float:left;" ng-repeat="notRecommendedActivityItem in notRecommendedActivityList" ng-if="notRecommendedActivityList.length > 0">
                     <div style="position: relative;">
-                        <a href="#/active_details">
-                            <img src="img/1.png" style="width:90%;height: 15%;">
+                        <a href="#/active_details/{{notRecommendedActivityItem.activityId}}">
+                            <!--<img src="img/1.png" style="width:100%;height: 15%;">-->
+                            <img src="img/1.png" style="width:100%;height: 10rem;">
+                            <!--<img src="{{notRecommendedActivityItem.activityIcon}}" style="display:block;width:100%;height: 10rem;">-->
                         </a>
-                        <span style="background-color: #2f2f2f;position: absolute;color:white;top:-1px;left: 1px;width: 50%;text-align: center;">已结束</span>
+                        <span style="position: absolute;top:0;left:0;width: 50%;text-align: center;background-color: #c8705b;color:#fff;font-size:12px;" ng-if="notRecommendedActivityItem.newActivityStatus == 1">即将开始</span>
+                        <span style="position: absolute;top:0;left:0;width: 50%;text-align: center;background-color: #c8705b;color:#fff;font-size:12px;" ng-if="notRecommendedActivityItem.newActivityStatus == 2">正在直播</span>
+                        <span style="position: absolute;top:0;left:0;width: 50%;text-align: center;background-color: #000;color:#fff;font-size:12px;" ng-if="notRecommendedActivityItem.newActivityStatus == 3">已结束</span>
                     </div>
-                    <div >
-                        <span style="font-size: 16px;">名称名称名称名称名称名称</span><br>
-                        <span style="font-size: 11px;">地点:上海市浦东新浦东新区</span><br>
-                        <span style="font-size: 11px;">价格：<span style="color:red;">12元</span></span><br>
-                        <div style="display:inline-block;font-size: 12px;color:silver">
-                        <span>
-                            120人报名
-                        </span>
-                            <span style="margin-left: 10px">
-                            2017-12-12
-                        </span>
-                        </div>
+                    <div style="margin-top:2px;">{{notRecommendedActivityItem.activityName}}</div>
+                    <div style="margin-top:2px;">地点 : {{notRecommendedActivityItem.activityAddress}}</div>
+                    <div style="margin-top:2px;">价格 : <span style="color:red;">{{notRecommendedActivityItem.activityPrice}}元</span></div>
+                    <div class="clearfix" style="margin-top:2px;;font-size: 12px;color:#8f8f8f;">
+                        <span style="float:left;">{{notRecommendedActivityItem.activityJoinNumber}}人报名</span>
+                        <span style="float:right;">{{notRecommendedActivityItem.activityStartTime | date:'yyyy-MM-dd'}}</span>
                     </div>
                 </div>
             </div>
-            <!--end-->
         </div>
-        <!--end-->
+
+
         <!--线上沙龙start-->
-        <div id="salon" class="container" style="display: none">
+        <div id="salon" class="container" ng-if="activityWay == 3">
+            <!--<span ng-if="activityList.length == 0">暂无活动</span>-->
+
             <!--推荐活动-->
-            <div class="row" style="margin-left: 0px;font-size: 18px;">
-                推荐活动
+            <div class="row" style="font-size: 18px;">推荐活动</div>
+
+            <div class="row" ng-if="recommendedActivityList.length == 0">暂无推荐活动</div>
+
+            <div class="swiper-container" id="swiper-container-activity" style="height:200px;" ng-if="recommendedActivityList.length > 0">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide" style="padding:0 5px;" ng-repeat="recommendedActivityItem in recommendedActivityList">
+                        
+                        
+                        <div style="position: relative;">
+                            <div ng-click="toActivityDetail(recommendedActivityItem.activityId,recommendedActivityItem.activityPrice)">
+                                 <a href="#/active_details/{{recommendedActivityItem.activityId}}">
+                                    <!--<img src="img/1.png" style="display:block;width:100%;height:12rem;">-->
+                                    <img src="{{recommendedActivityItem.activityIcon}}" style="display:block;width:100%;height:12rem;">
+                                </a>
+                            </div>
+                            <div style="margin-top:2px;" class="row">
+                                <div class="col-60">
+                                    <span>{{recommendedActivityItem.activityName}}</span>
+                                </div>
+                                <div class="col-40" style="text-align: right;">
+                                    <span>{{recommendedActivityItem.activityJoinNumber}}人报名</span>
+                                </div>
+                            </div>
+                            <div style="margin-top:2px;" class="row" style="color:#8f8f8f;">
+                                <div class="col-60" >
+                                    <img src="img/address.png">
+                                    <span style="vertical-align: 2px;">{{recommendedActivityItem.activityAddress}}</span>
+                                </div>
+                                <div class="col-40" style="text-align: right;">
+                                    <span>{{recommendedActivityItem.activityStartTime | date:'yyyy-MM-dd'}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="swiper-pagination swiper-pagination-activity"></div>
             </div>
-            <div>
-                <div  style="margin-left: -1%;">
-                    <a href="#/active_details">
-                        <img src="img/1.png" width="98%" height="27%">
-                    </a>
-                </div>
-                <div class="row" style="margin-left: -1%;">
-                    <div class="col-60">
-                        <span>活动活动互动</span>
-                    </div>
-                    <div class="col-40" style="text-align: right;">
-                        <span><b>123</b>报名</span>
-                    </div>
-                </div>
-                <div class="row" style="margin-left: 0px;color:silver">
-                    <div class="col-60" >
-                        <img src="img/address.png" width="15px" height="15px">
-                        <span>上海市浦东新区</span>
-                    </div>
-                    <div class="col-40" style="text-align: right;">
-                        <span>2017-03-05</span>
-                    </div>
 
 
-                </div>
-            </div>
-            <!--end-->
             <!--近期活动-->
-            <div class="row" style="margin-left: 0px;font-size: 18px;">
-                近期活动
-            </div>
-            <div class="row" style="margin-left: 0px;">
-                <div class="col-50">
-                    <div style="position: relative;margin-left: 0px">
-                        <a href="#/active_details">
-                            <img src="img/1.png" style="width:90%;height: 15%;">
-                        </a>
-                        <span style="background-color: #c8705b;position: absolute;top:-1px;left: 1px;width: 50%;text-align: center;">即将开始</span>
+            <div class="row" style="margin-top: 10px;font-size: 18px;">近期活动</div>
+            <div>
+                <span ng-if="notRecommendedActivityList.length == 0">暂无近期活动</span>
 
-                    </div>
-                    <div >
-                        <span style="font-size: 16px;">名称名称名称名称名称名称</span><br>
-                        <span style="font-size: 11px;">地点:上海市浦东新浦东新区</span><br>
-                        <span style="font-size: 11px;">价格：<span style="color:red;">12元</span></span><br>
-                        <div style="display:inline-block;font-size: 12px;color:silver">
-                            <span>
-                                120人报名
-                            </span>
-                            <span style="margin-left: 10px">
-                                2017-12-12
-                            </span>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col-50" style="float: right;">
+                <div class="col-50" style="padding:5px;float:left;" ng-repeat="notRecommendedActivityItem in notRecommendedActivityList" ng-if="notRecommendedActivityList.length > 0">
                     <div style="position: relative;">
-                        <a href="#/active_details">
-                            <img src="img/1.png" style="width:90%;height: 15%;">
+                        <a href="#/active_details/{{notRecommendedActivityItem.activityId}}">
+                            <!--<img src="img/1.png" style="width:100%;height: 15%;">-->
+                            <img src="img/1.png" style="width:100%;height: 10rem;">
+                            <!--<img src="{{notRecommendedActivityItem.activityIcon}}" style="display:block;width:100%;height: 10rem;">-->
                         </a>
-                        <span style="background-color: #2f2f2f;position: absolute;color:white;top:-1px;left: 1px;width: 50%;text-align: center;">已结束</span>
+                        <span style="position: absolute;top:0;left:0;width: 50%;text-align: center;background-color: #c8705b;color:#fff;font-size:12px;" ng-if="notRecommendedActivityItem.newActivityStatus == 1">即将开始</span>
+                        <span style="position: absolute;top:0;left:0;width: 50%;text-align: center;background-color: #c8705b;color:#fff;font-size:12px;" ng-if="notRecommendedActivityItem.newActivityStatus == 2">正在直播</span>
+                        <span style="position: absolute;top:0;left:0;width: 50%;text-align: center;background-color: #000;color:#fff;font-size:12px;" ng-if="notRecommendedActivityItem.newActivityStatus == 3">已结束</span>
                     </div>
-                    <div >
-                        <span style="font-size: 16px;">名称名称名称名称名称名称</span><br>
-                        <span style="font-size: 11px;">地点:上海市浦东新浦东新区</span><br>
-                        <span style="font-size: 11px;">价格：<span style="color:red;">12元</span></span><br>
-                        <div style="display:inline-block;font-size: 12px;color:silver">
-                        <span>
-                            120人报名
-                        </span>
-                            <span style="margin-left: 10px">
-                            2017-12-12
-                        </span>
-                        </div>
+                    <div style="margin-top:2px;">{{notRecommendedActivityItem.activityName}}</div>
+                    <div style="margin-top:2px;">地点 : {{notRecommendedActivityItem.activityAddress}}</div>
+                    <div style="margin-top:2px;">价格 : <span style="color:red;">{{notRecommendedActivityItem.activityPrice}}元</span></div>
+                    <div class="clearfix" style="margin-top:2px;;font-size: 12px;color:#8f8f8f;">
+                        <span style="float:left;">{{notRecommendedActivityItem.activityJoinNumber}}人报名</span>
+                        <span style="float:right;">{{notRecommendedActivityItem.activityStartTime | date:'yyyy-MM-dd'}}</span>
                     </div>
                 </div>
             </div>
-            <!--end-->
         </div>
-        <!--end-->
     </div>
-
-
-
-
 </ion-content>
