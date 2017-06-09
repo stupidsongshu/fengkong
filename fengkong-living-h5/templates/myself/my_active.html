@@ -6,8 +6,8 @@
 
 <ion-content>
     <div class="row">
-        <div class="col-33 myself_active_navigation_all progress_select" ng-click = "allPrice()">
-            <div style="text-align:center;padding-top:2%;">全部</div>
+        <div class="col-33 myself_active_navigation_all progress_select">
+            <div style="text-align:center;padding-top:2%;" ng-click = "all()">全部</div>
         </div>
 
 
@@ -53,14 +53,14 @@
             <ul class="down-list hide" style="background-color:#ccc;">
                 <li class="down-item">
                     <a ng-click="progressPrice(1)" class="clearfix">
-                        <span ng-class="{actived_font_color:type_id == 1}" style="float:left;">已支付</span>
-                        <label ng-if="type_id == 1" style="float:right;" class="actived_font_color">&#10003</label>
+                        <span ng-class="{actived_font_color:price_id == 1}" style="float:left;">已支付</span>
+                        <label ng-if="price_id == 1" style="float:right;" class="actived_font_color">&#10003</label>
                     </a>
                 </li>
                 <li class="down-item">
                     <a ng-click="progressPrice(2)" class="clearfix">
-                        <span ng-class="{actived_font_color:type_id == 2}" style="float:left;">未支付</span>
-                        <label ng-if="type_id == 2" style="float:right;" class="actived_font_color">&#10003</label>
+                        <span ng-class="{actived_font_color:price_id == 2}" style="float:left;">未支付</span>
+                        <label ng-if="price_id == 2" style="float:right;" class="actived_font_color">&#10003</label>
                     </a>
                 </li>
             </ul>
@@ -74,7 +74,7 @@
         <div id="my_active_content">
             <div class="progress_background_color"></div>
 
-            <div id="my_active_all" ng-if="">
+            <div id="my_active_all" ng-if="navIndex == 1">
                 <div class="row" style="margin-left: 0px;margin-top: 5px;" ng-repeat="myActiveList in activeList">
                     <div class="col-50" style="position: relative">
                         <img src="img/1.png" style="width: 100%;height: 22%;">
@@ -108,7 +108,7 @@
                 </div>
             </div>
 
-            <div id="my_active_type">
+            <div id="my_active_type" ng-if="navIndex == 2">
                 <div class="row" style="margin-left: 0px;" >
                     <div class="col-50" style="position: relative">
                         <img src="img/1.png" style="width: 100%;height: 22%;">
@@ -136,7 +136,7 @@
                 </div>
             </div>
 
-            <div id="my_active_price">
+            <div id="my_active_price" ng-if="navIndex == 3">
                 <div class="row" style="margin-left: 0px;margin-top: 5px;"  ng-repeat="myActiveList in activeList">
                     <div class="col-50" style="position: relative">
                         <img src="img/1.png" style="width: 100%;height: 22%;">

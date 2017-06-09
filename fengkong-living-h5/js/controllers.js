@@ -1444,48 +1444,22 @@ angular.module('starter.controllers', [])
 
     //我的活动
     .controller('MyActiveCtrl', function ($scope, $ionicHistory, $http, ApiEndpoint) {
-        var background_flag = 0;//背景层
-        $scope.type_id = 1;
-        $scope.price_id = 1;
         $scope.goBack = function () {
             $ionicHistory.goBack();
         }
 
-        $('#my_active_price').css('display', 'none');
-        $('#my_active_type').css('display', 'none');
-        $('.myself_active_navigation_all').on('click', function () {
-            $('.myself_active_navigation_all').removeClass('progress_select');
-            $(this).addClass('progress_select');
-            // console.log($(this).index());
-            if ($(this).index() == 0) {
-                $('#my_active_content > div').css('display', 'none');
-                $('#my_active_all').css('display', 'block');
-            }
-            // else if($(this).index() == 1 ||$(this).index() == 2){
-            // if(!background_flag){
-            //     $('.progress_background_color').show();
-            // } else {
-            //     background_flag = 0;
-            //      $('.progress_background_color').hide();
-            // }
+        $scope.progressType = function(typeId){
+            $scope.type_id = typeId;
+            $scope.navIndex = 2;
+            $('.down-list').hide();
+        }
 
-            // }
-            $scope.progressType = function (type) {
-                $scope.type_id = type;
-                $('#my_active_content > div').css('display', 'none');
-                $('#my_active_type').css('display', 'block');
-                // $('.progress_background_color').hide();
-                // background_flag = 0;
+        $scope.progressPrice = function(priceId){
+            $scope.price_id = priceId;
+            $scope.navIndex = 3;
+            $('.down-list').hide();
+        }
 
-            }
-            $scope.progressPrice = function (price) {
-                $scope.price_id = price;
-                $('#my_active_content > div').css('display', 'none');
-                $('#my_active_price').css('display', 'block');
-                // $('.progress_background_color').hide();
-                background_flag = 1;
-            }
-        })
         $scope.activityType = "";
 
         function price() {
@@ -1498,7 +1472,6 @@ angular.module('starter.controllers', [])
                     statusPay: 12
                 }
             }).success(function (data) {
-                // console.log(data)
                 if (data.errorCode == 0) {
                     $scope.activeList = data.result;
 
@@ -1506,9 +1479,14 @@ angular.module('starter.controllers', [])
             })
         }
         price();
-       /* $scope.allPrice = function () {
-            price();
-        }*/
+
+        $scope.navIndex = 1;
+
+        $scope.all = function () {
+            // price();
+            $scope.navIndex = 1;
+            $('.down-list').hide();
+        }
         $scope.clickPrice = function (id) {
             $http.post(ApiEndpoint.url + "activity/getMyActivityList.do", {}, {
                 params: {
@@ -1527,17 +1505,21 @@ angular.module('starter.controllers', [])
         }
 
 
-
-
-        // #########################################
         $('.dropdownType').on('click',function(){
             $(this).next('.down-list').toggle();
+            $('.dropdownPrice').next('.down-list').hide();
         })
 
         $('.dropdownPrice').on('click',function(){
             $(this).next('.down-list').toggle();
+            $('.dropdownType').next('.down-list').hide();
+        })
+
+        $('.myself_active_navigation_all').on('click',function(){
+            $(this).addClass('progress_select').siblings().removeClass('progress_select');
         })
     })
+
 
     //我的历史
     .controller('MyHistoryCtrl', function ($scope, $ionicHistory) {
