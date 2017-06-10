@@ -1022,8 +1022,7 @@ angular.module('starter.controllers', [])
                         if (data.errorCode == 0) {
                             $scope.activityList = data.result;
 
-                            // $scope.activityStatus(活动状态):1即将开始(报名中)  2直播中  3已结束
-                            $scope.activityStatus = 0;
+                            // newActivityStatus(活动状态):1即将开始(报名中)  2正在进行  3已结束
 
                             $scope.recommendedActivityList = [];
                             $scope.notRecommendedActivityList = [];
@@ -1037,7 +1036,7 @@ angular.module('starter.controllers', [])
                                         // 即将开始
                                         value.newActivityStatus = 1;
                                     }else if(time >= value.activityStartTime && time <= value.activityEndTime){
-                                        // 直播中
+                                        // 正在进行
                                         value.newActivityStatus = 2;
                                     }else if(time > value.activityEndTime){
                                         // 已结束
@@ -1050,7 +1049,7 @@ angular.module('starter.controllers', [])
                                         // 即将开始
                                         value.newActivityStatus = 1;
                                     }else if(time >= value.activityStartTime && time <= value.activityEndTime){
-                                        // 直播中
+                                        // 正在进行
                                         value.newActivityStatus = 2;
                                     }else if(time > value.activityEndTime){
                                         // 已结束
@@ -1460,51 +1459,6 @@ angular.module('starter.controllers', [])
             $('.down-list').hide();
         }
 
-        $scope.activityType = "";
-
-        function price() {
-            $http.post(ApiEndpoint.url + "activity/getMyActivityList.do", {}, {
-                params: {
-                    userId: localStorage.userId,
-                    pageNum: 1,
-                    pageSize: 10,
-                    isAllStatus: 0,
-                    statusPay: 12
-                }
-            }).success(function (data) {
-                if (data.errorCode == 0) {
-                    $scope.activeList = data.result;
-
-                }
-            })
-        }
-        price();
-
-        $scope.navIndex = 1;
-
-        $scope.all = function () {
-            // price();
-            $scope.navIndex = 1;
-            $('.down-list').hide();
-        }
-        $scope.clickPrice = function (id) {
-            $http.post(ApiEndpoint.url + "activity/getMyActivityList.do", {}, {
-                params: {
-                    userId: localStorage.userId,
-                    pageNum: 1,
-                    pageSize: 10,
-                    isAllStatus: 1,
-                    statusPay: id
-                }
-            }).success(function (data) {
-                console.log(data)
-                if (data.errorCode == 0) {
-                    $scope.activeList = data.result;
-                }
-            })
-        }
-
-
         $('.dropdownType').on('click',function(){
             $(this).next('.down-list').toggle();
             $('.dropdownPrice').next('.down-list').hide();
@@ -1518,11 +1472,85 @@ angular.module('starter.controllers', [])
         $('.myself_active_navigation_all').on('click',function(){
             $(this).addClass('progress_select').siblings().removeClass('progress_select');
         })
+
+        $scope.activityType = "";
+
+        function price() {
+            $http({
+                method: 'POST',
+                url: ApiEndpoint.url + 'home/getNowTime.do',
+                data: $.param({}),
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+            }).success(function(data){
+                var time = data.result;
+
+                $http({
+                    method:'POST',
+                    url:ApiEndpoint.url + 'activity/getMyActivityList.do',
+                    data:$.param({
+                        userId: localStorage.userId,
+                        pageNum: 1,
+                        pageSize: 10,
+                        isAllStatus: 0,
+                        statusPay: 12
+                    }),
+                    headers:{'Content-Type':'application/x-www-form-urlencoded'}
+                }).success(function(data){
+                    if(data.errorCode == 0){
+                        $scope.activeList = data.result;
+                        console.log(data.result);
+
+                        // newActivityStatus(活动状态):1即将开始(报名中)  2正在进行  3已结束
+                        angular.forEach($scope.activeList,function(value){
+                            if(time < value.activityStartTime){
+                                // 即将开始
+                                value.newActivityStatus = 1;
+                            }else if(time >= value.activityStartTime && time <= value.activityEndTime){
+                                // 正在进行
+                                value.newActivityStatus = 2;
+                            }else if(time > value.activityEndTime){
+                                // 已结束
+                                value.newActivityStatus = 3;
+                            }
+                        })
+                    }
+                })
+            })
+        }
+        price();
+
+        $scope.navIndex = 1;
+
+        $scope.all = function () {
+            // price();
+            $scope.navIndex = 1;
+            $('.down-list').hide();
+        }
+
+        $scope.clickPrice = function (id) {
+            $http({
+                method:'POST',
+                url:ApiEndpoint.url + 'activity/getMyActivityList.do',
+                data:$.param({
+                    userId: localStorage.userId,
+                    pageNum: 1,
+                    pageSize: 10,
+                    isAllStatus: 1,
+                    statusPay: id
+                }),
+                headers:{'Content-Type':'application/x-www-form-urlencoded'}
+            }).success(function(data){
+                if(data.errorCode == 0){
+                    $scope.activeList = data.result;
+                }
+            })
+        }
+
     })
 
 
     //我的历史
-    .controller('MyHistoryCtrl', function ($scope, $ionicHistory) {
+    .controller('MyHistoryCtrl', function ($scope, $ionicHistory,$http,ApiEndpoint) {
         $('.tab-item1').on('click', function () {
             $('.tab-item1').removeClass('active1');
             $(this).addClass('active1');
@@ -1534,71 +1562,60 @@ angular.module('starter.controllers', [])
             }
         })
         $scope.goBack = function () {
-
             $ionicHistory.goBack();
         }
 
+        // type: 1视频  2课程 3活动
+        $scope.getMyHistory = function(type){
+            $http({
+                method: 'POST',
+                url: ApiEndpoint.url + 'home/userHistoryRecord.do',
+                data: $.param({
+                    userId: localStorage.userId,
+                    type: type
+                }),
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+            }).success(function (data) {
+                if (data.errorCode == 0) {
+                    $scope.historyList = data.result;
+                    console.log($scope.historyList);
+                }
+            })
+        }
+        // 默认显示课程
+        $scope.getMyHistory(2);
+
     })
+
+    
     //我的收藏
     .controller('MyCollectionCtrl', function ($scope, $ionicHistory, $http, ApiEndpoint) {
-        $('.tab-item2').on('click', function () {
-            $('.tab-item2').removeClass('active1');
-            $(this).addClass('active1');
-            $('#content > div').css('display', 'none');
-            switch ($(this).index()) {
-                case 0: $('#progress').css('display', 'block'); break;
-                case 1: $('#video').css('display', 'block'); break;
-
-            }
-        })
         $scope.goBack = function () {
             $ionicHistory.goBack();
         }
 
+        $scope.typeId = 1;
+        $scope.getMyCollection = function(type){
+            $scope.typeId = type;
 
-        function getcollect() {
-            $http.post(ApiEndpoint.url + "collect/getMyCollect.do", {}, {
-                params: {
+            $http({
+                method: 'POST',
+                url: ApiEndpoint.url + 'collect/getMyCollect.do',
+                data: $.param({
                     userId: localStorage.userId,
-                    type: 1,
+                    type: type,
                     pageNum: 1,
                     pageSize: 10
-                }
+                }),
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
             }).success(function (data) {
-                console.log(data)
-
                 if (data.errorCode == 0) {
                     $scope.collectList = data.result;
                 }
             })
         }
-        getcollect();
-        $scope.getCourse = function () {
-            getcollect();
-        }
 
-        $scope.getVideo = function () {
-            function getcollect() {
-                $http.post(ApiEndpoint.url + "collect/getMyCollect.do", {}, {
-                    params: {
-                        userId: localStorage.userId,
-                        type: 0,
-                        pageNum: 1,
-                        pageSize: 10
-                    }
-                }).success(function (data) {
-                    console.log(data)
-                    if (data.errorCode == 0) {
-                        $scope.collectList = data.result;
-                    }
-                })
-            }
-        }
-
-
-
-
-
+        $scope.getMyCollection(1);
     })
     //账户设置
     .controller('MySettingCtrl', function ($scope, $ionicHistory, $ionicActionSheet, $state, $http, ApiEndpoint) {
@@ -2086,8 +2103,10 @@ angular.module('starter.controllers', [])
 
     })
     // 用户反馈
-    .controller('UserFeedbackCtrl', function ($scope, $ionicHistory, $http, ApiEndpoint) {
-
+    .controller('UserFeedbackCtrl', function ($scope, $ionicHistory, $http, ApiEndpoint,PopService) {
+        $scope.goBack = function () {
+            $ionicHistory.goBack();
+        }
 
         $scope.type_id = 1;
         $scope.progressType = function (type) {
@@ -2095,38 +2114,46 @@ angular.module('starter.controllers', [])
         }
 
 
-
-        $scope.registerData = { mobile: '', message: '' };
-        $scope.length = 0;
+        $scope.registerData = {};
+        $scope.length = 200;
 
         //显示变更数量
         $scope.textChange = function () {
-            $scope.length = $scope.registerData.message.length;
+            $scope.length = 200 - $scope.registerData.message.length;
         }
+
         $scope.keepinfo = function () {
-            // console.log(localStorage);
-            $http.post(ApiEndpoint.url + "feedback/addFeedback.do", {}, {
-                params: {
+            console.log(/^1[34578]\d{9}$/.test($scope.registerData.userContact));
+            console.log(/^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$/.test($scope.registerData.userContact));
+            console.log(/^1[34578]\d{9}$/.test($scope.registerData.userContact) && /^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$/.test($scope.registerData.userContact));
+            if($scope.registerData.message == undefined || $scope.registerData.message == ''){
+                PopService.showPop('反馈内容不能为空');
+                return;
+            }else if(!/^1[34578]\d{9}$/.test($scope.registerData.userContact) && !/^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$/.test($scope.registerData.userContact)){
+                PopService.showPop('手机或邮箱地址有误');
+                return;
+            }
+
+
+            $http({
+                method: 'POST',
+                url: ApiEndpoint.url + 'feedback/addFeedback.do',
+                data: $.param({
                     userId: localStorage.userId,
-                    userType: localStorage.userType,
-                    mobile: $scope.registerData.mobile,
-                    name: $scope.registerData.name,
-                    cotent: $scope.registerData.message
-                }
+                    feedBackType: $scope.type_id,
+                    feedBackContent:$scope.registerData.message,
+                    userContact:$scope.registerData.userContact
+                }),
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
             }).success(function (data) {
-                // console.log(data)
                 if (data.errorCode == 0) {
-                    $scope.couponList = data.result;
+                    PopService.showPop('提交成功');
+                } else {
+                    PopService.showError('提交失败');
                 }
             })
-
-
+            
         }
-        $scope.goBack = function () {
-
-            $ionicHistory.goBack();
-        }
-
     })
 
 
@@ -2246,7 +2273,9 @@ angular.module('starter.controllers', [])
                 }).success(function(data){
                     if(data.errorCode == 0){
                         $scope.activityInfo = data.result;
-                        
+                        var activityDescription = data.result.activityDescription;
+
+                        $('#detail').html(activityDescription);
                         
 
                         // activityType(活动类型): 1内  2审  3财  4税  5风
@@ -2255,7 +2284,7 @@ angular.module('starter.controllers', [])
                             method:'POST',
                             url:ApiEndpoint.url + 'activity/getAllActivityList.do',
                             data:$.param({
-                                activityWay:$scope.activityInfo.activityWay,
+                                // activityWay:$scope.activityInfo.activityWay,
                                 activityType:$scope.activityInfo.activityType
                             }),
                             headers:{'Content-Type':'application/x-www-form-urlencoded'}

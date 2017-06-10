@@ -75,12 +75,13 @@
             <div class="progress_background_color"></div>
 
             <div id="my_active_all" ng-if="navIndex == 1">
-                <div class="row" style="margin-left: 0px;margin-top: 5px;" ng-repeat="myActiveList in activeList">
+                <div class="row" ng-repeat="myActiveList in activeList">
                     <div class="col-50" style="position: relative">
-                        <img src="img/1.png" style="width: 100%;height: 22%;">
+                        <img src="{{myActiveList.activityIcon}}" style="width: 100%;height: 22%;">
                        
-                        <span class="myself_active_start"  style="background-color: black" ng-if="myActiveList.activityType == 1">已经结束</span>
-                        <span class="myself_active_start" ng-if="myActiveList.activityType == 0">即将开始</span>
+                        <span class="myself_active_start" ng-if="myActiveList.newActivityStatus == 1">即将开始</span>
+                        <span class="myself_active_start" ng-if="myActiveList.newActivityStatus == 2">正在进行</span>
+                        <span class="myself_active_start" style="background-color: black" ng-if="myActiveList.newActivityStatus == 3">已结束</span>
                     </div>
 
                     <div class="col-50" style="margin-right: 10px;margin-left: 5px;position:relative;">

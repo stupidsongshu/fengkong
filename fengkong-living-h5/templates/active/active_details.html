@@ -8,7 +8,7 @@
 
 <ion-content>
     <div style="position:relative;">
-        <img src="img/banner1.png" style="width:100%;">
+        <img src="{{activityInfo.activityIcon}}" style="width:100%;max-height:12rem;">
 
         <div ng-if="activityInfo.newActivityStatus == 1">
             <div class="triangle-right triangle-left-top triangle-left-top1"></div>
@@ -57,7 +57,8 @@
         <div id="content">
             <!--详情start-->
             <div id="detail">
-               <img src="img/ceshi.jpg" style="width:100%;">
+               <!--<img src="img/ceshi.jpg" style="width:100%;">-->
+               {{activityInfo.activityDescription}}
             </div>
 
             <!--讲师start-->
