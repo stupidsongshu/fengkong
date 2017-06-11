@@ -1,4 +1,4 @@
-.myself_over_btn{display:inline-block;margin-top:10px;border-radius: 5px;border:1px solid white;width: 54%;}
+.myself_over_btn{display:inline-block;margin-top:10px;border-radius: 5px;border:1px solid white;width: 54%;font-size: 16px;padding: 4px;}
 .myself_active_start{background-color: #c8705b;position: absolute;top:-1px;left: 1px;width: 50%;height: 20px;text-align: center;color:white;}
 .myself_active_end{background-color: #000;position: absolute;top:-1px;left: 1px;width: 50%;text-align: center;color:white;}
 .myself_active_progress_banner{top:6px;left:0;}
@@ -21,7 +21,7 @@
  .platform-android .action-sheet .action-sheet-title, .platform-android .action-sheet .button{text-align: center;}
  
  /* 我的 */
- .my-totle{vertical-align: middle;}
+ .my-totle{vertical-align: 4px;}
  /* 用户反馈 */
  .feedback-type{width: 100%;margin-top: 15px;color: grey;padding-left: 20px;font-size: 1rem;padding-bottom: 10px;}
  .feedback-change label{color: red;float: right;margin-right: 20px;}

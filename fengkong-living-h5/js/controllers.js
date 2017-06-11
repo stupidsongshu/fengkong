@@ -1090,21 +1090,20 @@ angular.module('starter.controllers', [])
         }
     })
 
-    .controller('MyselfCtrl', function ($ionicActionSheet, $scope, $state, $http, $rootScope, $ionicHistory, $location, $interval, $ionicPopup,ApiEndpoint) {
+    .controller('MyselfCtrl', function ($ionicActionSheet, $scope, $state, $http, $rootScope, $ionicHistory, $location, $interval, $ionicPopup,ApiEndpoint,PopService) {
         console.log($ionicHistory.viewHistory());
         if($ionicHistory.viewHistory().backView != null){
             console.log($ionicHistory.viewHistory().backView.stateName);
         }
 
+        console.log(JSON.parse(localStorage.user));
         $scope.user = JSON.parse(localStorage.user);
-        console.log($scope.user);
 
         $http.post(ApiEndpoint.url + "coupon/getUserCouponList.do", {}, {
             params: {
                 userId: localStorage.userId,
             }
         }).success(function (data) {
-            // console.log(data)
             if (data.errorCode == 0) {
                 $scope.couponList = data.result;
                 $scope.couponNumber = $scope.couponList.length;
@@ -1117,56 +1116,93 @@ angular.module('starter.controllers', [])
 
             // 自定义弹窗
             var myPopup = $ionicPopup.show({
-                template: '<input type="text" ng-model="data.couponCode" placeholder="请输入兑换码">',
-                title: '兑换优惠券',
+                template: '<input type="text" ng-model="data.exchangeCode" placeholder="请输入兑换码" style="border-radius:5px;">',
+                title: '<b>优惠兑换</b>',
                 subTitle: '',
                 scope: $scope,
-                buttons: [
-                    { text: '<span class="aa">取消</span>' },
+                buttons: [//Array[Object] (可选)。放在弹窗footer内的按钮
+                    { 
+                        text: '取消',
+                        type: 'button-default',
+                        onTap: function(e) {
+                            // 当点击时，e.preventDefault() 会阻止弹窗关闭
+                            // e.preventDefault();
+                        }
+                    }, 
                     {
-                        text: '<span class="aa">确定</span>',
+                        text: '确定',
+                        type: 'button-default',
+                        onTap: function(e) {
+                            // 返回的值会导致处理给定的值
+                            e.preventDefault();
 
-                        onTap: function (e) {
-                            if (!$scope.data.couponCode) {
-                                // 不允许用户关闭，除非输入 wifi 密码
-                                e.preventDefault();
-                            } else {
-                                return $scope.data.couponCode;
+                            if($scope.data.exchangeCode != undefined && $scope.data.exchangeCode != ''){
+                                $http({
+                                    method: 'POST',
+                                    // url: ApiEndpoint.url + 'exchangeGoods.do',
+                                    url: ApiEndpoint.url + 'redeemCode/exchangeGoods.do',
+                                    data: $.param({
+                                        userId:localStorage.userId,
+                                        exchangeCode:$scope.data.exchangeCode
+                                    }),
+                                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+                                }).success(function(data){
+                                    if(data.errorCode == 0){
+                                        myPopup.close();
+
+                                        // redeemType兑换码类型: 1优惠券  2虚拟商品货币
+                                        if(data.result.redeemType == 1){
+                                            var codeDescription = data.result.codeDescription;
+
+                                            var myPopup1 = $ionicPopup.alert({
+                                                title: '<h4>兑换成功!</h4>', // String. 弹窗的标题
+                                                subTitle: '', // String (可选)。弹窗的子标题
+                                                template: '<div style="text-align:center">成功兑换一张<span style="color:#f00;">'+codeDescription+'</span></div>', // String (可选)。放在弹窗body内的html模板
+                                                templateUrl: '', // String (可选)。 放在弹窗body内的html模板的URL
+                                                okText: '去看看', // String (默认: 'OK')。OK按钮的文字
+                                                okType: 'button-clear button-assertive', // String (默认: 'button-positive')。OK按钮的类型
+                                            });
+                                            myPopup1.then(function(res){
+                                                if(res){
+                                                    $('.popup-container').hide();
+                                                    $state.go('my_coupon');
+                                                }
+                                            })
+                                        }else if(data.result.redeemType == 2){
+                                            var codeDescription = data.result.codeDescription;
+                                            
+                                            var myPopup2 = $ionicPopup.alert({
+                                                title: '<h4>兑换成功!</h4>', // String. 弹窗的标题。
+                                                subTitle: '', // String (可选)。弹窗的子标题。
+                                                template: '<div style="text-align:center">成功兑换风控币<span style="color:#f00;">'+codeDescription+'</span></div>'+
+                                                            '<div style="text-align:center;color:#ccc;font-size:12px;">可到账户充值记录查询</div>', // String (可选)。放在弹窗body内的html模板
+                                                templateUrl: '', // String (可选)。 放在弹窗body内的html模板的URL
+                                                okText: '去看看', // String (默认: 'OK')。OK按钮的文字
+                                                okType: 'button-clear button-assertive', // String (默认: 'button-positive')。OK按钮的类型
+                                            });
+                                            myPopup2.then(function(res){
+                                                if(res){
+                                                    $('.popup-container').hide();
+                                                    $state.go('over');
+                                                }
+                                            })
+                                        }
+                                    }
+                                })
+                            }else{
+                                PopService.showPop('兑换码不能为空');
                             }
                         }
-                    },
+                    }
                 ]
             });
-            console.log($('.popup span'));
 
+            myPopup.then(function(res) {
+                console.log('Tapped!', res);
+            });
         };
-
-        $('.backdrop').on('click', function () {
-            console.log(13);
-            $('.backdrop').css('visibility', 'hidden');
-            $('.popup-container').css('visibility', 'hidden');
-        })
-        // if ( $(".popup").show()) {
-
-
-
-        //  $(document).bind("click",function(e){
-        //       var target  = $(e.target);
-        //       if(target.closest(".popup").length == 0){
-        //            $(".popup").hide();
-        //       }
-        // }) 
-
-        //     }
-
-        // $http.post(ApiEndpoint.url+"user/getUserById.do",{},{params:{
-        //         userId:localStorage.userId
-        //      }}).success(function(data){
-        //         if(data.errorCode == 0){
-        //             localStorage.user = JSON.stringify(data.result);
-        //         }
-        // })
     })
+
 
     //搜索页面
     .controller('HomeSearchCtrl', function ($scope, $ionicLoading, $timeout, $ionicHistory, $state, $http, ApiEndpoint) {
@@ -1644,23 +1680,23 @@ angular.module('starter.controllers', [])
     //消费记录
     .controller('MyConsumeRecordCtrl', function ($scope, $ionicHistory, $http, ApiEndpoint) {
         $scope.goBack = function () {
-
             $ionicHistory.goBack();
         }
-        $http.post(ApiEndpoint.url + "record/getUserRecordList.do", {}, {
-            params: {
+
+        $http({
+            method: 'POST',
+            url: ApiEndpoint.url + 'record/getUserRecordList.do',
+            data: $.param({
                 userId: localStorage.userId,
                 pageNum: 1,
                 pageSize: 10
-            }
+            }),
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
         }).success(function (data) {
-            console.log(data)
             if (data.errorCode == 0) {
                 $scope.recordList = data.result;
-
             }
         })
-
 
     })
 
@@ -2172,23 +2208,16 @@ angular.module('starter.controllers', [])
 
     //我的优惠券
     .controller('MyCouponCtrl', function ($scope, $ionicHistory, $ionicPopup, $http, ApiEndpoint) {
-
-        // $http.post(ApiEndpoint.url+"coupon/getCouponById.do",{},{params:{
-        //     userId:localStorage.userId
-        //  }}).success(function(data){
-        //     if(data.errorCode == 0){
-        //         localStorage.user = JSON.stringify(data.result);
-        //     }
-        // })
-        console.log(localStorage.userId);
-        $http.post(ApiEndpoint.url + "coupon/getUserCouponList.do", {}, {
-            params: {
-                userId: localStorage.userId,
-            }
+        $http({
+            method: 'POST',
+            url: ApiEndpoint.url + 'coupon/getUserCouponList.do',
+            data: $.param({
+                userId: localStorage.userId
+            }),
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
         }).success(function (data) {
             if (data.errorCode == 0) {
                 $scope.couponList = data.result;
-                localStorage.couponNumber = $scope.couponList.length;
             }
         })
 
@@ -2217,8 +2246,6 @@ angular.module('starter.controllers', [])
                     },
                 ]
             });
-
-
         };
 
         $scope.goBack = function () {

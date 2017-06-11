@@ -15,36 +15,31 @@
 
 
     <div id="history_content" style="position: absolute;top:100px;width:100%;">
-        <!--课程start-->
+        <!--课程-->
         <div id="progress">
             <div>
-                <div class="row" style="margin-left: 0px" ng-repeat="historyItem in historyList">
+                <div class="row" style="margin-bottom:4px;padding:4px 0;border-bottom:1px solid #ccc;" ng-repeat="historyItem in historyList">
                     <div class="col-50" style="position: relative">
-                        <img src="{{historyItem.imageUrl}}" width="100%" height="130px">
+                        <a href="#/recorded_list/{{historyItem.courseId}}">
+                            <img src="{{historyItem.imageUrl}}" width="100%" height="130px">
+                        </a>
                         <!--<span style="background-color: #c8705b;position: absolute;top:-1px;left: 1px;width: 50%;text-align: center;">即将开始</span>-->
                     </div>
                     <div class="col-50" style="padding:0 10px;">
                         <!--<span style="border-radius:3px;background-color: #c95f47;width: 35%;font-size:8px;color:#fff;display:inline-block;text-align: center;">标签类型</span>-->
-                        <span>{{historyItem.courseName}}</span><br>
-                        <span style="display:inline-block;font-size: 12px;">
-                            讲师：
-                            <span>
-                                {{historyItem.teacherName}}
-                            </span>
-                        </span><br>
-                        <span style="display:inline-block;margin-top: 35px;font-size: 12px;">
-                        价格:
-                            <span>
-                                {{historyItem.price}}元
-                            </span>
-                        </span><br>
-                        <div style="display:inline-block;font-size: 12px;color:silver">
-                            <span>
-                                共{{historyItem.courseChapterNumber}}节
-                            </span>
-
-                            <img style="margin-left: 78px" src="img/eye.png" width="15px" height="10px">
-                            <span>20</span>
+                        <div>{{historyItem.courseName}}</div>
+                        <div style="margin-top: 8px;">
+                            讲师：<span>{{historyItem.teacherName}}</span>
+                        </div>
+                        <div style="margin-top: 8px;">
+                            价格：<span>{{historyItem.price}}元</span>
+                        </div>
+                        <div style="margin-top: 8px;color:silver" class="clearfix">
+                            <div style="float:left;">共{{historyItem.courseChapterNumber}}节</div>
+                            <div style="float:right;">
+                                <img style="margin-left: 78px" src="img/eye.png" width="15px" height="12px">
+                                <span>20</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -52,183 +47,68 @@
         </div>
 
 
-        <!--视频start-->
+        <!--视频-->
         <div id="video" style="display: none">
-            <div class="margin-top20">
-                <div class="row" style="margin-left: 0px">
-                    <div class="col-50" style="position: relative">
-                        <img src="img/1.png" width="160px" height="140px">
+            <div>
+                <div class="row" style="margin-bottom:4px;padding:4px 0;border-bottom:1px solid #ccc;" ng-repeat="historyItem in historyList">
+                    <div class="col-50" style="padding:0 10px;">
+                        <img src="{{historyItem.videoIcon}}" width="100%" height="140px">
                         <!-- <span style="background-color: #c8705b;position: absolute;top:-1px;left: 1px;width: 50%;text-align: center;">即将开始</span> -->
                     </div>
-                    <div class="col-50" style="margin-right: 10px;margin-left: 5px">
-                        <span style="border-radius:3px;background-color: #c95f47;width: 35%;font-size:8px;color:#fff;display:inline-block;text-align: center;">标签类型</span>
-                        <span >名称名称名称名称名称名称名称</span><br>
-                        <span style="display:inline-block;font-size: 12px;">
-                            讲师：
-                            <span>
-                                塞法
-                            </span>
-                        </span>
-                        <span style="display:inline-block;margin-top:30px;font-size: 12px;">
-                        简介
-                            <span>
-                             简介简介简介简介简介简介简介简介简介简介简介
-                            </span>
-                        </span><br>
-                        <div style="display:inline-block;font-size: 12px;color:silver">
-                            <img src="img/eye.png" width="15px" height="10px">
-                            <span>
-                                20
-                            </span>
-
-                            <span style="margin-left: 45px" >2017-12-12</span>
-
-
+                    <div class="col-50" style="position:relative;">
+                        <div>
+                            <span style="border-radius:3px;background-color: #c95f47;width: 35%;font-size:8px;color:#fff;display:inline-block;text-align: center;">标签类型</span>
+                            <span>{{historyItem.videoName}}</span>
+                        </div>
+                        <div style="margin-top:10px;">
+                            讲师：<span>{{historyItem.teacherName}}</span>
+                        </div>
+                        <div style="margin-top:10px;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden;">
+                            简介：<span>{{historyItem.videoDescription}}</span>
+                        </div>
+                        <div style="position:absolute;bottom:0;width:100%;padding-right:10px;color:silver" class="clearfix">
+                            <div style="float:left;">
+                                <img src="img/eye.png" width="15px" height="10px">
+                                <span>20</span>
+                            </div>
+                            <div style="float:right;">{{historyItem.createdDate | date:'yyyy-MM-dd'}}</div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row  margin-top10 " style="border-top: 1px solid silver;width: 120%"></div>
-            <!--end-->
-            <!--视频-->
-            <div class="margin-top20">
-                <div class="row" style="margin-left: 0px">
-                    <div class="col-50" style="position: relative">
-                        <img src="img/1.png" width="160px" height="140px">
-                        <!-- <span style="background-color: #c8705b;position: absolute;top:-1px;left: 1px;width: 50%;text-align: center;">即将开始</span> -->
-                    </div>
-                    <div class="col-50" style="margin-right: 10px;margin-left: 5px">
-                        <span style="border-radius:3px;background-color: #c95f47;width: 35%;font-size:8px;color:#fff;display:inline-block;text-align: center;">标签类型</span>
-                         <span >名称名称名称名称名称名称名称</span><br>
-                        <span style="display:inline-block;font-size: 12px;">
-                            讲师：
-                            <span>
-                                塞法
-                            </span>
-                        </span>
-                        <span style="display:inline-block;margin-top:30px;font-size: 12px;">
-                        简介
-                            <span>
-                             简介简介简介简介简介简介简介简介简介简介简介
-                            </span>
-                        </span><br>
-                        <div style="display:inline-block;font-size: 12px;color:silver">
-                            <img src="img/eye.png" width="15px" height="10px">
-                            <span>
-                                20
-                            </span>
-
-                            <span style="margin-left: 45px" >2017-12-12</span>
-
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row  margin-top10 " style="border-top: 1px solid silver;width: 120%"></div>
-            <!--end -->
-            <!--视频-->
-            <div class="margin-top20">
-                <div class="row" style="margin-left: 0px">
-                    <div class="col-50" style="position: relative">
-                        <img src="img/1.png" width="160px" height="140px">
-                        <!-- <span style="background-color: #c8705b;position: absolute;top:-1px;left: 1px;width: 50%;text-align: center;">即将开始</span> -->
-                    </div>
-                    <div class="col-50" style="margin-right: 10px;margin-left: 5px">
-                        <span style="border-radius:3px;background-color: #c95f47;width: 35%;font-size:8px;color:#fff;display:inline-block;text-align: center;">标签类型</span>
-                        <span >名称名称名称名称名称名称名称</span><br>
-                        <span style="display:inline-block;font-size: 12px;">
-                            讲师：
-                            <span>
-                                塞法
-                            </span>
-                        </span>
-                        <span style="display:inline-block;margin-top:30px;font-size: 12px;">
-                        简介
-                            <span>
-                             简介简介简介简介简介简介简介简介简介简介简介
-                            </span>
-                        </span><br>
-                        <div style="display:inline-block;font-size: 12px;color:silver">
-                            <img src="img/eye.png" width="15px" height="10px">
-                            <span>
-                                20
-                            </span>
-
-                            <span style="margin-left: 45px" >2017-12-12</span>
-
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--end-->
-
         </div>
-        <!--end-->
-        <!--活动start-->
+
+
+        <!--活动-->
         <div id="activity" style="display: none">
-            <!--我的活动 即将开始  start-->
-            <div>
-                <div class="row" style="margin-left: 0px">
-                    <div class="col-50" style="position: relative">
-                        <img src="img/1.png" width="160px" height="140px">
-                        <span style="background-color: #c8705b;position: absolute;top:-1px;left: 1px;width: 50%;text-align: center;">即将开始</span>
+            <div class="row" style="margin-bottom:4px;padding:4px 0;border-bottom:1px solid #ccc;" ng-repeat="historyItem in historyList">
+                <div class="col-50" style="position: relative;padding:0 10px;">
+                    <img src="{{historyItem.activityIcon}}" width="100%" height="140px">
+                    <span style="background-color: #c8705b;position: absolute;top:0;left: 10px;width: 50%;text-align: center;">即将开始</span>
+                </div>
+                <div class="col-50" style="position:relative;">
+                    <div>
+                        <span style="border-radius:3px;background-color: #c95f47;width: 35%;font-size:9px;color:#fff;display:inline-block;text-align: center;">标签类型</span>
+                        <span>{{historyItem.activityName}}</span>
                     </div>
-                    <div class="col-50" style="margin-right: 10px;margin-left: 5px">
-                        <span style="border-radius:3px;background-color: #c95f47;width: 35%;font-size:8px;color:#fff;display:inline-block;text-align: center;">标签类型</span>
-                        <span>名称名称名称名称名称名称名称</span>
-                        <span style="display:inline-block;margin-top: 65px;font-size: 12px;">
-                    地点:
-                    <span>
-                        上海市上海市上海市
-                    </span>
-                </span>
-                        <div style="display:inline-block;font-size: 12px;color:silver">
-                    <span>
-                        120人报名
-                    </span>
-                            <span style="margin-left: 10px">
-                        2017-12-12
-                    </span>
+                    <div style="position:absolute;bottom:0;width:100%;">
+                        <div style="margin-top:30px;">
+                            地点:
+                            <span>
+                                {{historyItem.activityAddress}}
+                            </span>
+                        </div>
+                        <div style="margin-top:4px;color:silver;padding-right:10px;" class="clearfix">
+                            <span style="float:left;">
+                                {{historyItem.activityJoinNumber}}人报名
+                            </span>
+                                <span style="float:right;">
+                                {{historyItem.createdDate | date:'yyyy-MM-dd'}}
+                            </span>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row  margin-top10 " style="border-top: 1px solid silver;width: 120%"></div>
-            <!--end-->
-            <!--我的活动 已结束  start-->
-            <div>
-                <div class="row" style="margin-left: 0px">
-                    <div class="col-50" style="position: relative">
-                        <img src="img/1.png" width="160px" height="140px">
-                        <span style="background-color: #c8705b;position: absolute;top:-1px;left: 1px;width: 50%;text-align: center;">即将开始</span>
-                    </div>
-                    <div class="col-50" style="margin-right: 10px;margin-left: 5px">
-                        <span style="border-radius:3px;background-color: #c95f47;width: 35%;font-size:8px;color:#fff;display:inline-block;text-align: center;">标签类型</span>
-                        <span>名称名称名称名称名称名称名称</span>
-                        <span style="display:inline-block;margin-top: 65px;font-size: 12px;">
-                    地点:
-                    <span>
-                        上海市上海市上海市
-                    </span>
-                </span>
-                        <div style="display:inline-block;font-size: 12px;color:silver">
-                    <span>
-                        120人报名
-                    </span>
-                            <span style="margin-left: 10px">
-                        2017-12-12
-                    </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--end-->
         </div>
-        <!--end-->
     </div>
-
-
-
 </ion-content>
