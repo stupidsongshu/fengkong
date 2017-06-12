@@ -3394,7 +3394,7 @@ angular.module('starter.controllers', [])
 
 
     //所有的视频详情(包括录播课程的课时详情、不属于课程的视频、直播已结束转录播的视频、活动视频共同页面)
-    .controller('VideoCtrl', function ($scope, $ionicHistory, $http, $state, $stateParams,$timeout, ApiEndpoint, PopService) {
+    .controller('VideoCtrl', function ($scope, $ionicHistory, $http, $state, $stateParams,$timeout,$ionicPopup, ApiEndpoint, PopService) {
         $scope.goBack = function () {
             $ionicHistory.goBack();
         }
@@ -3509,7 +3509,7 @@ angular.module('starter.controllers', [])
                     $scope.courseId = data.result;
                     console.log('courseId: ' + $scope.courseId);
 
-                    //获取课时所属课程免费收费
+                    //获取课时所属的课程免费收费状态和该课程的用户付费状态
                     $http({
                         method: 'POST',
                         url: ApiEndpoint.url + 'video/getCourseVideoForH5.do',
@@ -3523,7 +3523,18 @@ angular.module('starter.controllers', [])
                             var courseInfo = data.result;
                             // courseIsPay课程付费状态: 0未付费  1已付费
                             var courseIsPay = courseInfo.courseVideoForH5[0].courseIspay;
-                            console.log(courseInfo.courseVideoForH5);
+
+                            var keepGoing = true;
+                            angular.forEach(courseInfo.courseVideoForH5,function(value){
+                                if(keepGoing){
+                                    if('courseIsPay' in value){
+                                        $scope.courseIsPayStatus = value.courseIsPay;
+                                    }
+                                    keepGoing = false;
+                                }
+                            })
+
+                            console.log($scope.courseIsPayStatus);
 
 
                             //获取课时免费收费
@@ -3537,8 +3548,6 @@ angular.module('starter.controllers', [])
                             }).success(function (data) {
                                 if (data.errorCode == 0) {
                                     var videoResult = data.result;
-
-
                                     // 获取登录用户课时付费状态  selectType(查询类别):视频1 直播2 课程3 活动4
                                     function isPayStatus(selectType, videoId, liveId, courseId, activityId) {
                                         $http({
@@ -3560,16 +3569,18 @@ angular.module('starter.controllers', [])
                                             console.log(courseInfo.course.price);
                                             console.log(typeof courseInfo.course.price);
                                             console.log(courseInfo.course.price > 0);
+
+                                            console.log(courseIsPay);//undefined #####################################这里有坑，取不到值，坑坑坑坑坑坑坑坑坑坑啊啊啊啊啊
+                                            console.log($scope.courseIsPayStatus);
                                             //最终作判断
                                             if (courseInfo.course.price == 0) {
                                                 console.log('课程免费');
                                                 $scope.btnBuyStatus = false;
                                             } else if (courseInfo.course.price > 0) {
-                                                alert(1);
-                                                if (courseIsPay == 1) {
+                                                if ($scope.courseIsPayStatus == 1) {
                                                     console.log('课程收费但用户已付费');
                                                     $scope.btnBuyStatus = false;
-                                                } else if (courseIsPay == 0) {
+                                                } else if ($scope.courseIsPayStatus == 0) {
                                                     if (videoResult.videoPrice == 0) {
                                                         console.log('课程收费且用户未付费,但课时免费');
                                                         $scope.btnBuyStatus = false;
