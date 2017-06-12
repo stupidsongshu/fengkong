@@ -7,8 +7,9 @@
     <div ng-repeat="record in recordList">
         <div class="row" style="margin-top:20px;margin-left: 10px;font-size: 17px;">
             <div class="col-75" >
-                <span ng-if="record.videoName==null">{{record.courseName}}</span>
-                <span ng-if="record.courseName==null">{{record.videoName}}</span>
+                <!--<span ng-if="record.videoName==null">{{record.courseName}}</span>-->
+                <!--<span ng-if="record.courseName==null">{{record.videoName}}</span>-->
+                <span>{{record.recordState}}</span>
             </div>
             <div class="col-25" style="color:#c95f48">
                 <span>{{record.recordMoney}}</span>元
@@ -19,7 +20,7 @@
                 <span>{{record.recordTime | date:'yyyy-MM-dd'}}</span>
             </div>
             <div class="col-25" style="color: #80c15e;">
-                <span>{{record.recordState}}</span>
+                <span>{{record.recordType}}</span>
             </div>
         </div>
         <div style="background-color: #fbfafa">

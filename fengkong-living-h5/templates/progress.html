@@ -16,7 +16,7 @@
             <div class="swiper-container swiper-container-progress">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide" ng-repeat="living in livingList">
-                        <div style="position: relative;" ng-click="toLivingDetail(living.liveId,living.livePrice,living.orderStatus,living.videoName)">
+                        <div style="position: relative;" ng-click="toLivingDetail(living.liveId,living.livePrice,living.orderStatus)">
                             <div class="play-icon"></div>
                             <img src="{{living.videoImage}}" style="width:100%;height: 100%;">
                             <span class="myself_active_start myself_active_progress_banner">正在直播</span>
@@ -35,7 +35,7 @@
             <div class="row margin-top10" style="margin-right:0px;margin-left: 0;float: left;" ng-repeat="live in beforeAndAfterLivingList">
                 <div class="col-50">
                     <div style="position: relative;margin-top: 10px;">
-                        <a ng-click="notLiving(live.newLiveStatus,live.liveId,live.livePrice,live.orderStatus)">
+                        <a ng-click="notLiving(live.liveId,live.livePrice,live.orderStatus)">
                             <div class="play-icon" ng-if="live.newLiveStatus != 0"></div>
                             <img src="{{live.videoImage}}" style="width:100%;height: 100px;">
                         </a>

@@ -80,12 +80,19 @@
 
                 <div class="row" style="border-bottom: 1px solid silver;padding-bottom: 15px;" ng-if="activityRelatedList.length > 0" ng-repeat="activityRelatedItem in activityRelatedList">
                     <div class="col-33" style="margin-top: 10px;margin-left: 10px;">
-                        <img src="{{activityRelatedItem.activityIcon}}" width="90px" height="90px">
+                        <a href="#/active_details/{{activityRelatedItem.activityId}}">
+                            <img src="{{activityRelatedItem.activityIcon}}" width="90px" height="90px">
+                        </a>
                     </div>
                     <div class="col-66" style="margin-top: 10px;">
-                        <div style="margin-bottom: 20px;display: inline-block;font-size: 16px;">活动名称 ：{{activityRelatedItem.activityName}}</div>
-                        <div>
-                            活动简介:<span>{{activityRelatedItem.activityDescription}}</span>
+                        <div style="margin-bottom: 20px;display: inline-block;font-size: 16px;">活动名称：{{activityRelatedItem.activityName}}</div>
+                        <div class='row' style="font-size:12px;">
+                            <!--活动简介:<span>{{activityRelatedItem.activityDescription}}</span>-->
+                            <div class="col-20">活动简介:</div>
+                            <div class="col-80">
+                                开始时间<span>{{activityRelatedItem.activityStartTime | date:'yyyy-MM-dd'}}</span><br>
+                                结束时间<span>{{activityRelatedItem.activityEndTime | date:'yyyy-MM-dd'}}</span><br>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -559,74 +559,74 @@ angular.module('starter.controllers', [])
             getAllCourses();
         }
 
-        //获取时间戳
-        $http.post(ApiEndpoint.url + "home/getNowTime.do", {}, {
-            params: {}
-        }).success(function (data) {
-            if (data.errorCode == 0) {
-                var time = new Date(data.result);
+        function getAllLiveList (){
+            //获取时间戳
+            $http.post(ApiEndpoint.url + "home/getNowTime.do", {}, {
+                params: {}
+            }).success(function (data) {
+                if (data.errorCode == 0) {
+                    var time = new Date(data.result);
 
 
-                //直播
-                $http.post(ApiEndpoint.url + "live/getAllLiveList.do", {}, {
-                    params: {
-                        pageNum: 1,
-                        pageSize: 10,
-                        userId: localStorage.userId
-                    }
-                }).success(function (data) {
-                    if (data.errorCode == 0) {
-                        // 正在直播
-                        $scope.livingList = [];
+                    //直播
+                    $http.post(ApiEndpoint.url + "live/getAllLiveList.do", {}, {
+                        params: {
+                            pageNum: 1,
+                            pageSize: 10,
+                            userId: localStorage.userId
+                        }
+                    }).success(function (data) {
+                        if (data.errorCode == 0) {
+                            // 正在直播
+                            $scope.livingList = [];
 
-                        // 即将直播、已结束
-                        $scope.beforeAndAfterLivingList = [];
-
-
-                        // 获取所有视频后分离正在直播和即将直播、已结束
-                        angular.forEach(data.result.LiveList, function (value) {
-                            /*if (value.liveStatus == 1) {
-                                $scope.livingList.push(value);
-                            } else if (value.liveStatus == 0 || value.liveStatus == 2) {
-                                $scope.beforeAndAfterLivingList.push(value);
-                            }*/
+                            // 即将直播、已结束
+                            $scope.beforeAndAfterLivingList = [];
 
 
-                            if (time >= value.liveStartTime && time <= value.liveEndTime) {
-                                //正在直播
-                                $scope.livingList.push(value);
-                                value.newLiveStatus = 0;
-                            } else if (time < value.liveStartTime || time > value.liveEndTime) {
-                                // 即将直播和已结束
-                                $scope.beforeAndAfterLivingList.push(value);
-                            }
-
-                            if (time < value.liveStartTime) {
-                                // 即将直播
-                                value.newLiveStatus = 0;
-                            } else if (time > value.liveEndTime) {
-                                // 已结束
-                                value.newLiveStatus = 2;
-                            }
-                        })
-
-                        console.log($scope.livingList);
-                        console.log($scope.beforeAndAfterLivingList);
-
-                        var swiperContainerProgress = new Swiper('.swiper-container-progress', {
-                            autoplay: 4000,
-                            loop: true,
-                            pagination: '.swiper-pagination',
-                            observer: true,//修改swiper自己或子元素时，自动初始化swiper
-                            observeParents: true,//修改swiper的父元素时，自动初始化swiper
-                        });
-                    }
-                })
-            }
-        })
+                            // 获取所有视频后分离正在直播和即将直播、已结束
+                            angular.forEach(data.result.LiveList, function (value) {
+                                /*if (value.liveStatus == 1) {
+                                    $scope.livingList.push(value);
+                                } else if (value.liveStatus == 0 || value.liveStatus == 2) {
+                                    $scope.beforeAndAfterLivingList.push(value);
+                                }*/
 
 
+                                if (time >= value.liveStartTime && time <= value.liveEndTime) {
+                                    //正在直播
+                                    $scope.livingList.push(value);
+                                    value.newLiveStatus = 0;
+                                } else if (time < value.liveStartTime || time > value.liveEndTime) {
+                                    // 即将直播和已结束
+                                    $scope.beforeAndAfterLivingList.push(value);
+                                }
 
+                                if (time < value.liveStartTime) {
+                                    // 即将直播
+                                    value.newLiveStatus = 0;
+                                } else if (time > value.liveEndTime) {
+                                    // 已结束
+                                    value.newLiveStatus = 2;
+                                }
+                            })
+
+                            console.log($scope.livingList);
+                            console.log($scope.beforeAndAfterLivingList);
+
+                            var swiperContainerProgress = new Swiper('.swiper-container-progress', {
+                                autoplay: 4000,
+                                loop: true,
+                                pagination: '.swiper-pagination',
+                                observer: true,//修改swiper自己或子元素时，自动初始化swiper
+                                observeParents: true,//修改swiper的父元素时，自动初始化swiper
+                            });
+                        }
+                    })
+                }
+            })
+        }
+        getAllLiveList();
 
 
 
@@ -634,10 +634,9 @@ angular.module('starter.controllers', [])
         /*
          * orderStatus: 1未支付  2已支付  3已报名
          * 即将直播的orderStatus可能为1或3,正在直播的orderStatus可能为1或2,已结束的orderStatus可能为1或2或3
-         * 只有即将直播和已结束无论免费还是收费都需先去报名来获取统计报名人数,正在直播收费则直接进入确认订单页面
+         * 只有即将直播和已结束无论免费还是收费都需先去报名来获取统计报名人数,正在直播收费且未付费则直接进入确认订单页面
         */
-
-        //直播--即将直播  点击'立即报名'后判断
+        //即将直播  点击'立即报名'后判断
         $scope.upcomingLivingApply = function (liveId, liveName, livePrice, orderStatus) {
             console.log('price ' + livePrice);
             console.log('orderStatus ' + orderStatus);
@@ -657,53 +656,7 @@ angular.module('starter.controllers', [])
             }
 
         }
-        //点击即将直播和直播已结束左侧封面
-        $scope.notLiving = function (liveStatus, liveId, livePrice, orderStatus) {
-            //即将直播
-            if (liveStatus == 0) {
-                if (livePrice == 0) {
-                    console.log('即将直播免费但需报名');
-                    $state.go('upcomingLiving_apply', {
-                        upcomingLivingId: liveId
-                    });
-                } else if (livePrice > 0) {
-                    if (orderStatus == 1) {
-                        console.log('即将直播收费且未付费');
-                        $state.go('upcomingLiving_apply', {
-                            upcomingLivingId: liveId
-                        });
-                    } else if (orderStatus == 3) {
-                        console.log('即将直播收费但已付费');
-                        $state.go('upcomingLiving_details', {
-                            upcomingLivingId: liveId
-                        });
-                    }
-                }
-            }
-            //直播已结束
-            else if (liveStatus == 2) {
-                if (livePrice == 0) {
-                    console.log('直播已结束免费');
-                    $state.go('livingEnded_detail', {
-                        livingEndedId: liveId
-                    });
-                } else if (livePrice > 0) {
-                    if (orderStatus == 1) {
-                        console.log('直播已结束收费且未付费');
-                        $state.go('livingEnded_apply', {
-                            livingEndedId: liveId
-                        });
-                    } else if (orderStatus == 2 || orderStatus == 3) {
-                        console.log('直播已结束不免费但已付费');
-                        $state.go('livingEnded_detail', {
-                            livingEndedId: liveId
-                        });
-                    }
-                }
-            }
-        }
-
-        //直播--已结束  点击'回看'判断
+        //直播已结束  点击'回看'判断
         $scope.lookback = function (liveId, livePrice, orderStatus) {
             console.log('price ' + livePrice);
             console.log('orderStatus ' + orderStatus);
@@ -730,30 +683,181 @@ angular.module('starter.controllers', [])
         }
 
 
-        //直播--正在直播  点击后先根据直播视频价格是否免费判断,不是免费再根据用户付费状态判断
-        $scope.toLivingDetail = function (liveId, livePrice, orderStatus, livingName) {
-            console.log('price ' + livePrice);
-            console.log('orderStatus ' + orderStatus);
 
-            if (livePrice == 0) {
-                console.log('直播免费');
-                $state.go('living_detail', {
-                    livingId: liveId
-                });
-            } else if (livePrice > 0) {
-                if (orderStatus == 1) {
-                    console.log('直播收费且未支付');
-                    $state.go('confirm_order_living', {
-                        livingId: liveId
-                    });
-                } else if (orderStatus == 2) {
-                    console.log('直播收费但已支付');
-                    $state.go('living_detail', {
-                        livingId: liveId
-                    });
+
+        // 点击即将直播和直播已结束的左侧封面
+        // 点击后先根据价格是否免费判断,不是免费再根据用户付费状态判断
+        $scope.notLiving = function (liveId, livePrice, orderStatus) {
+            // 判断直播是否结束，正在直播已结束需要跳转到已结束视频
+            $http({
+                method:'POST',
+                url:ApiEndpoint.url + 'live/getLiveIsEnd.do',
+                data:$.param({
+                    liveId:liveId
+                }),
+                headers:{'Content-Type':'application/x-www-form-urlencoded'}
+            }).success(function(data){
+                if(data.errorCode == 0){
+                    // 1==》直播结束，2==》直播中，3==》即将直播
+                    var latestLiveStatus = data.result;
+
+                    //即将直播
+                    if (latestLiveStatus == 3) {
+                        if (livePrice == 0) {
+                            console.log('即将直播免费但需报名');
+                            $state.go('upcomingLiving_apply', {
+                                upcomingLivingId: liveId
+                            });
+                        } else if (livePrice > 0) {
+                            if (orderStatus == 1) {
+                                console.log('即将直播收费且未付费');
+                                $state.go('upcomingLiving_apply', {
+                                    upcomingLivingId: liveId
+                                });
+                            } else if (orderStatus == 3) {
+                                console.log('即将直播收费但已付费');
+                                $state.go('upcomingLiving_details', {
+                                    upcomingLivingId: liveId
+                                });
+                            }
+                        }
+                    }
+                    // 直播结束
+                    else if(latestLiveStatus == 1){
+                        if (livePrice == 0) {
+                            console.log('直播已结束免费');
+                            $state.go('livingEnded_detail', {
+                                livingEndedId: liveId
+                            });
+                        } else if (livePrice > 0) {
+                            if (orderStatus == 1) {
+                                console.log('直播已结束收费且未付费');
+                                $state.go('livingEnded_apply', {
+                                    livingEndedId: liveId
+                                });
+                            } else if (orderStatus == 2 || orderStatus == 3) {
+                                console.log('直播已结束不免费但已付费');
+                                $state.go('livingEnded_detail', {
+                                    livingEndedId: liveId
+                                });
+                            }
+                        }
+                    }
+                    // 正在直播
+                    else if(latestLiveStatus == 2){
+                        if (livePrice == 0) {
+                            console.log('直播免费');
+                            $state.go('living_detail', {
+                                livingId: liveId
+                            });
+                        } else if (livePrice > 0) {
+                            if (orderStatus == 1) {
+                                console.log('直播收费且未支付');
+                                $state.go('confirm_order_living', {
+                                    livingId: liveId
+                                });
+                            } else if (orderStatus == 2) {
+                                console.log('直播收费但已支付');
+                                $state.go('living_detail', {
+                                    livingId: liveId
+                                });
+                            }
+                        }
+                    }
                 }
-            }
+            })
         }
+        // 点击正在直播的封面
+        // 点击后先根据价格是否免费判断,不是免费再根据用户付费状态判断
+        $scope.toLivingDetail = function (liveId, livePrice, orderStatus) {
+            // 判断直播是否结束，正在直播已结束需要跳转到已结束视频
+            $http({
+                method:'POST',
+                url:ApiEndpoint.url + 'live/getLiveIsEnd.do',
+                data:$.param({
+                    liveId:liveId
+                }),
+                headers:{'Content-Type':'application/x-www-form-urlencoded'}
+            }).success(function(data){
+                if(data.errorCode == 0){
+                    // 1==》直播结束，2==》直播中，3==》即将直播
+                    var latestLiveStatus = data.result;
+
+                    //即将直播
+                    if (latestLiveStatus == 3) {
+                        console.log('即将直播');
+
+                        if (livePrice == 0) {
+                            console.log('即将直播免费但需报名');
+                            $state.go('upcomingLiving_apply', {
+                                upcomingLivingId: liveId
+                            });
+                        } else if (livePrice > 0) {
+                            if (orderStatus == 1) {
+                                console.log('即将直播收费且未付费');
+                                $state.go('upcomingLiving_apply', {
+                                    upcomingLivingId: liveId
+                                });
+                            } else if (orderStatus == 3) {
+                                console.log('即将直播收费但已付费');
+                                $state.go('upcomingLiving_details', {
+                                    upcomingLivingId: liveId
+                                });
+                            }
+                        }
+                    }
+                    // 直播结束
+                    else if(latestLiveStatus == 1){
+                        console.log('直播结束');
+
+                        if (livePrice == 0) {
+                            console.log('直播已结束免费');
+                            $state.go('livingEnded_detail', {
+                                livingEndedId: liveId
+                            });
+                        } else if (livePrice > 0) {
+                            if (orderStatus == 1) {
+                                console.log('直播已结束收费且未付费');
+                                $state.go('livingEnded_apply', {
+                                    livingEndedId: liveId
+                                });
+                            } else if (orderStatus == 2 || orderStatus == 3) {
+                                console.log('直播已结束不免费但已付费');
+                                $state.go('livingEnded_detail', {
+                                    livingEndedId: liveId
+                                });
+                            }
+                        }
+                    }
+                    // 正在直播
+                    else if(latestLiveStatus == 2){
+                        console.log('正在直播');
+
+                        if (livePrice == 0) {
+                            console.log('直播免费');
+                            $state.go('living_detail', {
+                                livingId: liveId
+                            });
+                        } else if (livePrice > 0) {
+                            if (orderStatus == 1) {
+                                console.log('直播收费且未支付');
+                                $state.go('confirm_order_living', {
+                                    livingId: liveId
+                                });
+                            } else if (orderStatus == 2) {
+                                console.log('直播收费但已支付');
+                                $state.go('living_detail', {
+                                    livingId: liveId
+                                });
+                            }
+                        }
+                    }
+                }
+            })
+        }
+
+
+        
 
 
         //1.录播 获取所有课程
@@ -810,6 +914,10 @@ angular.module('starter.controllers', [])
             $('#progress_video').hide();
             $('#progress_type').hide();
             $('#progress_price').hide();
+        })
+
+        $('.header_tab_left').click(function(){
+            getAllLiveList();
         })
 
 
@@ -1099,14 +1207,18 @@ angular.module('starter.controllers', [])
         console.log(JSON.parse(localStorage.user));
         $scope.user = JSON.parse(localStorage.user);
 
-        $http.post(ApiEndpoint.url + "coupon/getUserCouponList.do", {}, {
-            params: {
-                userId: localStorage.userId,
-            }
-        }).success(function (data) {
-            if (data.errorCode == 0) {
-                $scope.couponList = data.result;
-                $scope.couponNumber = $scope.couponList.length;
+
+        // 得到用户的优惠券数量和用户的余额
+        $http({
+            method: 'POST',
+            url: ApiEndpoint.url + 'home/getUserCouponNumberAndBalance.do',
+            data: $.param({
+                userId:localStorage.userId
+            }),
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+        }).success(function(data){
+            if(data.errorCode == 0){
+                $scope.userCouponNumberAndBalance = data.result;
             }
         })
 
@@ -1139,7 +1251,6 @@ angular.module('starter.controllers', [])
                             if($scope.data.exchangeCode != undefined && $scope.data.exchangeCode != ''){
                                 $http({
                                     method: 'POST',
-                                    // url: ApiEndpoint.url + 'exchangeGoods.do',
                                     url: ApiEndpoint.url + 'redeemCode/exchangeGoods.do',
                                     data: $.param({
                                         userId:localStorage.userId,
@@ -1452,11 +1563,13 @@ angular.module('starter.controllers', [])
             }
         }
     })
+
+
     .controller('LiveDetailsCtrl', function ($scope) {
-
-
         $scope.good = 0;
     })
+
+
     .controller('RecordCtrl', function ($scope, $ionicHistory) {
         $('.record_navigation_all').on('click', function () {
             $('.record_navigation_all').removeClass('select');
@@ -1468,14 +1581,30 @@ angular.module('starter.controllers', [])
 
         }
     })
-    //余额
-    .controller('OverCtrl', function ($scope, $ionicHistory) {
 
+
+    //余额
+    .controller('OverCtrl', function ($scope, $ionicHistory,$http,ApiEndpoint) {
         $scope.goBack = function () {
             $ionicHistory.goBack();
         }
 
+        // 得到用户的优惠券数量和用户的余额
+        $http({
+            method: 'POST',
+            url: ApiEndpoint.url + 'home/getUserCouponNumberAndBalance.do',
+            data: $.param({
+                userId:localStorage.userId
+            }),
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+        }).success(function(data){
+            if(data.errorCode == 0){
+                $scope.userCouponNumberAndBalance = data.result;
+            }
+        })
+
     })
+
 
     //我的活动
     .controller('MyActiveCtrl', function ($scope, $ionicHistory, $http, ApiEndpoint) {
@@ -1677,19 +1806,35 @@ angular.module('starter.controllers', [])
         }
 
     })
+
+
     //消费记录
     .controller('MyConsumeRecordCtrl', function ($scope, $ionicHistory, $http, ApiEndpoint) {
         $scope.goBack = function () {
             $ionicHistory.goBack();
         }
 
-        $http({
+        /*$http({
             method: 'POST',
             url: ApiEndpoint.url + 'record/getUserRecordList.do',
             data: $.param({
                 userId: localStorage.userId,
                 pageNum: 1,
                 pageSize: 10
+            }),
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+        }).success(function (data) {
+            if (data.errorCode == 0) {
+                $scope.recordList = data.result;
+            }
+        })*/
+
+        // 消费记录查询
+        $http({
+            method: 'POST',
+            url: ApiEndpoint.url + 'record/getUserConsumption.do',
+            data: $.param({
+                userId: localStorage.userId
             }),
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
         }).success(function (data) {
@@ -2287,8 +2432,6 @@ angular.module('starter.controllers', [])
         }).success(function(data){
             if(data.errorCode == 0){
                 var time = data.result;
-                console.log(time);
-
 
                 $http({
                     method:'POST',
@@ -2301,6 +2444,8 @@ angular.module('starter.controllers', [])
                     if(data.errorCode == 0){
                         $scope.activityInfo = data.result;
                         var activityDescription = data.result.activityDescription;
+                        var currentActivityId = data.result.activityId;
+                        console.log(currentActivityId);
 
                         $('#detail').html(activityDescription);
                         
@@ -2317,8 +2462,17 @@ angular.module('starter.controllers', [])
                             headers:{'Content-Type':'application/x-www-form-urlencoded'}
                         }).success(function(data){
                             if(data.errorCode == 0){
-                                $scope.activityRelatedList = data.result;
-                                console.log($scope.activityRelatedList);
+                                var activityRelatedResult = data.result;
+
+                                $scope.activityRelatedList = [];
+
+                                if(activityRelatedResult.length > 0){
+                                    angular.forEach(activityRelatedResult,function(value){
+                                        if(currentActivityId != value.activityId){
+                                            $scope.activityRelatedList.push(value);
+                                        }
+                                    })
+                                }
                             }
                         })
 
@@ -3265,11 +3419,6 @@ angular.module('starter.controllers', [])
             $ionicHistory.goBack();
         }
 
-        $scope.$on('$ionicView.beforeLeave',function(){
-            console.log('离开本页面');
-            $('#recordedDetailVideoWraper').remove('#my-video');
-            $ionicHistory.clearCache();
-        })
 
        /* $scope.$on('$ionicView.beforeEnter',function(){
             window.location.reload();
@@ -3342,13 +3491,13 @@ angular.module('starter.controllers', [])
                         console.log(data);
                     });
 
-                    
-
 
                     // myPlayer.setDataSource({ type: 'video/mp4', src: $scope.videoResult.videoUrl });
                     // myPlayer.play();
 
-                    
+                    $scope.$on('$ionicView.beforeLeave',function(){
+                        myPlayer.release();
+                    });
                 }
             })
         }
@@ -3715,6 +3864,10 @@ angular.module('starter.controllers', [])
 
                     // myPlayer.setDataSource({ type: 'video/mp4', src: $scope.videoResult.videoUrl });
                     // myPlayer.play();
+
+                    $scope.$on('$ionicView.beforeLeave',function(){
+                        myPlayer.release();
+                    });
                 }
             })
         }
