@@ -10,11 +10,12 @@
         <div class="row margin_left_-5 margin-top10 margin-bottom10">
             <span>{{videoResult.videoName}}</span>
         </div>
+        
         <div style="position: relative;" id="recordedDetailVideoWraper">
             <!--<img src="img/play-icon.png" style="position:absolute;top:35%;left: 45%;width: 50px;height: 50px;z-index: 100;">-->
-            <video id="my-video" class="video-js" x-webkit-airplay="allow" webkit-playsinline controls poster="{{videoResult.videoIcon}}" preload="auto" data-setup="{}" style="width: 100%;"></video>
+            <!--<video id="my-video" class="video-js" x-webkit-airplay="allow" webkit-playsinline controls poster="{{videoResult.videoIcon}}" preload="auto" data-setup="{}" style="width: 100%;"></video>-->
         </div>
-        <!--end-->
+
         <div class="row margin-top10 margin_left_-5">
             <div class="col-33" >
                 <img src="img/collection.png" style="width:25px;height: 25px;" ng-click="progress_collection()" ng-if="!collection_flag">

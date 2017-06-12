@@ -10,11 +10,9 @@
         <div class="row margin_left_-5 margin-top10 margin-bottom10">
             <span>{{videoResult.videoName}}</span>
         </div>
-        <div style="position: relative;" id="recordedDetailVideoWraper">
-            <!--<img src="img/play-icon.png" style="position:absolute;top:35%;left: 45%;width: 50px;height: 50px;z-index: 100;">-->
-            <!--<video id="my-video" class="video-js vjs-big-play-centered" x-webkit-airplay="allow" webkit-playsinline style="width: 100%;"></video>-->
-        </div>
-        <!--end-->
+
+        <div style="position: relative;" id="recordedDetailVideoWraper"></div>
+
         <div class="row margin-top10 margin_left_-5">
             <div class="col-33" >
                 <img src="img/collection.png" style="width:25px;height: 25px;" ng-click="progress_collection()" ng-if="!collection_flag">
@@ -112,6 +110,10 @@
     </div>
 </ion-content>
 
-<ion-footer-bar class="bar-assertive" ng-if="btnBuyStatus" ng-click="createVideoOrder()">
+<ion-footer-bar class="bar-assertive" ng-if="hasCourse && btnBuyStatus" ng-click="createCourseVideoOrder()">
+  <h1 class="title">立即购买</h1>
+</ion-footer-bar>
+
+<ion-footer-bar class="bar-assertive" ng-if="!hasCourse && btnBuyStatus" ng-click="createVideoOrder()">
   <h1 class="title">立即购买</h1>
 </ion-footer-bar>

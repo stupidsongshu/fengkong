@@ -1,4 +1,5 @@
-<ion-header-bar align-title="center" class='home_head'>
+<!--<ion-header-bar align-title="center" class='home_head'>-->
+<ion-header-bar align-title="center">
     <div class="header_tab">
         <span class="header_tab_change header_tab_left" ng-click="selectLivingRecorded(1)" ng-class="{header_select:selectedLivingRecorded == 1}">直播</span>
         <span class="header_tab_change header_tab_right" ng-click="selectLivingRecorded(2)" ng-class="{header_select:selectedLivingRecorded == 2}">录播</span>
@@ -13,7 +14,9 @@
         <!--直播-->
         <div id="progress_content" class="container" ng-if="selectedLivingRecorded == 1">
             <!--直播轮播图-->
-            <div class="swiper-container swiper-container-progress">
+            <div style="text-align:center;height:60px;line-height:60px;" ng-if="livingList.length == 0">暂无正在直播</div>
+
+            <div class="swiper-container swiper-container-progress" ng-if="livingList.lebgth > 0">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide" ng-repeat="living in livingList">
                         <div style="position: relative;" ng-click="toLivingDetail(living.liveId,living.livePrice,living.orderStatus)">
@@ -31,8 +34,9 @@
                 <span class="progerss_text_left"></span>
                 <span>近期直播</span>
             </div>
-            <!--近期直播-->
-            <div class="row margin-top10" style="margin-right:0px;margin-left: 0;float: left;" ng-repeat="live in beforeAndAfterLivingList">
+
+            <!--即将直播-->
+            <div class="row margin-top10" style="margin-right:0px;margin-left: 0;float: left;" ng-repeat="live in beforeLivingList">
                 <div class="col-50">
                     <div style="position: relative;margin-top: 10px;">
                         <a ng-click="notLiving(live.liveId,live.livePrice,live.orderStatus)">
@@ -41,7 +45,6 @@
                         </a>
 
                         <span class="myself_active_start" ng-if="live.newLiveStatus == 0">即将直播</span>
-                        <span class="myself_active_end" ng-if="live.newLiveStatus == 2">已结束</span>
                     </div>
                 </div>
                 <div class="col-50 margin-left10">
@@ -50,8 +53,8 @@
                         <span class="progress_font10">讲师：{{live.teacherName}}</span>
                         <span class="home_search_price_style">{{live.livePrice}}元</span>
                         <br>
-                        <span class="progress_font10">简介：</span><span class="progress_font10 progress_color_silver">{{live.videoIntroduction}}</span><br>
-                        <span class="progress_font10">开始时间</span><span class="progress_font10 progress_color_silver">{{live.liveStartTime | date:'yyyy-MM-dd'}}</span><br>
+                        <!--<span class="progress_font10">简介：</span><span class="progress_font10 progress_color_silver">{{live.videoIntroduction}}</span><br>-->
+                        <!--<span class="progress_font10">开始时间</span><span class="progress_font10 progress_color_silver">{{live.liveStartTime | date:'yyyy-MM-dd'}}</span><br>-->
                         <span class="progress_font10 progress_color_silver">{{live.number}}人已报名</span>
 
                         <span class="progress_font10 progeress_signup_button" ng-if="live.newLiveStatus == 0 && live.orderStatus == 1">
@@ -68,6 +71,43 @@
                         <span class="progress_font10 progeress_signup_button" ng-if="live.newLiveStatus == 1 && live.orderStatus == 2">
                         	<a class="progress_color_white" href="">点击观看</a>
                         </span>-->
+
+                        <a class="progress_color_white" ng-click="lookback(live.liveId,live.livePrice,live.orderStatus)">
+                            <span class="progress_font10 progeress_review_button" ng-if="live.newLiveStatus == 2">回看</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!--直播已结束-->
+            <div class="row margin-top10" style="margin-right:0px;margin-left: 0;float: left;" ng-repeat="live in afterLivingList">
+                <div class="col-50">
+                    <div style="position: relative;margin-top: 10px;">
+                        <a ng-click="notLiving(live.liveId,live.livePrice,live.orderStatus)">
+                            <div class="play-icon" ng-if="live.newLiveStatus != 0"></div>
+                            <img src="{{live.videoImage}}" style="width:100%;height: 100px;">
+                        </a>
+
+                        <span class="myself_active_end" ng-if="live.newLiveStatus == 2">已结束</span>
+                    </div>
+                </div>
+                <div class="col-50 margin-left10">
+                    <div style="position: relative;margin-top: 15px;">
+                        <span>名称：{{live.videoName}}</span><br>
+                        <span class="progress_font10">讲师：{{live.teacherName}}</span>
+                        <span class="home_search_price_style">{{live.livePrice}}元</span>
+                        <br>
+                        <!--<span class="progress_font10">简介：</span><span class="progress_font10 progress_color_silver">{{live.videoIntroduction}}</span><br>-->
+                        <!--<span class="progress_font10">开始时间</span><span class="progress_font10 progress_color_silver">{{live.liveStartTime | date:'yyyy-MM-dd'}}</span><br>-->
+                        <span class="progress_font10 progress_color_silver">{{live.number}}人已报名</span>
+
+                        <span class="progress_font10 progeress_signup_button" ng-if="live.newLiveStatus == 0 && live.orderStatus == 1">
+                        	<!--<a class="progress_color_white" href="#/active_apply">立即报名</a>-->
+                        	<a class="progress_color_white" ng-click="upcomingLivingApply(live.liveId,live.videoName,live.livePrice,live.orderStatus)">立即报名</a>
+                        </span>
+                        <span class="progress_font10 progeress_signup_button" ng-if="live.newLiveStatus == 0 && live.orderStatus == 3">
+                        	<a class="progress_color_white" disabled="true">已报名</a>
+                        </span>
 
                         <a class="progress_color_white" ng-click="lookback(live.liveId,live.livePrice,live.orderStatus)">
                             <span class="progress_font10 progeress_review_button" ng-if="live.newLiveStatus == 2">回看</span>

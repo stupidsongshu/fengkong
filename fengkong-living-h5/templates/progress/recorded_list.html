@@ -47,7 +47,7 @@
             <div id="progress_recorded_related" class="container">
                 <div class="row" style="padding-top:10px;" ng-repeat="recordedCourseItem in recordedCourseList">
                     <div class="col-50">
-                        <a href="#/recorded_detail/{{courseId}}/{{recordedCourseItem.videoId}}" style="position: relative;display:inline-block;" ng-click="videoInfo(recordedCourseItem.videoName,recordedCourseItem.videoPrice,recordedCourseItem.videoIcon,courseInfo.courseName)">
+                        <a href="#/recorded_detail/{{recordedCourseItem.videoId}}" style="position: relative;display:inline-block;" ng-click="videoInfo(recordedCourseItem.videoName,recordedCourseItem.videoPrice,recordedCourseItem.videoIcon,courseInfo.courseName)">
                             <img src="img/play-icon.png" class="play-icon">
                             <img src="{{recordedCourseItem.videoIcon}}" width="100%" height="140px;">
                         </a>

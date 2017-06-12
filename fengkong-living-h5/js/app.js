@@ -40,14 +40,14 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
         // Set up the various states which the app can be in.
         // Each state's controller can be found in controllers.js
         $stateProvider
-
-        // setup an abstract state for the tabs directive
+            // setup an abstract state for the tabs directive
             .state('tabs', {
                 url: '/tab',
                 abstract: true,
                 templateUrl: 'templates/tabs.html',
                 controller: 'TabCtrl'
             })
+
             //登陆
             .state('login', {
                 url: "/login",
@@ -62,7 +62,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
                 templateUrl: "templates/user/register.html",
                 controller:"RegisterCtrl"
             })
-            //  首页
+            //首页
             .state('tabs.home', {
                 url: "/home",
                 cache: 'false',
@@ -219,22 +219,20 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
                 templateUrl:'templates/myself/edit_password.html',
                 controller:'MyEditPasswordCtrl'
             })
-             //用户反馈
+            //用户反馈
             .state('user_feedback',{
                 url:'/user_feedback',
                 cache:'false',
                 templateUrl:'templates/myself/user_feedback.html',
                 controller:'UserFeedbackCtrl'
             })
-            
-              //账户绑定
+            //账户绑定
             .state('account_bind',{
                 url:'/account_bind',
                 cache:'false',
                 templateUrl:'templates/myself/account_bind.html',
                 controller:'AccountBindCtrl'
             })
-
             //我的优惠券
             .state('my_coupon',{
                 url:'/my_coupon',
@@ -291,9 +289,9 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
                 templateUrl:'templates/active/confirm_order_course.html',
                 controller:'ConfirmOrderCourseCtrl'
             })
-            //确认订单--课程课时视频
+            //确认订单--所有视频
             .state('confirm_order_video',{
-                url:'/confirm_order_video',
+                url:'/confirm_order_video/{videoId}',
                 cache:'false',
                 templateUrl:'templates/active/confirm_order_video.html',
                 controller:'ConfirmOrderVideoCtrl'
@@ -340,26 +338,31 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
                 templateUrl:'templates/progress/recorded_list.html',
                 controller:'RecordedListCtrl'
             })
-            //录播课程的课时详情
+            //录播课程的课时详情（old）
+            // 不属于课程的视频、直播已结束转录播的视频、活动视频共同页面
             .state('recorded_detail',{
-                url:'/recorded_detail/{courseId}/{videoId}',
+                url:'/recorded_detail/{videoId}',
                 cache:false,
                 templateUrl:'templates/progress/recorded_detail.html',
-                controller:'RecordedDetailCtrl'
+                // controller:'RecordedDetailCtrl'
+                controller:'VideoCtrl'
             })
             //不属于课程的视频详情
             .state('recordedVideo_detail',{
                 url:'/recordedVideo_detail/{videoId}',
                 cache:false,
                 templateUrl:'templates/progress/recordedVideo_detail.html',
-                controller:'RecordedVideoDetailCtrl'
+                // controller:'RecordedVideoDetailCtrl'
+                controller:'VideoCtrl'
             })
             //直播已结束详情
             .state('livingEnded_detail',{
-                url:'/livingEnded_detail/{livingEndedId}',
+                // url:'/livingEnded_detail/{livingEndedId}',
+                url:'/livingEnded_detail/{videoId}',
                 cache:'false',
                 templateUrl:'templates/progress/livingEnded_detail.html',
-                controller:'LivingEndedDetailCtrl'
+                // controller:'LivingEndedDetailCtrl'
+                controller:'VideoCtrl'
             })
             //忘记密码
             .state('forget_password',{
@@ -375,6 +378,17 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
                 templateUrl:'templates/myself/rechange_record.html',
                 controller:'RechangeRecordCtrl'
             })
+
+
+
+
+            // 不属于课程的视频、直播已结束转录播的视频、活动视频共同页面
+            /*.state('video',{
+                url:'/video',
+                cache:'false',
+                templateUrl:'templates/progress/video.html',
+                controller:'VideoCtrl'
+            })*/
 
 
 
