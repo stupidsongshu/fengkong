@@ -11,7 +11,7 @@
 .progress_color_silver{color:silver}
 .progress_color_white{color:white}
 .progeress_signup_button{width:47%;text-align: center;display:inline-block;float:right;background-color: #c95f48;border-radius: 4px;}
-.progeress_review_button{width:47%;text-align: center;display:inline-block;float:right;background-color: rgb(128,128,128);border-radius: 4px;}
+.progeress_review_button{width:70px;text-align: center;display:inline-block;float:right;background-color: rgb(128,128,128);border-radius: 4px;}
 .progress_select{color: #c95f48}
 .progress_all_search_video_list_line{width:120%;background-color: silver;margin-left: -30px;height: 1px;}
 .progress_all_search_line{width:120%;background-color: #fbf9f9;margin-left: -30px;font-size: 17px;padding-top: 10px;padding-bottom: 10px;}

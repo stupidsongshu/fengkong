@@ -2,7 +2,7 @@
 	<div class="close"><img src="images/close.png" alt=""></div>
 	<ul class="title clearfix">
 		<li class="pull-left active">注册</li>
-		<li class="pull-left">登陆</li>
+		<li class="pull-left">登录</li>
 	</ul>
 	
 	<div class="tab">
@@ -30,21 +30,21 @@
 				<img src="images/logo.png" alt="">
 			</div>
 			<div style="text-align: center;">
-				<input class="register_input" type="text" placeholder="输入登陆手机号码">
+				<input class="register_input" type="text" placeholder="输入登录手机号码" ng-model="user.userName">
 			</div>
 			<div style="text-align: center;margin-top: 24px;">
-				<input class="register_input" type="text" placeholder="输入账户密码">
+				<input class="register_input" type="text" placeholder="输入账户密码" ng-model="user.password">
 			</div>
 			<div style="width: 320px;margin: 0 auto;margin-top: 10px;font-size: 14px;">
 				<div class="pull-left">
 					<input type="checkbox" id="auto_login" style="width: 16px;height: 16px;vertical-align: -3px;">
-					<label for="auto_login">下次自动登陆</label>
+					<label for="auto_login">下次自动登录</label>
 				</div>
 				<div class="pull-right">忘记密码?</div>
 			</div>
-			<div class="submit">登陆</div>
+			<div class="submit" ng-click="login()">登录</div>
 			<div class="other_login">
-				<div>其他登陆方法</div>
+				<div>其他登录方法</div>
 				<div style="text-align: center;margin-top: 10px;">
 					<img src="images/wx.png" alt="">
 				</div>

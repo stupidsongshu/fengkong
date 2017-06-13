@@ -1,4 +1,4 @@
-angular.module('starter.controllers', [])
+angular.module('starter.controllers', ['ionic'])
 
     // .filter('numberFormat',function(){
     //     return function(num){
@@ -20,8 +20,8 @@ angular.module('starter.controllers', [])
     })*/
 
     .constant('ApiEndpoint', {
-        // url: 'http://www.igmhz.com/fengkong-server/'
-        url: 'http://localhost:8080/fengkong-server/'
+        url: 'http://www.igmhz.com/fengkong-server/'
+        // url: 'http://localhost:8080/fengkong-server/'
     })
     .controller('TabCtrl', function ($scope, $rootScope, $ionicLoading, $timeout, $ionicHistory, $state) {
 
@@ -102,7 +102,7 @@ angular.module('starter.controllers', [])
 
     .controller('HomeCtrl', function ($scope, $ionicLoading, $timeout, $ionicHistory, $state, $http, ApiEndpoint) {
         console.log($ionicHistory.viewHistory());
-        if($ionicHistory.viewHistory().backView != null){
+        if ($ionicHistory.viewHistory().backView != null) {
             console.log($ionicHistory.viewHistory().backView.stateName);
         }
 
@@ -481,13 +481,13 @@ angular.module('starter.controllers', [])
 
 
     //课程
-    .controller('ProgressCtrl', function ($scope, $http, $state, $stateParams, $ionicHistory,ApiEndpoint) {
+    .controller('ProgressCtrl', function ($scope, $http, $state, $stateParams, $ionicHistory, ApiEndpoint) {
         console.log($ionicHistory.viewHistory());
-        if($ionicHistory.viewHistory().backView != null){
+        if ($ionicHistory.viewHistory().backView != null) {
             console.log($ionicHistory.viewHistory().backView.stateName);
         }
 
-        if(localStorage.userId == undefined){
+        if (localStorage.userId == undefined) {
             $state.go('login');
             return;
         }
@@ -499,7 +499,7 @@ angular.module('starter.controllers', [])
 
 
         // 此方法不执行
-        $scope.$on('$stateChangeSucess',function(evt,toState,roParams,fromState,fromParams){
+        $scope.$on('$stateChangeSucess', function (evt, toState, roParams, fromState, fromParams) {
             console.log(evt);
             console.log(toState.name);
             console.log(roParams);
@@ -507,7 +507,7 @@ angular.module('starter.controllers', [])
             console.log(fromParams);
         });
 
-        $scope.$on('$ionicView.beforeEnter', function() {
+        $scope.$on('$ionicView.beforeEnter', function () {
             console.log(2);
             // window.location.reload();//有bug  会无限刷新
         });
@@ -559,7 +559,7 @@ angular.module('starter.controllers', [])
             getAllCourses();
         }
 
-        function getAllLiveList (){
+        function getAllLiveList() {
             //获取时间戳
             $http.post(ApiEndpoint.url + "home/getNowTime.do", {}, {
                 params: {}
@@ -595,7 +595,7 @@ angular.module('starter.controllers', [])
                                     // 即将直播
                                     $scope.beforeLivingList.push(value);
                                     value.newLiveStatus = 0;
-                                } else if(time > value.liveEndTime){
+                                } else if (time > value.liveEndTime) {
                                     // 直播已结束
                                     $scope.afterLivingList.push(value);
                                     value.newLiveStatus = 2;
@@ -682,14 +682,14 @@ angular.module('starter.controllers', [])
         $scope.notLiving = function (liveId, livePrice, orderStatus) {
             // 判断直播是否结束，正在直播已结束需要跳转到已结束视频
             $http({
-                method:'POST',
-                url:ApiEndpoint.url + 'live/getLiveIsEnd.do',
-                data:$.param({
-                    liveId:liveId
+                method: 'POST',
+                url: ApiEndpoint.url + 'live/getLiveIsEnd.do',
+                data: $.param({
+                    liveId: liveId
                 }),
-                headers:{'Content-Type':'application/x-www-form-urlencoded'}
-            }).success(function(data){
-                if(data.errorCode == 0){
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+            }).success(function (data) {
+                if (data.errorCode == 0) {
                     // 1==》直播结束，2==》直播中，3==》即将直播
                     var latestLiveStatus = data.result;
 
@@ -715,7 +715,7 @@ angular.module('starter.controllers', [])
                         }
                     }
                     // 直播结束
-                    else if(latestLiveStatus == 1){
+                    else if (latestLiveStatus == 1) {
                         if (livePrice == 0) {
                             console.log('直播已结束免费');
                             $state.go('livingEnded_detail', {
@@ -736,7 +736,7 @@ angular.module('starter.controllers', [])
                         }
                     }
                     // 正在直播
-                    else if(latestLiveStatus == 2){
+                    else if (latestLiveStatus == 2) {
                         if (livePrice == 0) {
                             console.log('直播免费');
                             $state.go('living_detail', {
@@ -764,14 +764,14 @@ angular.module('starter.controllers', [])
         $scope.toLivingDetail = function (liveId, livePrice, orderStatus) {
             // 判断直播是否结束，正在直播已结束需要跳转到已结束视频
             $http({
-                method:'POST',
-                url:ApiEndpoint.url + 'live/getLiveIsEnd.do',
-                data:$.param({
-                    liveId:liveId
+                method: 'POST',
+                url: ApiEndpoint.url + 'live/getLiveIsEnd.do',
+                data: $.param({
+                    liveId: liveId
                 }),
-                headers:{'Content-Type':'application/x-www-form-urlencoded'}
-            }).success(function(data){
-                if(data.errorCode == 0){
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+            }).success(function (data) {
+                if (data.errorCode == 0) {
                     // 1==》直播结束，2==》直播中，3==》即将直播
                     var latestLiveStatus = data.result;
 
@@ -799,7 +799,7 @@ angular.module('starter.controllers', [])
                         }
                     }
                     // 直播结束
-                    else if(latestLiveStatus == 1){
+                    else if (latestLiveStatus == 1) {
                         console.log('直播结束');
 
                         if (livePrice == 0) {
@@ -822,7 +822,7 @@ angular.module('starter.controllers', [])
                         }
                     }
                     // 正在直播
-                    else if(latestLiveStatus == 2){
+                    else if (latestLiveStatus == 2) {
                         console.log('正在直播');
 
                         if (livePrice == 0) {
@@ -849,7 +849,7 @@ angular.module('starter.controllers', [])
         }
 
 
-        
+
 
 
         //1.录播 获取所有课程
@@ -908,7 +908,7 @@ angular.module('starter.controllers', [])
             $('#progress_price').hide();
         })
 
-        $('.header_tab_left').click(function(){
+        $('.header_tab_left').click(function () {
             getAllLiveList();
         })
 
@@ -1070,7 +1070,7 @@ angular.module('starter.controllers', [])
     // 活动
     .controller('ActiveCtrl', function ($scope, $ionicLoading, $timeout, $ionicHistory, $state, $http, ApiEndpoint) {
         console.log($ionicHistory.viewHistory());
-        if($ionicHistory.viewHistory().backView != null){
+        if ($ionicHistory.viewHistory().backView != null) {
             console.log($ionicHistory.viewHistory().backView.stateName);
         }
 
@@ -1110,12 +1110,12 @@ angular.module('starter.controllers', [])
             }).success(function (data) {
                 if (data.errorCode == 0) {
                     var time = data.result;
-                    
+
                     $http({
                         method: 'POST',
                         url: ApiEndpoint.url + 'activity/getAllActivityList.do',
                         data: $.param({
-                            activityWay:activityWay
+                            activityWay: activityWay
                         }),
                         headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
                     }).success(function (data) {
@@ -1128,30 +1128,30 @@ angular.module('starter.controllers', [])
                             $scope.notRecommendedActivityList = [];
 
                             // activated(推荐状态,默认不推荐):0不推荐  1推荐
-                            angular.forEach($scope.activityList,function(value){
-                                if(value.activated == 0){
+                            angular.forEach($scope.activityList, function (value) {
+                                if (value.activated == 0) {
                                     $scope.notRecommendedActivityList.push(value);
 
-                                    if(time < value.activityStartTime){
+                                    if (time < value.activityStartTime) {
                                         // 即将开始
                                         value.newActivityStatus = 1;
-                                    }else if(time >= value.activityStartTime && time <= value.activityEndTime){
+                                    } else if (time >= value.activityStartTime && time <= value.activityEndTime) {
                                         // 正在进行
                                         value.newActivityStatus = 2;
-                                    }else if(time > value.activityEndTime){
+                                    } else if (time > value.activityEndTime) {
                                         // 已结束
                                         value.newActivityStatus = 3;
                                     }
-                                }else if(value.activated == 1){
+                                } else if (value.activated == 1) {
                                     $scope.recommendedActivityList.push(value);
 
-                                    if(time < value.activityStartTime){
+                                    if (time < value.activityStartTime) {
                                         // 即将开始
                                         value.newActivityStatus = 1;
-                                    }else if(time >= value.activityStartTime && time <= value.activityEndTime){
+                                    } else if (time >= value.activityStartTime && time <= value.activityEndTime) {
                                         // 正在进行
                                         value.newActivityStatus = 2;
-                                    }else if(time > value.activityEndTime){
+                                    } else if (time > value.activityEndTime) {
                                         // 已结束
                                         value.newActivityStatus = 3;
                                     }
@@ -1160,7 +1160,7 @@ angular.module('starter.controllers', [])
                             console.log($scope.recommendedActivityList);
                             console.log($scope.notRecommendedActivityList);
 
-                            $timeout(function(){
+                            $timeout(function () {
                                 var swiperContainerActivity = new Swiper('#swiper-container-activity', {
                                     autoplay: 4000,
                                     loop: true,
@@ -1168,7 +1168,7 @@ angular.module('starter.controllers', [])
                                     observer: true,//修改swiper自己或子元素时，自动初始化swiper
                                     observeParents: true,//修改swiper的父元素时，自动初始化swiper
                                 });
-                            },0)
+                            }, 0)
                         }
                     })
                 }
@@ -1177,22 +1177,22 @@ angular.module('starter.controllers', [])
 
         getActivityList(0);
 
-        
-        $scope.setActivityWay = function(activityWay){
+
+        $scope.setActivityWay = function (activityWay) {
             $scope.activityWay = activityWay;
 
             getActivityList(activityWay);
         }
 
 
-        $scope.toActivityDetail = function(activityId,activityPrice){
-            console.log(activityId,activityPrice);
+        $scope.toActivityDetail = function (activityId, activityPrice) {
+            console.log(activityId, activityPrice);
         }
     })
 
-    .controller('MyselfCtrl', function ($ionicActionSheet, $scope, $state, $http, $rootScope, $ionicHistory, $location, $interval, $ionicPopup,ApiEndpoint,PopService) {
+    .controller('MyselfCtrl', function ($ionicActionSheet, $scope, $state, $http, $rootScope, $ionicHistory, $location, $interval, $ionicPopup, ApiEndpoint, PopService) {
         console.log($ionicHistory.viewHistory());
-        if($ionicHistory.viewHistory().backView != null){
+        if ($ionicHistory.viewHistory().backView != null) {
             console.log($ionicHistory.viewHistory().backView.stateName);
         }
 
@@ -1205,11 +1205,11 @@ angular.module('starter.controllers', [])
             method: 'POST',
             url: ApiEndpoint.url + 'home/getUserCouponNumberAndBalance.do',
             data: $.param({
-                userId:localStorage.userId
+                userId: localStorage.userId
             }),
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
-        }).success(function(data){
-            if(data.errorCode == 0){
+        }).success(function (data) {
+            if (data.errorCode == 0) {
                 $scope.userCouponNumberAndBalance = data.result;
             }
         })
@@ -1225,10 +1225,10 @@ angular.module('starter.controllers', [])
                 subTitle: '',
                 scope: $scope,
                 buttons: [//Array[Object] (可选)。放在弹窗footer内的按钮
-                    { 
+                    {
                         text: '取消',
                         type: 'button-default',
-                        onTap: function(e) {
+                        onTap: function (e) {
                             // 当点击时，e.preventDefault() 会阻止弹窗关闭
                             // e.preventDefault();
                         }
@@ -1236,55 +1236,55 @@ angular.module('starter.controllers', [])
                     {
                         text: '确定',
                         type: 'button-default',
-                        onTap: function(e) {
+                        onTap: function (e) {
                             // 返回的值会导致处理给定的值
                             e.preventDefault();
 
-                            if($scope.data.exchangeCode != undefined && $scope.data.exchangeCode != ''){
+                            if ($scope.data.exchangeCode != undefined && $scope.data.exchangeCode != '') {
                                 $http({
                                     method: 'POST',
                                     url: ApiEndpoint.url + 'redeemCode/exchangeGoods.do',
                                     data: $.param({
-                                        userId:localStorage.userId,
-                                        exchangeCode:$scope.data.exchangeCode
+                                        userId: localStorage.userId,
+                                        exchangeCode: $scope.data.exchangeCode
                                     }),
                                     headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
-                                }).success(function(data){
-                                    if(data.errorCode == 0){
+                                }).success(function (data) {
+                                    if (data.errorCode == 0) {
                                         myPopup.close();
 
                                         // redeemType兑换码类型: 1优惠券  2虚拟商品货币
-                                        if(data.result.redeemType == 1){
+                                        if (data.result.redeemType == 1) {
                                             var codeDescription = data.result.codeDescription;
 
                                             var myPopup1 = $ionicPopup.alert({
                                                 title: '<h4>兑换成功!</h4>', // String. 弹窗的标题
                                                 subTitle: '', // String (可选)。弹窗的子标题
-                                                template: '<div style="text-align:center">成功兑换一张<span style="color:#f00;">'+codeDescription+'</span></div>', // String (可选)。放在弹窗body内的html模板
+                                                template: '<div style="text-align:center">成功兑换一张<span style="color:#f00;">' + codeDescription + '</span></div>', // String (可选)。放在弹窗body内的html模板
                                                 templateUrl: '', // String (可选)。 放在弹窗body内的html模板的URL
                                                 okText: '去看看', // String (默认: 'OK')。OK按钮的文字
                                                 okType: 'button-clear button-assertive', // String (默认: 'button-positive')。OK按钮的类型
                                             });
-                                            myPopup1.then(function(res){
-                                                if(res){
+                                            myPopup1.then(function (res) {
+                                                if (res) {
                                                     $('.popup-container').hide();
                                                     $state.go('my_coupon');
                                                 }
                                             })
-                                        }else if(data.result.redeemType == 2){
+                                        } else if (data.result.redeemType == 2) {
                                             var codeDescription = data.result.codeDescription;
-                                            
+
                                             var myPopup2 = $ionicPopup.alert({
                                                 title: '<h4>兑换成功!</h4>', // String. 弹窗的标题。
                                                 subTitle: '', // String (可选)。弹窗的子标题。
-                                                template: '<div style="text-align:center">成功兑换风控币<span style="color:#f00;">'+codeDescription+'</span></div>'+
-                                                            '<div style="text-align:center;color:#ccc;font-size:12px;">可到账户充值记录查询</div>', // String (可选)。放在弹窗body内的html模板
+                                                template: '<div style="text-align:center">成功兑换风控币<span style="color:#f00;">' + codeDescription + '</span></div>' +
+                                                '<div style="text-align:center;color:#ccc;font-size:12px;">可到账户充值记录查询</div>', // String (可选)。放在弹窗body内的html模板
                                                 templateUrl: '', // String (可选)。 放在弹窗body内的html模板的URL
                                                 okText: '去看看', // String (默认: 'OK')。OK按钮的文字
                                                 okType: 'button-clear button-assertive', // String (默认: 'button-positive')。OK按钮的类型
                                             });
-                                            myPopup2.then(function(res){
-                                                if(res){
+                                            myPopup2.then(function (res) {
+                                                if (res) {
                                                     $('.popup-container').hide();
                                                     $state.go('over');
                                                 }
@@ -1292,7 +1292,7 @@ angular.module('starter.controllers', [])
                                         }
                                     }
                                 })
-                            }else{
+                            } else {
                                 PopService.showPop('兑换码不能为空');
                             }
                         }
@@ -1300,7 +1300,7 @@ angular.module('starter.controllers', [])
                 ]
             });
 
-            myPopup.then(function(res) {
+            myPopup.then(function (res) {
                 console.log('Tapped!', res);
             });
         };
@@ -1310,7 +1310,7 @@ angular.module('starter.controllers', [])
     //搜索页面
     .controller('HomeSearchCtrl', function ($scope, $ionicLoading, $timeout, $ionicHistory, $state, $http, ApiEndpoint) {
         console.log($ionicHistory.viewHistory());
-        if($ionicHistory.viewHistory().backView != null){
+        if ($ionicHistory.viewHistory().backView != null) {
             console.log($ionicHistory.viewHistory().backView.stateName);
         }
 
@@ -1363,9 +1363,9 @@ angular.module('starter.controllers', [])
 
     })
 
-    .controller('LoginCtrl', function ($scope, $rootScope, $http, $timeout, $ionicLoading,$ionicHistory, $state, ApiEndpoint, PopService) {
+    .controller('LoginCtrl', function ($scope, $rootScope, $http, $timeout, $ionicLoading, $ionicHistory, $state, ApiEndpoint, PopService) {
         console.log($ionicHistory.viewHistory());
-        if($ionicHistory.viewHistory().backView != null){
+        if ($ionicHistory.viewHistory().backView != null) {
             console.log($ionicHistory.viewHistory().backView.stateName);
         }
 
@@ -1401,9 +1401,9 @@ angular.module('starter.controllers', [])
 
                         PopService.showPop('登录成功');
                         // $state.go('tabs.myself');
-                        if($ionicHistory.viewHistory().backView != null){
+                        if ($ionicHistory.viewHistory().backView != null) {
                             $ionicHistory.goBack();
-                        }else if($ionicHistory.viewHistory().backView == null){
+                        } else if ($ionicHistory.viewHistory().backView == null) {
                             $state.go('tabs.home');
                             /*if($ionicHistory.viewHistory().backView.stateName == 'login'){
                             }*/
@@ -1576,7 +1576,7 @@ angular.module('starter.controllers', [])
 
 
     //余额
-    .controller('OverCtrl', function ($scope, $ionicHistory,$http,ApiEndpoint) {
+    .controller('OverCtrl', function ($scope, $ionicHistory, $http, ApiEndpoint) {
         $scope.goBack = function () {
             $ionicHistory.goBack();
         }
@@ -1586,11 +1586,11 @@ angular.module('starter.controllers', [])
             method: 'POST',
             url: ApiEndpoint.url + 'home/getUserCouponNumberAndBalance.do',
             data: $.param({
-                userId:localStorage.userId
+                userId: localStorage.userId
             }),
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
-        }).success(function(data){
-            if(data.errorCode == 0){
+        }).success(function (data) {
+            if (data.errorCode == 0) {
                 $scope.userCouponNumberAndBalance = data.result;
             }
         })
@@ -1604,29 +1604,29 @@ angular.module('starter.controllers', [])
             $ionicHistory.goBack();
         }
 
-        $scope.progressType = function(typeId){
+        $scope.progressType = function (typeId) {
             $scope.type_id = typeId;
             $scope.navIndex = 2;
             $('.down-list').hide();
         }
 
-        $scope.progressPrice = function(priceId){
+        $scope.progressPrice = function (priceId) {
             $scope.price_id = priceId;
             $scope.navIndex = 3;
             $('.down-list').hide();
         }
 
-        $('.dropdownType').on('click',function(){
+        $('.dropdownType').on('click', function () {
             $(this).next('.down-list').toggle();
             $('.dropdownPrice').next('.down-list').hide();
         })
 
-        $('.dropdownPrice').on('click',function(){
+        $('.dropdownPrice').on('click', function () {
             $(this).next('.down-list').toggle();
             $('.dropdownType').next('.down-list').hide();
         })
 
-        $('.myself_active_navigation_all').on('click',function(){
+        $('.myself_active_navigation_all').on('click', function () {
             $(this).addClass('progress_select').siblings().removeClass('progress_select');
         })
 
@@ -1638,34 +1638,34 @@ angular.module('starter.controllers', [])
                 url: ApiEndpoint.url + 'home/getNowTime.do',
                 data: $.param({}),
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
-            }).success(function(data){
+            }).success(function (data) {
                 var time = data.result;
 
                 $http({
-                    method:'POST',
-                    url:ApiEndpoint.url + 'activity/getMyActivityList.do',
-                    data:$.param({
+                    method: 'POST',
+                    url: ApiEndpoint.url + 'activity/getMyActivityList.do',
+                    data: $.param({
                         userId: localStorage.userId,
                         pageNum: 1,
                         pageSize: 10,
                         isAllStatus: 0,
                         statusPay: 12
                     }),
-                    headers:{'Content-Type':'application/x-www-form-urlencoded'}
-                }).success(function(data){
-                    if(data.errorCode == 0){
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+                }).success(function (data) {
+                    if (data.errorCode == 0) {
                         $scope.activeList = data.result;
                         console.log(data.result);
 
                         // newActivityStatus(活动状态):1即将开始(报名中)  2正在进行  3已结束
-                        angular.forEach($scope.activeList,function(value){
-                            if(time < value.activityStartTime){
+                        angular.forEach($scope.activeList, function (value) {
+                            if (time < value.activityStartTime) {
                                 // 即将开始
                                 value.newActivityStatus = 1;
-                            }else if(time >= value.activityStartTime && time <= value.activityEndTime){
+                            } else if (time >= value.activityStartTime && time <= value.activityEndTime) {
                                 // 正在进行
                                 value.newActivityStatus = 2;
-                            }else if(time > value.activityEndTime){
+                            } else if (time > value.activityEndTime) {
                                 // 已结束
                                 value.newActivityStatus = 3;
                             }
@@ -1686,18 +1686,18 @@ angular.module('starter.controllers', [])
 
         $scope.clickPrice = function (id) {
             $http({
-                method:'POST',
-                url:ApiEndpoint.url + 'activity/getMyActivityList.do',
-                data:$.param({
+                method: 'POST',
+                url: ApiEndpoint.url + 'activity/getMyActivityList.do',
+                data: $.param({
                     userId: localStorage.userId,
                     pageNum: 1,
                     pageSize: 10,
                     isAllStatus: 1,
                     statusPay: id
                 }),
-                headers:{'Content-Type':'application/x-www-form-urlencoded'}
-            }).success(function(data){
-                if(data.errorCode == 0){
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+            }).success(function (data) {
+                if (data.errorCode == 0) {
                     $scope.activeList = data.result;
                 }
             })
@@ -1707,7 +1707,7 @@ angular.module('starter.controllers', [])
 
 
     //我的历史
-    .controller('MyHistoryCtrl', function ($scope, $ionicHistory,$http,ApiEndpoint) {
+    .controller('MyHistoryCtrl', function ($scope, $ionicHistory, $http, ApiEndpoint) {
         $('.tab-item1').on('click', function () {
             $('.tab-item1').removeClass('active1');
             $(this).addClass('active1');
@@ -1723,7 +1723,7 @@ angular.module('starter.controllers', [])
         }
 
         // type: 1视频  2课程 3活动
-        $scope.getMyHistory = function(type){
+        $scope.getMyHistory = function (type) {
             $http({
                 method: 'POST',
                 url: ApiEndpoint.url + 'home/userHistoryRecord.do',
@@ -1744,7 +1744,7 @@ angular.module('starter.controllers', [])
 
     })
 
-    
+
     //我的收藏
     .controller('MyCollectionCtrl', function ($scope, $ionicHistory, $http, ApiEndpoint) {
         $scope.goBack = function () {
@@ -1752,7 +1752,7 @@ angular.module('starter.controllers', [])
         }
 
         $scope.typeId = 1;
-        $scope.getMyCollection = function(type){
+        $scope.getMyCollection = function (type) {
             $scope.typeId = type;
 
             $http({
@@ -2276,7 +2276,7 @@ angular.module('starter.controllers', [])
 
     })
     // 用户反馈
-    .controller('UserFeedbackCtrl', function ($scope, $ionicHistory, $http, ApiEndpoint,PopService) {
+    .controller('UserFeedbackCtrl', function ($scope, $ionicHistory, $http, ApiEndpoint, PopService) {
         $scope.goBack = function () {
             $ionicHistory.goBack();
         }
@@ -2299,10 +2299,10 @@ angular.module('starter.controllers', [])
             console.log(/^1[34578]\d{9}$/.test($scope.registerData.userContact));
             console.log(/^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$/.test($scope.registerData.userContact));
             console.log(/^1[34578]\d{9}$/.test($scope.registerData.userContact) && /^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$/.test($scope.registerData.userContact));
-            if($scope.registerData.message == undefined || $scope.registerData.message == ''){
+            if ($scope.registerData.message == undefined || $scope.registerData.message == '') {
                 PopService.showPop('反馈内容不能为空');
                 return;
-            }else if(!/^1[34578]\d{9}$/.test($scope.registerData.userContact) && !/^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$/.test($scope.registerData.userContact)){
+            } else if (!/^1[34578]\d{9}$/.test($scope.registerData.userContact) && !/^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$/.test($scope.registerData.userContact)) {
                 PopService.showPop('手机或邮箱地址有误');
                 return;
             }
@@ -2314,8 +2314,8 @@ angular.module('starter.controllers', [])
                 data: $.param({
                     userId: localStorage.userId,
                     feedBackType: $scope.type_id,
-                    feedBackContent:$scope.registerData.message,
-                    userContact:$scope.registerData.userContact
+                    feedBackContent: $scope.registerData.message,
+                    userContact: $scope.registerData.userContact
                 }),
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
             }).success(function (data) {
@@ -2325,7 +2325,7 @@ angular.module('starter.controllers', [])
                     PopService.showError('提交失败');
                 }
             })
-            
+
         }
     })
 
@@ -2397,7 +2397,7 @@ angular.module('starter.controllers', [])
         }
 
         $scope.activityId = $stateParams.activityId;
-        console.log('activityId: '+$scope.activityId);
+        console.log('activityId: ' + $scope.activityId);
 
 
         $('.tab_change_selected').on('click', function () {
@@ -2421,46 +2421,46 @@ angular.module('starter.controllers', [])
             url: ApiEndpoint.url + 'home/getNowTime.do',
             data: $.param({}),
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
-        }).success(function(data){
-            if(data.errorCode == 0){
+        }).success(function (data) {
+            if (data.errorCode == 0) {
                 var time = data.result;
 
                 $http({
-                    method:'POST',
-                    url:ApiEndpoint.url + 'activity/getActivityById.do',
-                    data:$.param({
-                        activityId:$scope.activityId
+                    method: 'POST',
+                    url: ApiEndpoint.url + 'activity/getActivityById.do',
+                    data: $.param({
+                        activityId: $scope.activityId
                     }),
-                    headers:{'Content-Type':'application/x-www-form-urlencoded'}
-                }).success(function(data){
-                    if(data.errorCode == 0){
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+                }).success(function (data) {
+                    if (data.errorCode == 0) {
                         $scope.activityInfo = data.result;
                         var activityDescription = data.result.activityDescription;
                         var currentActivityId = data.result.activityId;
                         console.log(currentActivityId);
 
                         $('#detail').html(activityDescription);
-                        
+
 
                         // activityType(活动类型): 1内  2审  3财  4税  5风
                         // 活动--相关(根据activityType获取活动的相关活动列表)
                         $http({
-                            method:'POST',
-                            url:ApiEndpoint.url + 'activity/getAllActivityList.do',
-                            data:$.param({
+                            method: 'POST',
+                            url: ApiEndpoint.url + 'activity/getAllActivityList.do',
+                            data: $.param({
                                 // activityWay:$scope.activityInfo.activityWay,
-                                activityType:$scope.activityInfo.activityType
+                                activityType: $scope.activityInfo.activityType
                             }),
-                            headers:{'Content-Type':'application/x-www-form-urlencoded'}
-                        }).success(function(data){
-                            if(data.errorCode == 0){
+                            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+                        }).success(function (data) {
+                            if (data.errorCode == 0) {
                                 var activityRelatedResult = data.result;
 
                                 $scope.activityRelatedList = [];
 
-                                if(activityRelatedResult.length > 0){
-                                    angular.forEach(activityRelatedResult,function(value){
-                                        if(currentActivityId != value.activityId){
+                                if (activityRelatedResult.length > 0) {
+                                    angular.forEach(activityRelatedResult, function (value) {
+                                        if (currentActivityId != value.activityId) {
                                             $scope.activityRelatedList.push(value);
                                         }
                                     })
@@ -2471,39 +2471,39 @@ angular.module('starter.controllers', [])
 
 
                         // newActivityStatus用于判断活动状态
-                        if(time < $scope.activityInfo.activityStartTime){
+                        if (time < $scope.activityInfo.activityStartTime) {
                             // 即将开始
                             $scope.activityInfo.newActivityStatus = 1;
-                        }else if(time >= $scope.activityInfo.activityStartTime && time <= $scope.activityInfo.activityEndTime){
+                        } else if (time >= $scope.activityInfo.activityStartTime && time <= $scope.activityInfo.activityEndTime) {
                             // 直播中
                             $scope.activityInfo.newActivityStatus = 2;
-                        }else if(time > $scope.activityInfo.activityEndTime){
+                        } else if (time > $scope.activityInfo.activityEndTime) {
                             // 已结束
                             $scope.activityInfo.newActivityStatus = 3;
                         }
 
 
                         $http({
-                            method:'POST',
-                            url:ApiEndpoint.url + 'order/getOrderByActivityAndUserId.do',
-                            data:$.param({
-                                userId:localStorage.userId,
-                                activityId:$scope.activityId
+                            method: 'POST',
+                            url: ApiEndpoint.url + 'order/getOrderByActivityAndUserId.do',
+                            data: $.param({
+                                userId: localStorage.userId,
+                                activityId: $scope.activityId
                             }),
-                            headers:{'Content-Type':'application/x-www-form-urlencoded'}
-                        }).success(function(data){
-                            if(data.errorCode == 0){
+                            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+                        }).success(function (data) {
+                            if (data.errorCode == 0) {
                                 // total=1表示已支付 total=2表示未支付
                                 var activityPayStatus = data.total;
-                                
-                                if($scope.activityInfo.activityPrice == 0){
+
+                                if ($scope.activityInfo.activityPrice == 0) {
                                     console.log('活动免费');
                                     $scope.btnBuyStatus = false;
-                                }else if($scope.activityInfo.activityPrice > 0){
-                                    if(activityPayStatus == 1){
+                                } else if ($scope.activityInfo.activityPrice > 0) {
+                                    if (activityPayStatus == 1) {
                                         console.log('活动收费但已支付');
                                         $scope.btnBuyStatus = false;
-                                    }else if(activityPayStatus == 2){
+                                    } else if (activityPayStatus == 2) {
                                         console.log('活动收费且未付费');
                                         $scope.btnBuyStatus = true;
                                     }
@@ -2517,21 +2517,21 @@ angular.module('starter.controllers', [])
 
 
         // 活动--讲师
-        $scope.getActivityTeacher = function(){
+        $scope.getActivityTeacher = function () {
             $http({
-                method:'POST',
-                url:ApiEndpoint.url + 'teacher/getTeacherByActivityId.do',
-                data:$.param({
-                    activityId:$scope.activityId
+                method: 'POST',
+                url: ApiEndpoint.url + 'teacher/getTeacherByActivityId.do',
+                data: $.param({
+                    activityId: $scope.activityId
                 }),
-                headers:{'Content-Type':'application/x-www-form-urlencoded'}
-            }).success(function(data){
-                if(data.errorCode == 0){
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+            }).success(function (data) {
+                if (data.errorCode == 0) {
                     $scope.activityTeacherInfo = data.result;
                 }
             })
         }
-  
+
     })
 
 
@@ -2778,7 +2778,8 @@ angular.module('starter.controllers', [])
         $scope.pay = function () {
             $ionicModal.fromTemplateUrl('modal.html', {
                 scope: $scope,
-                animation: 'slide-in-up'
+                animation: 'slide-in-up',
+                // backdropClickToClose:true
             }).then(function (modal) {
                 $scope.modal = modal;
                 $scope.openModal();
@@ -2803,6 +2804,19 @@ angular.module('starter.controllers', [])
             $scope.$on('modal.removed', function () {
                 // 执行动作
             });
+
+
+            var htmlEl = angular.element(document.querySelector('html'));
+            htmlEl.on('click', function (event) {
+                console.log(event.target.nodeName)
+                if (event.target.nodeName === 'HTML') {
+                    alert(1);
+                    if ($scope.modal.isShown()) {
+                        $scope.closeModal();
+                    }
+                }
+            });
+
         }
 
 
@@ -3394,7 +3408,7 @@ angular.module('starter.controllers', [])
 
 
     //所有的视频详情(包括录播课程的课时详情、不属于课程的视频、直播已结束转录播的视频、活动视频共同页面)
-    .controller('VideoCtrl', function ($scope, $ionicHistory, $http, $state, $stateParams,$timeout,$ionicPopup, ApiEndpoint, PopService) {
+    .controller('VideoCtrl', function ($scope, $ionicHistory, $http, $state, $stateParams, $timeout, $ionicPopup, ApiEndpoint, PopService) {
         $scope.goBack = function () {
             $ionicHistory.goBack();
         }
@@ -3404,7 +3418,7 @@ angular.module('starter.controllers', [])
 
 
         //底部立即购买按钮
-        $scope.hasCourse = false; 
+        $scope.hasCourse = false;
         $scope.btnBuyStatus = false;
 
 
@@ -3427,7 +3441,7 @@ angular.module('starter.controllers', [])
                     $('#recordedDetailVideoWraper').append(videoStr);
 
 
-                    var myPlayer = neplayer('my-video', 
+                    var myPlayer = neplayer('my-video',
                         {
                             "controls": true, //是否显示控制条
                             "autoplay": false, //是否自动播放(ios不支持自动播放)
@@ -3441,20 +3455,20 @@ angular.module('starter.controllers', [])
                             "poster": $scope.videoResult.videoIcon, //视频播放前显示的图片
                             // "techOrder": ["flash", "html5"], //优先使用的播放模式
                             //设置不显示大播放按钮
-                            bigPlayButton:false,
-                            controlBar:{
-                                'playToggle':true,
-                                'volumeMenuButton':true,
-                                'progressControl':true,
-                                'liveDisplay':true,
-                                'fullscreenToggle':true,
+                            bigPlayButton: false,
+                            controlBar: {
+                                'playToggle': true,
+                                'volumeMenuButton': true,
+                                'progressControl': true,
+                                'liveDisplay': true,
+                                'fullscreenToggle': true,
 
-                                'currentTimeDisplay':true,
-                                'timeDivider':true,
-                                'durationDisplay':true,
-                                'remainingTimeDisplay':false
+                                'currentTimeDisplay': true,
+                                'timeDivider': true,
+                                'durationDisplay': true,
+                                'remainingTimeDisplay': false
                             }
-                        }, 
+                        },
                         function () {
                             console.log('播放器初始化完成');
                             myPlayer.setDataSource({ type: 'video/mp4', src: $scope.videoResult.videoUrl });
@@ -3480,7 +3494,7 @@ angular.module('starter.controllers', [])
                     // myPlayer.setDataSource({ type: 'video/mp4', src: $scope.videoResult.videoUrl });
                     // myPlayer.play();
 
-                    $scope.$on('$ionicView.beforeLeave',function(){
+                    $scope.$on('$ionicView.beforeLeave', function () {
                         myPlayer.release();
                     });
                 }
@@ -3498,13 +3512,13 @@ angular.module('starter.controllers', [])
                 videoId: $scope.videoId
             }),
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
-        }).success(function(data){
-            if(data.errorCode == 0){
+        }).success(function (data) {
+            if (data.errorCode == 0) {
                 /*
                  * data.result 大于 0 时表示该视频是课程视频,所属课程的courseId为data.result;
                  * data.result 等于 0 时表示该视频是其他视频(包括录播视频、直播已结束视频、活动视频)
                 */
-                if(data.result > 0){//属于课程视频
+                if (data.result > 0) {//属于课程视频
                     console.log('属于课程视频');
                     $scope.courseId = data.result;
                     console.log('courseId: ' + $scope.courseId);
@@ -3518,16 +3532,16 @@ angular.module('starter.controllers', [])
                             courseId: $scope.courseId
                         }),
                         headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
-                    }).success(function(data){
+                    }).success(function (data) {
                         if (data.errorCode == 0) {
                             var courseInfo = data.result;
                             // courseIsPay课程付费状态: 0未付费  1已付费
                             var courseIsPay = courseInfo.courseVideoForH5[0].courseIspay;
 
                             var keepGoing = true;
-                            angular.forEach(courseInfo.courseVideoForH5,function(value){
-                                if(keepGoing){
-                                    if('courseIsPay' in value){
+                            angular.forEach(courseInfo.courseVideoForH5, function (value) {
+                                if (keepGoing) {
+                                    if ('courseIsPay' in value) {
                                         $scope.courseIsPayStatus = value.courseIsPay;
                                     }
                                     keepGoing = false;
@@ -3551,9 +3565,9 @@ angular.module('starter.controllers', [])
                                     // 获取登录用户课时付费状态  selectType(查询类别):视频1 直播2 课程3 活动4
                                     function isPayStatus(selectType, videoId, liveId, courseId, activityId) {
                                         $http({
-                                            method:'POST',
-                                            url:ApiEndpoint.url + "homePage/selectUserIsPayStatus.do",
-                                            data:$.param({
+                                            method: 'POST',
+                                            url: ApiEndpoint.url + "homePage/selectUserIsPayStatus.do",
+                                            data: $.param({
                                                 userId: localStorage.userId,
                                                 selectType: selectType,
                                                 videoId: videoId,
@@ -3561,7 +3575,7 @@ angular.module('starter.controllers', [])
                                                 courseId: courseId,
                                                 activityId: activityId
                                             }),
-                                            headers:{'Content-Type':'application/x-www-form-urlencoded'}
+                                            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
                                         }).success(function (data) {
                                             // isPay:(0:未付费),(>0:已付费)
                                             var videoPayStatus = data.result;
@@ -3605,7 +3619,7 @@ angular.module('starter.controllers', [])
 
                         }
                     })
-                }else if(data.result == 0){//不属于课程的其他视频(包括录播视频、直播已结束视频、活动视频)
+                } else if (data.result == 0) {//不属于课程的其他视频(包括录播视频、直播已结束视频、活动视频)
                     console.log('不属于课程的其他视频(包括录播视频、直播已结束视频、活动视频)');
 
                     //获取课时免费收费
@@ -3616,8 +3630,8 @@ angular.module('starter.controllers', [])
                             videoId: $scope.videoId
                         }),
                         headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
-                    }).success(function(data){
-                        if(data.errorCode == 0){
+                    }).success(function (data) {
+                        if (data.errorCode == 0) {
                             var videoResult = data.result;
 
 
@@ -3801,14 +3815,14 @@ angular.module('starter.controllers', [])
 
 
         //点击'立即购买'到生成订单
-        $scope.createCourseVideoOrder = function () {
-            console.log($scope.courseId);
-
+        /*$scope.createCourseVideoOrder = function () {
             var confirmPopup = $ionicPopup.confirm({
                 title: 'Popup title',
                 template: 'Popup text',
                 cancelText: '购买视频',
-                okText: '购买课程'
+                cancelType:'',
+                okText: '购买课程',
+                okType:''
             }).then(function(res) {
                 if (res) {
                     $state.go('confirm_order_course',{
@@ -3820,12 +3834,55 @@ angular.module('starter.controllers', [])
                     });
                 }
             });
-        }
+
+            var htmlEl = angular.element(document.querySelector('html'));
+            htmlEl.on('click', function (event) {
+                if (event.target.nodeName === 'HTML') {
+                    if (confirmPopup) {
+                       confirmPopup.close();
+                    }
+            　　}
+            });
+        }*/
+
+        $scope.createCourseVideoOrder = function () {
+            var confirmPopup = $ionicPopup.confirm({
+                title: 'Popup title',
+                template: 'Popup text',
+                cancelText: '购买视频',
+                cancelType: '',
+                okText: '购买课程',
+                okType: ''
+            });
+            confirmPopup.then(function (res) {
+                if (res) {
+                    console.log('购买课程');
+                    $state.go('confirm_order_course', {
+                        courseId: $scope.courseId
+                    });
+                } else {
+                    console.log('购买视频');
+                    $state.go('confirm_order_video', {
+                        videoId: $scope.videoId
+                    });
+                }
+            });
+
+            /*var htmlEl = angular.element(document.querySelector('html'));
+            htmlEl.on('click', function (event) {
+                if (event.target.nodeName === 'HTML') {
+                    if (confirmPopup) {
+                        confirmPopup.close();
+                    }
+                }
+            });*/
+
+        };
 
         //点击'立即购买'到生成订单
         $scope.createVideoOrder = function () {
-            $state.go('confirm_order_video',{
-                videoId:$scope.videoId
+            $state.go('confirm_order_video', {
+                videoId: $scope.videoId
             });
         }
     })
@@ -3856,33 +3913,33 @@ angular.module('starter.controllers', [])
 
 
                     var myPlayer = neplayer('my-video', {
-                            "controls": true, //是否显示控制条
-                            "autoplay": false, //是否自动播放(ios不支持自动播放)
-                            /*预加载选项*/
-                            "preload": "auto",
-                            /*
-                            'auto'预加载视频（需要浏览器允许）;
-                            'metadata'仅预加载视频meta信息;
-                            'none'不预加载;
-                            */
-                            "poster": $scope.videoResult.videoIcon, //视频播放前显示的图片
-                            //设置显示大播放按钮
-                            bigPlayButton:true,
-                            controlBar:{
-                                'playToggle':true,
-                                'volumeMenuButton':true,
-                                'progressControl':true,
-                                'liveDisplay':true,
-                                'fullscreenToggle':true,
+                        "controls": true, //是否显示控制条
+                        "autoplay": false, //是否自动播放(ios不支持自动播放)
+                        /*预加载选项*/
+                        "preload": "auto",
+                        /*
+                        'auto'预加载视频（需要浏览器允许）;
+                        'metadata'仅预加载视频meta信息;
+                        'none'不预加载;
+                        */
+                        "poster": $scope.videoResult.videoIcon, //视频播放前显示的图片
+                        //设置显示大播放按钮
+                        bigPlayButton: true,
+                        controlBar: {
+                            'playToggle': true,
+                            'volumeMenuButton': true,
+                            'progressControl': true,
+                            'liveDisplay': true,
+                            'fullscreenToggle': true,
 
-                                'currentTimeDisplay':true,
-                                'timeDivider':true,
-                                'durationDisplay':true,
-                                'remainingTimeDisplay':false
-                            }
-                        }, function () {
-                            console.log('播放器初始化完成');
-                            myPlayer.setDataSource({ type: 'video/mp4', src: $scope.videoResult.videoUrl });
+                            'currentTimeDisplay': true,
+                            'timeDivider': true,
+                            'durationDisplay': true,
+                            'remainingTimeDisplay': false
+                        }
+                    }, function () {
+                        console.log('播放器初始化完成');
+                        myPlayer.setDataSource({ type: 'video/mp4', src: $scope.videoResult.videoUrl });
                     });
 
                     var playerTech = videojs("my-video").tech({ IWillNotUseThisInPlugins: true });
@@ -3899,7 +3956,7 @@ angular.module('starter.controllers', [])
                     // myPlayer.setDataSource({ type: 'video/mp4', src: $scope.videoResult.videoUrl });
                     // myPlayer.play();
 
-                    $scope.$on('$ionicView.beforeLeave',function(){
+                    $scope.$on('$ionicView.beforeLeave', function () {
                         myPlayer.release();
                     });
                 }
@@ -4171,7 +4228,7 @@ angular.module('starter.controllers', [])
                 myPlayer.setDataSource({ type: 'video/mp4', src: $scope.livingEndedVideoInfo.videoUrl });
                 myPlayer.play();
 
-                $scope.$on('$ionicView.beforeLeave',function(){
+                $scope.$on('$ionicView.beforeLeave', function () {
                     myPlayer.release();
                 });
 

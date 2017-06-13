@@ -15,7 +15,8 @@
 	<script src="js/lib/jquery.easing.min.js"></script>
 	<script src="js/backTop.js"></script>
 
-	<script src="js/lib/angular/angular.min.js"></script>
+	<!--<script src="js/lib/angular/angular.min.js"></script>-->
+	<script src="js/lib/angular/ionic.bundle.js"></script>
 	<script src="js/app.js"></script>
 	<script src="js/controller.js"></script>
 	<script src="js/service.js"></script>
@@ -312,8 +313,9 @@
 
 	
 	<div login-register></div>
+	
 
-	<div id="loginRegister">
+	<!--<div id="loginRegister">
 		<div class="close"><img src="images/close.png" alt=""></div>
 		<ul class="title clearfix">
 			<li class="pull-left active">注册</li>
@@ -367,7 +369,7 @@
 			</div>
 		</div>
 	</div>
-	<div id="mask"></div>
+	<div id="mask"></div>-->
 
 
 	<div id="back-top"></div>
@@ -382,7 +384,8 @@
 		    loop:true
 	 	});
     </script>
-    <script>
+<script>
+	/*window.onload = function(){
     	var register = $('.headerIndex').find('.register');
     	var login = $('.headerIndex').find('.login');
 
@@ -425,6 +428,7 @@
     	eventContentLi.on('click',function(){
     		$(this).addClass('active').siblings().removeClass('active').parent().next().children('div').eq($(this).index()).show().siblings().hide();
     	})
-    </script>
+	}*/
+</script>
 </body>
 </html>
